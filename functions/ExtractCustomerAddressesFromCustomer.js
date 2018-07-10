@@ -1,79 +1,88 @@
-let ExtractCustomerAddressesFromCustomer = function(
-    ncUtil,
-    channelProfile,
-    flowContext,
-    payload,
-    callback)
-{
+'use strict'
 
-    log("Building callback object...", ncUtil);
+let ExtractCustomerAddressesFromCustomer = function (ncUtil, channelProfile, flowContext, payload, callback) {
+    const nc = require('../util/common');
+
     let out = {
         ncStatusCode: null,
         payload: {}
     };
 
-    // Check callback
     if (!callback) {
         throw new Error("A callback function was not provided");
     } else if (typeof callback !== 'function') {
         throw new TypeError("callback is not a function")
     }
 
-    try {
-        let notFound = false;
-        let invalid = false;
-        let invalidMsg = "";
-        let data = {};
+    validateFunction()
+        .then(extractCustomerAddresses)
+        .catch(handleError)
+        .then(() => callback(out))
+        .catch(error => {
+            logError(`The callback function threw an exception: ${error}`);
+            setTimeout(() => {
+                throw error;
+            });
+        });
 
-        // Check ncUtil
-        if (!ncUtil) {
-            invalid = true;
-            invalidMsg = "ExtractCustomerAddressesFromCustomer - Invalid Request: ncUtil was not passed into the function";
+    function logInfo(msg) {
+        nc.log(msg, "info");
+    }
+
+    function logWarn(msg) {
+        nc.log(msg, "warn");
+    }
+
+    function logError(msg) {
+        nc.log(msg, "error");
+    }
+
+    async function validateFunction() {
+        let invalidMsg;
+
+        if (!ncUtil)
+            invalidMsg = "ncUtil was not provided";
+        else if (!channelProfile)
+            invalidMsg = "channelProfile was not provided";
+        else if (!channelProfile.channelSettingsValues)
+            invalidMsg = "channelProfile.channelSettingsValues was not provided";
+        else if (!channelProfile.channelAuthValues)
+            invalidMsg = "channelProfile.channelAuthValues was not provided";
+        else if (!channelProfile.channelSettingsValues.api_uri)
+            invalidMsg = "channelProfile.channelSettingsValues.api_uri was not provided";
+        else if (!channelProfile.channelAuthValues.store_hash)
+            invalidMsg = "channelProfile.channelAuthValues.store_hash was not provided";
+        else if (!channelProfile.channelAuthValues.access_token)
+            invalidMsg = "channelProfile.channelAuthValues.access_token was not provided";
+        else if (!channelProfile.channelAuthValues.client_id)
+            invalidMsg = "channelProfile.channelAuthValues.client_id was not provided";
+        else if (!channelProfile.customerBusinessReferences)
+            invalidMsg = "channelProfile.customerBusinessReferences was not provided";
+        else if (!nc.isArray(channelProfile.customerBusinessReferences))
+            invalidMsg = "channelProfile.customerBusinessReferences is not an array";
+        else if (!nc.isNonEmptyArray(channelProfile.customerBusinessReferences))
+            invalidMsg = "channelProfile.customerBusinessReferences is empty";
+        else if (!payload)
+            invalidMsg = "payload was not provided";
+        else if (!payload.doc)
+            invalidMsg = "payload.doc was not provided";
+        else if (!payload.customerRemoteID)
+            invalidMsg = "payload.customerRemoteID was not provided";
+        else if (!payload.doc.addresses)
+            invalidMsg = "Addresses Not Found: The customer has no addresses (payload.doc.addresses)";
+
+        if (invalidMsg) {
+            logError(invalidMsg);
+            out.ncStatusCode = 400;
+            throw new Error(`Invalid request [${invalidMsg}]`);
         }
+        logInfo("Function is valid.");
+    }
 
-        if (!channelProfile) {
-          invalid = true;
-          invalidMsg = "channelProfile was not provided"
-        } else if (!channelProfile.channelSettingsValues) {
-          invalid = true;
-          invalidMsg = "channelProfile.channelSettingsValues was not provided"
-        } else if (!channelProfile.channelSettingsValues.protocol) {
-          invalid = true;
-          invalidMsg = "channelProfile.channelSettingsValues.protocol was not provided"
-        } else if (!channelProfile.channelAuthValues) {
-          invalid = true;
-          invalidMsg = "channelProfile.channelAuthValues was not provided"
-        } else if (!channelProfile.customerBusinessReferences) {
-          invalid = true;
-          invalidMsg = "channelProfile.customerBusinessReferences was not provided"
-        } else if (!Array.isArray(channelProfile.customerBusinessReferences)) {
-          invalid = true;
-          invalidMsg = "channelProfile.customerBusinessReferences is not an array"
-        } else if (channelProfile.customerBusinessReferences.length === 0) {
-          invalid = true;
-          invalidMsg = "channelProfile.customerBusinessReferences is empty"
-        }
+    async function extractCustomerAddresses() {
+        let data = payload.doc.addresses;
 
-        // Check Payload
-        if (!invalid) {
-          if (payload) {
-              if (!payload.doc) {
-                  invalidMsg = "Extract Customer Addresses From Customer - Invalid Request: payload.doc was not provided";
-                  invalid = true;
-              } else if (!payload.doc.Addresses || payload.doc.Addresses.length === 0) {
-                  notFound = true;
-                  invalidMsg = "Extract Customer Addresses From Customer - Addresses Not Found: The customer has no addresses (payload.doc.Addresses)";
-              } else {
-                  data = payload.doc.Addresses;
-              }
-          } else {
-              invalidMsg = "Extract Customer Addresses From Customer - Invalid Request: payload was not provided";
-              invalid = true;
-          }
-        }
-
-        if (!invalid && !notFound) {
-          // Customer Addresses Found
+        if (data.length > 0) {
           out.payload = [];
 
           data.forEach((address) => {
@@ -84,38 +93,17 @@ let ExtractCustomerAddressesFromCustomer = function(
               };
               out.payload.push(payloadElement);
           });
-
           out.ncStatusCode = 200;
-
-          callback(out);
-        } else if (!invalid && notFound){
-          // Customer Addresses Not Found
-          log(invalidMsg, ncUtil);
-          out.ncStatusCode = 204;
-
-          callback(out);
         } else {
-          // Invalid Request (payload or payload.doc was not passed in)
-          log(invalidMsg, ncUtil);
-          out.ncStatusCode = 400;
-          out.payload.error = { err: invalidMsg };
-
-          callback(out);
+          logInfo("No customer addresses found");
+          out.ncStatusCode = 204;
         }
-    } catch (err) {
-        logError("Exception occurred in ExtractCustomerAddressesFromCustomer - " + err, ncUtil);
-        out.ncStatusCode = 500;
-        out.payload.error = { err: err.message, stackTrace: err.stackTrace };
-        callback(out);
     }
 
-}
-
-function logError(msg, ncUtil) {
-    console.log("[error] " + msg);
-}
-
-function log(msg, ncUtil) {
-    console.log("[info] " + msg);
+    async function handleError(error) {
+        logError(error);
+        out.payload.error = error;
+        out.ncStatusCode = out.ncStatusCode || 500;
+    }
 }
 module.exports.ExtractCustomerAddressesFromCustomer = ExtractCustomerAddressesFromCustomer;

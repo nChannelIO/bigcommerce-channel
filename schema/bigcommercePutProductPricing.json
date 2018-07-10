@@ -1,0 +1,30 @@
+{
+	"name": "Bigcommerce Put Product Pricing",
+	"schemaDef": {
+		"$schema": "http://json-schema.org/draft-04/schema#",
+		"description": "Bigcommerce Put Product Pricing",
+		"type": "object",
+		"properties": {
+			"price": {
+				"title": "price",
+				"type": ["string", "number"]
+			},
+			"sku": {
+				"title": "sku",
+				"type": ["string"]
+			}
+		},
+		"required": [
+			"price",
+			"sku"
+		],
+		"additionalProperties": true
+	},
+	"tags": [
+		"Bigcommerce",
+		"Product",
+		"Pricing",
+		"Put"
+	],
+	"audit": {}
+}

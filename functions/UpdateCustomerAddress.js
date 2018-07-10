@@ -1,6 +1,6 @@
 'use strict'
 
-let InsertCustomer = function (ncUtil, channelProfile, flowContext, payload, callback) {
+let UpdateCustomerAddress = function (ncUtil, channelProfile, flowContext, payload, callback) {
     const request = require('request-promise');
     const jsonata = require('jsonata');
     const nc = require('../util/common');
@@ -18,7 +18,7 @@ let InsertCustomer = function (ncUtil, channelProfile, flowContext, payload, cal
     }
 
     validateFunction()
-        .then(insertCustomer)
+        .then(updateCustomerAddress)
         .then(buildResponse)
         .catch(handleError)
         .then(() => callback(out))
@@ -60,16 +60,20 @@ let InsertCustomer = function (ncUtil, channelProfile, flowContext, payload, cal
             invalidMsg = "channelProfile.channelAuthValues.access_token was not provided";
         else if (!channelProfile.channelAuthValues.client_id)
             invalidMsg = "channelProfile.channelAuthValues.client_id was not provided";
-        else if (!channelProfile.customerBusinessReferences)
-            invalidMsg = "channelProfile.customerBusinessReferences was not provided";
-        else if (!nc.isArray(channelProfile.customerBusinessReferences))
-            invalidMsg = "channelProfile.customerBusinessReferences is not an array";
-        else if (!nc.isNonEmptyArray(channelProfile.customerBusinessReferences))
-            invalidMsg = "channelProfile.customerBusinessReferences is empty";
+        else if (!channelProfile.customerAddressBusinessReferences)
+            invalidMsg = "channelProfile.customerAddressBusinessReferences was not provided";
+        else if (!nc.isArray(channelProfile.customerAddressBusinessReferences))
+            invalidMsg = "channelProfile.customerAddressBusinessReferences is not an array";
+        else if (!nc.isNonEmptyArray(channelProfile.customerAddressBusinessReferences))
+            invalidMsg = "channelProfile.customerAddressBusinessReferences is empty";
         else if (!payload)
             invalidMsg = "payload was not provided";
         else if (!payload.doc)
             invalidMsg = "payload.doc was not provided";
+        else if (!payload.customerRemoteID)
+            invalidMsg = "payload.customerRemoteID was not provided";
+        else if (!payload.customerAddressRemoteID)
+            invalidMsg = "payload.customerAddressRemoteID was not provided";
 
         if (invalidMsg) {
             logError(invalidMsg);
@@ -79,15 +83,15 @@ let InsertCustomer = function (ncUtil, channelProfile, flowContext, payload, cal
         logInfo("Function is valid.");
     }
 
-    async function insertCustomer() {
+    async function updateCustomerAddress() {
         let headers = {
           "X-Auth-Client": channelProfile.channelAuthValues.client_id,
           "X-Auth-Token": channelProfile.channelAuthValues.access_token
         }
 
-        logInfo(`Inserting Customer`);
+        logInfo(`Updating up Customer Address`);
 
-        let response = await request.post({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/customers`, body: payload.doc, headers: headers, json: true, resolveWithFullResponse: true  })
+        let response = await request.put({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/customers/${payload.customerRemoteID}/addresses/${payload.customerAddressRemoteID}`, body: payload.doc, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });
 
         return response;
@@ -97,14 +101,12 @@ let InsertCustomer = function (ncUtil, channelProfile, flowContext, payload, cal
         out.response.endpointStatusCode = response.statusCode;
         out.response.endpointStatusMessage = response.statusMessage;
 
-        if (response.statusCode === 201 && response.body) {
+        if (response.statusCode === 200 && response.body) {
           out.payload = {
             doc: response.body,
-            customerRemoteID: response.body.id,
-            customerBusinessReference: nc.extractBusinessReference(channelProfile.customerBusinessReferences, response.body)
+            customerAddressBusinessReference: nc.extractBusinessReference(channelProfile.customerAddressBusinessReferences, response.body)
           }
-
-          out.ncStatusCode = 201;
+          out.ncStatusCode = 200;
         } else if (response.statusCode === 429) {
           out.ncStatusCode = 429;
           out.payload.error = response.body;
@@ -136,4 +138,4 @@ let InsertCustomer = function (ncUtil, channelProfile, flowContext, payload, cal
     }
 }
 
-module.exports.InsertCustomer = InsertCustomer;
+module.exports.UpdateCustomerAddress = UpdateCustomerAddress;
