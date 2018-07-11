@@ -35,19 +35,19 @@
           "orderStatus"
         ],
         "configValues": {
-          "orderStatus": "open"
+          "orderStatus": "Shipped"
         }
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"salesOrderBusinessReferences": ["order.id"]},
+        "referenceLocation": {"salesOrderBusinessReferences": ["id"]},
         "remoteID": "id",
         "peers": [
           {
             "name": "PRODUCT",
             "location": "order.products",
             "remoteID": "id",
-            "businessReferences": ["name"]
+            "businessReferences": ["sku"]
           }
         ]
       }
@@ -90,6 +90,608 @@
         "remoteID": "fulfillment.id"
       }
     }
+    {
+      "name": "GET CUSTOMER",
+      "description": "GET CUSTOMER",
+      "channelVerb": "GET",
+      "channelNoun": "CUSTOMER",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configModel": {},
+        "configView": [],
+        "configValues": {}
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": {"customerBusinessReferences": ["email", "phone"]},
+        "remoteID": "id",
+        "businessReferences": ["email", "phone"]
+      }
+    },
+    {
+      "name": "REFRESH CUSTOMER",
+      "description": "REFRESH CUSTOMER",
+      "channelVerb": "REFRESH",
+      "channelNoun": "CUSTOMER",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configModel": {},
+        "configView": [],
+        "configValues": {}
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": {"customerBusinessReferences": ["email", "phone"]},
+        "remoteID": "id",
+        "businessReferences": ["email", "phone"]
+      }
+    },
+    {
+      "name": "PUT CUSTOMER",
+      "description": "PUT CUSTOMER",
+      "channelVerb": "PUT",
+      "channelNoun": "CUSTOMER",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configModel": {
+          "type": "object",
+          "properties": {
+            "canInsertCustomerFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, canInsertCustomerFlag"
+            },
+            "canInsertCustomerAddressFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, canInsertCustomerAddressFlag"
+            },
+            "canInsertCustomerContactFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, canInsertCustomerContactFlag"
+            },
+            "canUpdateCustomerFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, canUpdateCustomerFlag"
+            },
+            "canUpdateCustomerAddressFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, canUpdateCustomerAddressFlag"
+            },
+            "canUpdateCustomerContactFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, canUpdateCustomerContactFlag"
+            },
+            "doInsertCustomerFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, doInsertCustomerFlag"
+            },
+            "doInsertCustomerAddressFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, doInsertCustomerAddressFlag"
+            },
+            "doInsertCustomerContactFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, doInsertCustomerContactFlag"
+            },
+            "doUpdateCustomerFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, doUpdateCustomerFlag"
+            },
+            "doUpdateCustomerAddressFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, doUpdateCustomerAddressFlag"
+            },
+            "doUpdateCustomerContactFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, doUpdateCustomerContactFlag"
+            },
+            "doPutCustomerAddressFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, doPutCustomerAddressFlag"
+            },
+            "doPutCustomerContactFlag": {
+              "type": "boolean",
+              "title": "PUT Sales Order, doPutCustomerContactFlag"
+            }
+          },
+          "required": [
+            "canInsertCustomerFlag",
+            "canInsertCustomerAddressFlag",
+            "canInsertCustomerContactFlag",
+            "canUpdateCustomerFlag",
+            "canUpdateCustomerAddressFlag",
+            "canUpdateCustomerContactFlag",
+            "doInsertCustomerFlag",
+            "doInsertCustomerAddressFlag",
+            "doInsertCustomerContactFlag",
+            "doUpdateCustomerFlag",
+            "doUpdateCustomerAddressFlag",
+            "doUpdateCustomerContactFlag",
+            "doPutCustomerAddressesFlag",
+            "doPutCustomerContactsFlag"
+          ]
+        },
+        "configView": [
+          "doUpdateCustomerFlag",
+          "doUpdateCustomerAddressFlag"
+        ],
+        "configValues": {
+          "canInsertCustomerFlag": true,
+          "canInsertCustomerAddressFlag": true,
+          "canInsertCustomerContactFlag": false,
+          "canUpdateCustomerFlag": true,
+          "canUpdateCustomerAddressFlag": true,
+          "canUpdateCustomerContactFlag": false,
+          "doInsertCustomerFlag": true,
+          "doInsertCustomerAddressFlag": true,
+          "doInsertCustomerContactFlag": false,
+          "doUpdateCustomerFlag": true,
+          "doUpdateCustomerAddressFlag": true,
+          "doUpdateCustomerContactFlag": false,
+          "doPutCustomerAddressesFlag": false,
+          "doPutCustomerContactsFlag": false
+        }
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": {"customerBusinessReferences": ["email", "phone"]},
+        "remoteID": "id",
+        "businessReferences": ["email", "phone"],
+        "refreshNouns": ["CUSTOMER"],
+        "children": [
+          {
+            "name": "CUSTOMERADDRESS",
+            "location": "address",
+            "remoteID": "id",
+            "businessReferences": ["street_1", "city", "state", "zip"]
+          }
+        ]
+      }
+    },
+    {
+      "name": "GET CUSTOMER",
+      "description": "GET CUSTOMER",
+      "channelVerb": "GET",
+      "channelNoun": "CUSTOMER",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configModel": {},
+        "configView": [],
+        "configValues": {}
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": { "customerAddressBusinessReferences": ["street_1", "city", "state", "zip"] },
+        "remoteID": "id",
+        "businessReferences": ["street_1", "city", "state", "zip"]
+      }
+    },
+    {
+      "name": "REFRESH CUSTOMER",
+      "description": "REFRESH CUSTOMER",
+      "channelVerb": "REFRESH",
+      "channelNoun": "CUSTOMER",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configModel": {},
+        "configView": [],
+        "configValues": {}
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": { "customerAddressBusinessReferences": ["street_1", "city", "state", "zip"] },
+        "remoteID": "id",
+        "businessReferences": ["street_1", "city", "state", "zip"]
+      }
+    },
+    {
+      "name": "PUT CUSTOMERADDRESS",
+      "description": "PUT CUSTOMERADDRESS",
+      "channelVerb": "PUT",
+      "channelNoun": "CUSTOMERADDRESS",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configModel": {
+          "type": "object",
+          "properties": {
+            "doPutCustomerAddressesFlag": {
+              "title": "PUT Customer Address, doPutCustomerAddressesFlag",
+              "type": "boolean"
+            },
+            "canUpdateCustomerAddressFlag": {
+              "title": "Update Customer Address, canUpdateCustomerAddressFlag",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "doPutCustomerAddressesFlag",
+            "canUpdateCustomerAddressFlag"
+          ]
+        },
+        "configView": [
+          "doPutCustomerAddressesFlag"
+        ],
+        "configValues": {
+          "doPutCustomerAddressesFlag": true,
+          "canUpdateCustomerAddressFlag": true
+        }
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": { "customerAddressBusinessReferences": ["street_1", "city", "state", "zip"] },
+        "remoteID": "id",
+        "businessReferences": ["street_1", "city", "state", "zip"],
+        "refreshNouns": ["CUSTOMERADDRESS"]
+      }
+    },
+    {
+      "name": "GET PRODUCT",
+      "description": "GET PRODUCT",
+      "channelVerb": "GET",
+      "channelNoun": "PRODUCT",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configValues": {
+          "canGetSimpleProducts": false,
+          "canGetMatrixProducts": true,
+          "canGetVirtualMatrixProducts": false,
+          "doGetSimpleProducts": false,
+          "doGetMatrixProducts": true,
+          "doGetVirtualMatrixProducts": false
+        },
+        "configView": [
+          "canGetMatrixProducts"
+        ],
+        "configModel": {
+          "required": [],
+          "properties": {
+            "doGetMatrixProducts": {
+              "type": "boolean",
+              "title": "GET Product Matrix, doGetMatrixProducts"
+            },
+            "doGetVirtualMatrixProducts": {
+              "type": "boolean",
+              "title": "GET Product Virtual Matrix, doGetVirtualMatrixProducts"
+            },
+            "doGetSimpleProducts": {
+              "type": "boolean",
+              "title": "GET Simple Product, doGetSimpleProducts"
+            },
+            "canGetMatrixProducts": {
+              "type": "boolean",
+              "title": "GET Product Matrix, canGetMatrixProducts"
+            },
+            "canGetVirtualMatrixProducts": {
+              "type": "boolean",
+              "title": "GET Product Virtual Matrix, canGetVirtualMatrixProducts"
+            },
+            "canGetSimpleProducts": {
+              "type": "boolean",
+              "title": "GET Simple Product, canGetSimpleProducts"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": { "productBusinessReferences": ["sku"] }
+      }
+    },
+    {
+      "name": "PUT PRODUCT",
+      "description": "PUT PRODUCT",
+      "channelVerb": "PUT",
+      "channelNoun": "PRODUCT",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configValues": {
+          "canInsertSimpleProduct": false,
+          "canInsertMatrixProduct": true,
+          "canInsertProductPricingFlag": false,
+          "canInsertProductQuantityFlag": false,
+          "canUpdateSimpleProduct": false,
+          "canUpdateMatrixProduct": true,
+          "canUpdateProductPricingFlag": false,
+          "canUpdateProductQuantityFlag": false,
+          "doInsertSimpleProduct": false,
+          "doInsertMatrixProduct": true,
+          "doInsertProductPricingFlag": false,
+          "doInsertProductQuantityFlag": false,
+          "doUpdateSimpleProduct": false,
+          "doUpdateMatrixProduct": true,
+          "doUpdateProductPricingFlag": false,
+          "doUpdateProductQuantityFlag": false,
+          "doPutProductPricingFlag": false,
+          "doPutProductQuantityFlag": false
+        },
+        "configView": [
+          "doInsertMatrixProduct",
+          "doUpdateMatrixProduct"
+        ],
+        "configModel": {
+          "required": [
+            "canInsertSimpleProduct",
+            "canInsertMatrixProduct",
+            "canInsertProductPricingFlag",
+            "canInsertProductQuantityFlag",
+            "canUpdateSimpleProduct",
+            "canUpdateMatrixProduct",
+            "canUpdateProductPricingFlag",
+            "canUpdateProductQuantityFlag",
+            "doInsertSimpleProduct",
+            "doInsertMatrixProduct",
+            "doInsertProductPricingFlag",
+            "doInsertProductQuantityFlag",
+            "doUpdateSimpleProduct",
+            "doUpdateMatrixProduct",
+            "doUpdateProductPricingFlag",
+            "doUpdateProductQuantityFlag",
+            "doPutProductPricingFlag",
+            "doPutProductQuantityFlag"
+          ],
+          "properties": {
+            "canInsertSimpleProduct": {
+              "type": "boolean",
+              "title": "PUT Product, canInsertSimpleProduct"
+            },
+            "canInsertMatrixProduct": {
+              "type": "boolean",
+              "title": "PUT Product, canInsertMatrixProduct"
+            },
+            "canInsertProductPricingFlag": {
+              "type": "boolean",
+              "title": "PUT Product, canInsertProductPricingFlag"
+            },
+            "canInsertProductQuantityFlag": {
+              "type": "boolean",
+              "title": "PUT Product, canInsertProductQuantityFlag"
+            },
+            "canUpdateSimpleProduct": {
+              "type": "boolean",
+              "title": "PUT Product, canUpdateSimpleProduct"
+            },
+            "canUpdateMatrixProduct": {
+              "type": "boolean",
+              "title": "PUT Product, canUpdateMatrixProduct"
+            },
+            "canUpdateProductPricingFlag": {
+              "type": "boolean",
+              "title": "PUT Product, canUpdateProductPricingFlag"
+            },
+            "canUpdateProductQuantityFlag": {
+              "type": "boolean",
+              "title": "PUT Product, canUpdateProductQuantityFlag"
+            },
+            "doInsertSimpleProduct": {
+              "type": "boolean",
+              "title": "PUT Product, doInsertSimpleProduct"
+            },
+            "doInsertMatrixProduct": {
+              "type": "boolean",
+              "title": "PUT Product, doInsertMatrixProduct"
+            },
+            "doInsertProductPricingFlag": {
+              "type": "boolean",
+              "title": "PUT Product, doInsertProductPricingFlag"
+            },
+            "doInsertProductQuantityFlag": {
+              "type": "boolean",
+              "title": "PUT Product, doInsertProductQuantityFlag"
+            },
+            "doUpdateSimpleProduct": {
+              "type": "boolean",
+              "title": "PUT Product, doUpdateSimpleProduct"
+            },
+            "doUpdateMatrixProduct": {
+              "type": "boolean",
+              "title": "PUT Product, doUpdateMatrixProduct"
+            },
+            "doUpdateProductPricingFlag": {
+              "type": "boolean",
+              "title": "PUT Product, doUpdateProductPricingFlag"
+            },
+            "doUpdateProductQuantityFlag": {
+              "type": "boolean",
+              "title": "PUT Product, doUpdateProductQuantityFlag"
+            },
+            "doPutProductPricingFlag": {
+              "type": "boolean",
+              "title": "PUT Product, doPutProductPricingFlag"
+            },
+            "doPutProductQuantityFlag": {
+              "type": "boolean",
+              "title": "PUT Product, doPutProductQuantityFlag"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": { "productBusinessReferences": ["sku"] }
+      }
+    },
+    {
+      "name": "REFRESH PRODUCT",
+      "description": "REFRESH PRODUCT",
+      "channelVerb": "REFRESH",
+      "channelNoun": "PRODUCT",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configModel": {
+          "required": [],
+          "properties": {
+            "doGetMatrixProducts": {
+              "type": "boolean",
+              "title": "GET Product Matrix, doGetMatrixProducts"
+            },
+            "doGetVirtualMatrixProducts": {
+              "type": "boolean",
+              "title": "GET Product Virtual Matrix, doGetVirtualMatrixProducts"
+            },
+            "doGetSimpleProducts": {
+              "type": "boolean",
+              "title": "GET Simple Product, doGetSimpleProducts"
+            },
+            "canGetMatrixProduct": {
+              "type": "boolean",
+              "title": "GET Product Matrix, canGetMatrixProduct"
+            },
+            "canGetVirtualMatrixProducts": {
+              "type": "boolean",
+              "title": "GET Product Virtual Matrix, canGetVirtualMatrixProducts"
+            },
+            "canGetSimpleProducts": {
+              "type": "boolean",
+              "title": "GET Simple Product, canGetSimpleProducts"
+            }
+          },
+          "type": "object"
+        },
+        "configView": [],
+        "configValues": {
+          "doGetMatrixProducts": true,
+          "doGetVirtualMatrixProducts": false,
+          "doGetSimpleProducts": false,
+          "canGetMatrixProducts": true,
+          "canGetVirtualMatrixProducts": false,
+          "canGetSimpleProducts": false
+        }
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": { "productBusinessReferences": ["sku"] }
+      }
+    },
+    {
+      "name": "GET PRODUCTPRICING",
+      "description": "GET PRODUCTPRICING",
+      "channelVerb": "GET",
+      "channelNoun": "PRODUCTPRICING",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configModel": {},
+        "configView": [],
+        "configValues": {}
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": {"productPricingBusinessReferences": ["sku"]}
+      }
+    },
+    {
+      "name": "PUT PRODUCTPRICING",
+      "description": "PUT PRODUCTPRICING",
+      "channelVerb": "PUT",
+      "channelNoun": "PRODUCTPRICING",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configValues" : {
+          "canUpdateProductPricingFlag": true
+        },
+        "configView" : [],
+        "configModel" : {
+          "required" : [
+            "canUpdateProductPricingFlag"
+          ],
+          "properties" : {
+            "canUpdateProductPricingFlag" : {
+              "type" : "boolean",
+              "title" : "PUT ProductPricing, canUpdateProductPricingFlag"
+            }
+          },
+          "type" : "object"
+        }
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": {"productPricingBusinessReferences": ["sku"]}
+      }
+    },
+    {
+      "name": "GET PRODUCTQUANTITY",
+      "description": "GET PRODUCTQUANTITY",
+      "channelVerb": "GET",
+      "channelNoun": "PRODUCTQUANTITY",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configModel": {},
+        "configView": [],
+        "configValues": {}
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": {"productQuantityBusinessReferences": ["sku"]}
+      }
+    },
+    {
+      "name": "PUT PRODUCTQUANTITY",
+      "description": "PUT PRODUCTQUANTITY",
+      "channelVerb": "PUT",
+      "channelNoun": "PRODUCTQUANTITY",
+      "ruleDef": {
+        "ruleSchema": {},
+        "defaultRuleValues": {}
+      },
+      "configDef": {
+        "configValues" : {
+          "canUpdateProductQuantityFlag": true
+        },
+        "configView" : [],
+        "configModel" : {
+          "required" : [
+            "canUpdateProductQuantityFlag"
+          ],
+          "properties" : {
+            "canUpdateProductQuantityFlag" : {
+              "type" : "boolean",
+              "title" : "PUT ProductQuantity, canUpdateProductQuantityFlag"
+            }
+          },
+          "type" : "object"
+        }
+      },
+      "documentDef": {
+        "schema": {},
+        "referenceLocation": {"productQuantityBusinessReferences": ["sku"]}
+      }
+    }
   ],
   "channelSettingsSchema": {
     "configDef": {
@@ -113,8 +715,7 @@
       },
       "configView": [],
       "configValues": {
-        "api_uri": "https://api.bigcommerce.com",
-        "implFolderName": "@nchannel/bigcommerce"
+        "api_uri": "https://api.bigcommerce.com"
       }
     }
   },

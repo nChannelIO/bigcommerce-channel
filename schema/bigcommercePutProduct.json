@@ -3,6 +3,7 @@
   "schemaDef": {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
+    "required": ["name", "type", "weight", "price", "categories", "variants"],
     "properties": {
       "name": {
         "type": "string",
@@ -266,13 +267,220 @@
         "description": "Flag to determine if product image or open graph image is used."
       },
       "custom_fields": {
-        "type": "array"
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
       },
-      "bulk_pricing_rules": {
-        "type": "array"
+      "images": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "is_thumbnail": {
+              "type": "boolean"
+            },
+            "sort_order": {
+              "type": "number"
+            },
+            "id": {
+              "type": "number"
+            },
+            "product_id": {
+              "type": "number"
+            },
+            "image_file": {
+              "type": "string"
+            },
+            "url_zoom": {
+              "type": "string"
+            },
+            "url_standard": {
+              "type": "string"
+            },
+            "url_thumbnail": {
+              "type": "string"
+            },
+            "url_tiny": {
+              "type": "string"
+            },
+            "date_modified": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "videos": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "sort_order": {
+              "type": "number"
+            },
+            "type": {
+              "type": "string"
+            },
+            "id": {
+              "type": "number"
+            },
+            "video_id": {
+              "type": "string"
+            },
+            "product_id": {
+              "type": "number"
+            },
+            "length": {
+              "type": "string"
+            }
+          }
+        }
       },
       "variants": {
-        "type": "array"
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "cost_price": {
+              "type": "number"
+            },
+            "price": {
+              "type": "number"
+            },
+            "weight": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            },
+            "depth": {
+              "type": "number"
+            },
+            "is_free_shipping": {
+              "type": "boolean"
+            },
+            "purchasing_disabled": {
+              "type": "boolean"
+            },
+            "inventory_level": {
+              "type": "number"
+            },
+            "inventory_warning_level": {
+              "type": "number"
+            },
+            "id": {
+              "type": "number"
+            },
+            "product_id": {
+              "type": "number"
+            },
+            "sku": {
+              "type": "string"
+            },
+            "sku_id": {
+              "type": "number"
+            },
+            "option_values": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "option_display_name": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "number"
+                  },
+                  "option_id": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "calculated_price": {
+              "type": "number"
+            },
+            "metafields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/metafield"
+              }
+            }
+          }
+        }
+      },
+      "metafields": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/metafield"
+        }
+      }
+    },
+    "definitions": {
+      "metafield": {
+        "type": "object",
+        "properties": {
+          "permission_set": {
+            "type": "string",
+            "description": "Determines whether the field is completely private to the app that owns the field (app_only), or visible to other API consumers (read), or completely open for reading and writing to other apps (write).",
+            "enum": [
+              "app_only",
+              "read",
+              "write"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string",
+          },
+          "value": {
+            "type": [
+              "string",
+              "integer"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "resource_type": {
+            "type": "string",
+            "enum": [
+              "product",
+              "variant",
+              "category",
+              "brand"
+            ]
+          }
+        },
+        "required": [
+          "key",
+          "namespace",
+          "value",
+          "permission_set"
+        ],
+        "additionalProperties": false
       }
     }
   },

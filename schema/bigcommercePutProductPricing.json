@@ -4,15 +4,28 @@
 		"$schema": "http://json-schema.org/draft-04/schema#",
 		"description": "Bigcommerce Put Product Pricing",
 		"type": "object",
+		"required": ["variants"],
 		"properties": {
 			"price": {
-				"title": "price",
 				"type": ["string", "number"]
 			},
 			"sku": {
-				"title": "sku",
 				"type": ["string"]
-			}
+			},
+			"variants": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "price": {
+              "type": "number"
+            },
+            "sku": {
+              "type": "string"
+            }
+          }
+        }
+      }
 		},
 		"required": [
 			"price",

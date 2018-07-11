@@ -4,41 +4,31 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "description": "Bigcommerce Put Product Quantity",
     "type": "object",
+    "required": ["variants"],
     "properties": {
       "sku": {
-        "title": "location_id",
         "type": "string"
       },
-      "inventory_levels": {
+      "inventory_level": {
+        "type": "number",
+      },
+      "variants": {
         "type": "array",
         "items": {
-          "$ref": "#/definitions/inventory_level"
+          "type": "object",
+          "properties": {
+            "inventory_level": {
+              "type": "number"
+            },
+            "sku": {
+              "type": "string"
+            }
+          }
         }
       }
     },
-    "required": [
-      "inventory_levels",
-      "sku"
-    ],
     "additionalProperties": false,
-    "definitions": {
-      "inventory_level": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "title": "id",
-            "type": ["string", "number"]
-          },
-          "inventory_level": {
-            "title": "inventory_level",
-            "type": ["string", "number"]
-          }
-        },
-        "required": [
-          "inventory_item_id"
-        ]
-      }
-    }
+    "definitions": {}
   },
   "tags": [
     "Bigcommerce",
