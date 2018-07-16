@@ -4,6 +4,7 @@ let GetSalesOrderFromQuery = function (ncUtil, channelProfile, flowContext, payl
     const request = require('request-promise');
     const jsonata = require('jsonata');
     const nc = require('../util/common');
+    const _ = require('lodash');
 
     let out = {
         ncStatusCode: null,
@@ -129,10 +130,6 @@ let GetSalesOrderFromQuery = function (ncUtil, channelProfile, flowContext, payl
             filters[searchField.searchField] = searchField.searchValues.join(',');
           });
 
-        } else if (payload.doc.remoteIDs) {
-
-          filters["min_id"] = payload.doc.remoteIDs[0];
-
         } else if (payload.doc.modifiedDateRange) {
           if (payload.doc.modifiedDateRange.startDateGMT && !payload.doc.modifiedDateRange.endDateGMT) {
             filters["min_date_modified"] = payload.doc.modifiedDateRange.startDateGMT;
@@ -162,13 +159,35 @@ let GetSalesOrderFromQuery = function (ncUtil, channelProfile, flowContext, payl
           }
         }
 
-        let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders`, qs: filters, headers: headers, json: true, resolveWithFullResponse: true })
-          .catch((err) => { throw err; });
+        // Lookup Orders
+        let response;
+        if (payload.doc.remoteIDs) {
+          let orders = [];
+
+          // Get Orders by RemoteIDs
+          await Promise.all(payload.doc.remoteIDs.map(async remoteID => {
+            await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders/${remoteID}`, headers: headers, json: true, resolveWithFullResponse: true })
+              .then((result) => {
+                orders.push(result.body);
+                response = result;
+
+              })
+              .catch((err) => { throw err; });
+          }));
+
+          response.body = orders;
+        } else {
+
+          // Get orders by SearchFields or ModifiedDateRange
+          response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders`, qs: filters, headers: headers, json: true, resolveWithFullResponse: true })
+            .catch((err) => { throw err; });
+        }
 
         return response;
     }
 
     async function checkResponse(response) {
+        // Check response and return orders
         let orders = [];
         out.response.endpointStatusCode = response.statusCode;
         out.response.endpointStatusMessage = response.statusMessage;
@@ -181,30 +200,37 @@ let GetSalesOrderFromQuery = function (ncUtil, channelProfile, flowContext, payl
     }
 
     async function getOrderProducts(orders) {
+        // Get Products for orders
         return await Promise.all(orders.map(getOrderProductDetails))
           .catch((err) => { throw err; });
     }
 
     async function getShippingAddresses(orders) {
+        // Get Shipping Addresses for orders
         return await Promise.all(orders.map(getShippingAddress))
           .catch((err) => { throw err; });
     }
 
     async function getCoupons(orders) {
+        // Get Coupons for orders
         return await Promise.all(orders.map(getCoupon))
           .catch((err) => { throw err; });
     }
 
     async function getCustomers(orders) {
+        // Get Customer for orders
         return await Promise.all(orders.map(getCustomer))
           .catch((err) => { throw err; });
     }
 
     async function getOrderProductDetails(order) {
+        // Get Products
         logInfo(`Getting Products for Order: ${order.id}`);
         let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders/${order.id}/products`, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });
         let products = response.body;
+
+        // Enrich orders with products
         let enrichedProducts = await Promise.all(products.map(getProduct));
         order.products = enrichedProducts;
         return order;
@@ -217,6 +243,7 @@ let GetSalesOrderFromQuery = function (ncUtil, channelProfile, flowContext, payl
     }
 
     async function getShippingAddress(order) {
+        // Get all shipping addresses for a given order
         logInfo(`Getting Shipping Addresses for Order: ${order.id}`);
         let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders/${order.id}/shippingaddresses`, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });
@@ -225,6 +252,7 @@ let GetSalesOrderFromQuery = function (ncUtil, channelProfile, flowContext, payl
     }
 
     async function getCoupon(order) {
+        // Get all coupons for a given order
         logInfo(`Getting Coupons for Order: ${order.id}`);
         let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders/${order.id}/coupons`, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });
@@ -233,6 +261,7 @@ let GetSalesOrderFromQuery = function (ncUtil, channelProfile, flowContext, payl
     }
 
     async function getCustomer(order) {
+        // Get the customer for a given order
         logInfo(`Getting Customer for Order: ${order.id}`);
         let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/customers/${order.customer_id}`, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });

@@ -3,8 +3,8 @@
 let InsertFulfillment = function (ncUtil, channelProfile, flowContext, payload, callback) {
     const request = require('request-promise');
     const jsonata = require('jsonata');
-    const _ = require('lodash');
     const nc = require('../util/common');
+    const _ = require('lodash');
 
     let out = {
         ncStatusCode: null,
@@ -87,12 +87,13 @@ let InsertFulfillment = function (ncUtil, channelProfile, flowContext, payload, 
     }
 
     async function getSalesOrder(page = 1) {
-        let pageSize = 50;
+        let pageSize = 250;
         headers = {
           "X-Auth-Client": channelProfile.channelAuthValues.client_id,
           "X-Auth-Token": channelProfile.channelAuthValues.access_token
         }
 
+        // Lookup products for sales order
         logInfo(`Looking up Line Items with page of ${page} for Sales Order: ${payload.salesOrderRemoteID}`);
         let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders/${payload.salesOrderRemoteID}/products?page=${page}&limit=${pageSize}`, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });
@@ -108,38 +109,51 @@ let InsertFulfillment = function (ncUtil, channelProfile, flowContext, payload, 
         return response;
     }
 
-    async function getShippingAddresses() {
-        logInfo(`Looking up Shipping Addresses for Sales Order: ${payload.salesOrderRemoteID}`);
-        let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders/${payload.salesOrderRemoteID}/shipping_addresses`, headers: headers, json: true, resolveWithFullResponse: true  })
-          .catch((err) => { throw err; });
+    // Pulling addresses doesn't seem necessary unless we have the address information coming in with the fulfillment doc
 
-        return response.body;
-    }
+    // async function getShippingAddresses() {
+    //     logInfo(`Looking up Shipping Addresses for Sales Order: ${payload.salesOrderRemoteID}`);
+    //     let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders/${payload.salesOrderRemoteID}/shipping_addresses`, headers: headers, json: true, resolveWithFullResponse: true  })
+    //       .catch((err) => { throw err; });
+    //
+    //     return response.body;
+    // }
 
     async function processLineItems(response) {
         if (response.statusCode === 200 && response.body) {
+            // Sort line items based on the address ID
             let lineItemsByAddress = _.groupBy(response.body, "order_address_id");
             let items = payload.doc.items;
             let matchProperty = 'sku';
             let shipments = [];
-            let shippingAddresses = await getShippingAddresses();
+            // let shippingAddresses = await getShippingAddresses();
 
+            // Loop through each order_address_id
             Object.keys(lineItemsByAddress).forEach((key) => {
+              // Get line items by the current order_address_id
               let lineItems = lineItemsByAddress[key];
               let shipment = {
                 order_address_id: key,
                 items: []
               };
 
+              // Loop through each item under the payload
               items.forEach((item) => {
+                // Loop through each line item under the current order_address_id
                 for (let i = 0; i < lineItems.length; i++) {
                   let itemFound = false;
+
+                  // Match against the 'sku' property
                   if (item[matchProperty] === lineItems[i][matchProperty] && !itemFound) {
+                    // If found, set the order_product_id on the payload item to the line item product id
                     item.order_product_id = lineItems[i].id;
                     itemFound = true;
 
+                    // Check the quantity
                     if (item.quantity) {
                       if (item.quantity > lineItems[i].quantity) {
+                        // If payload item quantity is greater than the line item quantity
+                        // Create a copy and subtract the line item quantity from the payload quantity
                         let newLineItem = _.cloneDeep(item);
                         newLineItem.quantity = lineItems[i].quantity;
                         item.quantity -= lineItems[i].quantity;
@@ -150,6 +164,7 @@ let InsertFulfillment = function (ncUtil, channelProfile, flowContext, payload, 
 
                         shipment.items.push(processedItem);
                       } else {
+                        // Set the quantity
                         item.quantity = lineItems[i].quantity;
                         let processedItem = Object.assign({}, item);
                         delete processedItem.sku;
@@ -159,7 +174,8 @@ let InsertFulfillment = function (ncUtil, channelProfile, flowContext, payload, 
                       }
 
                     } else {
-                      lineItems[i].quantity = 0;
+                      // Fulfill all items
+                      item.quantity = lineItems[i].quantity;
                       let processedItem = Object.assign({}, item);
                       delete processedItem.sku;
 
@@ -174,8 +190,6 @@ let InsertFulfillment = function (ncUtil, channelProfile, flowContext, payload, 
               }
             });
 
-            console.log(JSON.stringify(shipments));
-
             return shipments;
         } else {
             logError("Sales order was not successfully retrieved");
@@ -186,11 +200,14 @@ let InsertFulfillment = function (ncUtil, channelProfile, flowContext, payload, 
     async function insertFulfillment(fulfillments) {
         let response;
         logInfo(`Inserting Fulfillments for Sales Order: ${payload.salesOrderRemoteID}`);
+
+        // Insert each fulfillment created for each address (defined by order_address_id)
         for (let i = 0; i < fulfillments.length; i++) {
           if (fulfillments[i].items && fulfillments[i].items.length > 0) {
             response = await request.post({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/orders/${payload.salesOrderRemoteID}/shipments`, body: fulfillments[i], headers: headers, json: true, resolveWithFullResponse: true  })
               .catch((err) => { throw err; });
 
+            // Return most recent response after all fulfillments are inserted
             if (i == fulfillments.length - 1) {
               return response;
             }
@@ -199,6 +216,7 @@ let InsertFulfillment = function (ncUtil, channelProfile, flowContext, payload, 
           }
         }
 
+        // If no fulfillments were inserted, return an error
         if (!response) {
           logError('No fulfillments were inserted into Bigcommerce')
           throw new Error('No fulfillments were inserted into Bigcommerce');

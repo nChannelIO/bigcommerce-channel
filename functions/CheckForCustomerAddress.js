@@ -101,6 +101,8 @@ let CheckForCustomerAddress = function (ncUtil, channelProfile, flowContext, pay
 
         if (response.statusCode === 200 && response.body) {
 
+          // Checking here for an address match because bigcommerce does not have filters for customer addresses
+          // Matching addresses are inserted into an array
           let addresses = [];
           let businessReference = nc.extractBusinessReference(channelProfile.customerAddressBusinessReferences, payload.doc);
           response.body.forEach((address) => {
@@ -111,12 +113,14 @@ let CheckForCustomerAddress = function (ncUtil, channelProfile, flowContext, pay
           });
 
           if (addresses.length == 1) {
+            // Matching address found
             out.ncStatusCode = 200;
             out.payload = {
               customerAddressRemoteID: addresses[0].id,
               customerAddressBusinessReference: nc.extractBusinessReference(channelProfile.customerAddressBusinessReferences, addresses[0])
             };
           } else if (addresses.length > 1) {
+            // More than one matching address found
             out.ncStatusCode = 409;
             out.payload.error = response.body;
           } else {
