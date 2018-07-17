@@ -89,7 +89,7 @@
         },
         "remoteID": "fulfillment.id"
       }
-    }
+    },
     {
       "name": "GET CUSTOMER",
       "description": "GET CUSTOMER",
