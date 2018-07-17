@@ -92,6 +92,7 @@ let InsertProductMatrix = function (ncUtil, channelProfile, flowContext, payload
 
         logInfo(`Inserting Product Matrix`);
 
+<<<<<<< HEAD
         // Insert product
         await request.post({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products`, body: payload.doc, headers: headers, json: true, resolveWithFullResponse: true  })
           .then(result => {
@@ -104,6 +105,12 @@ let InsertProductMatrix = function (ncUtil, channelProfile, flowContext, payload
             // Update the copied payload with the variant IDs
             updatedPayload.doc.variants.forEach(variant => {
               // Look for a match by sku - If found, set the ID for each variant
+=======
+        await request.post({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products`, body: payload.doc, headers: headers, json: true, resolveWithFullResponse: true  })
+          .then(result => {
+            updatedPayload = _.cloneDeep(payload);
+            updatedPayload.doc.variants.forEach(variant => {
+>>>>>>> 604b2637e86de1603829f02ddd308a92b29fba4a
               let match = result.body.data.variants.find(x => x.sku = variant.sku);
               if (match) {
                 variant.id = match.id;
@@ -111,13 +118,19 @@ let InsertProductMatrix = function (ncUtil, channelProfile, flowContext, payload
               }
             });
 
+<<<<<<< HEAD
             // Set initial response result
+=======
+>>>>>>> 604b2637e86de1603829f02ddd308a92b29fba4a
             response = result;
           })
           .catch((err) => { throw err; });
 
         await Promise.all([
+<<<<<<< HEAD
           // Insert metafields using the updated payload
+=======
+>>>>>>> 604b2637e86de1603829f02ddd308a92b29fba4a
           insertProductMetafields(updatedPayload),
           insertVariantMetafields(updatedPayload)
         ]).catch((err) => {
@@ -128,11 +141,15 @@ let InsertProductMatrix = function (ncUtil, channelProfile, flowContext, payload
     }
 
     async function insertProductMetafields(payload) {
+<<<<<<< HEAD
       // Check for product metafields
       if (payload.doc.metafields && payload.doc.metafields.length > 0) {
         logInfo('Inserting Product Metafields');
 
         // Insert each product metafield
+=======
+      if (payload.doc.metafields && payload.doc.metafields.length > 0) {
+>>>>>>> 604b2637e86de1603829f02ddd308a92b29fba4a
         return Promise.all(payload.doc.metafields.map(async metafield => {
           let response = await request.post({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.doc.id}/metafields`, body: metafield, headers: headers, json: true, resolveWithFullResponse: true  })
             .catch((err) => { throw err; });
@@ -140,7 +157,10 @@ let InsertProductMatrix = function (ncUtil, channelProfile, flowContext, payload
           return response;
         }));
       } else {
+<<<<<<< HEAD
         // Return if there are no metafields
+=======
+>>>>>>> 604b2637e86de1603829f02ddd308a92b29fba4a
         return Promise.resolve();
       }
     }
@@ -148,9 +168,12 @@ let InsertProductMatrix = function (ncUtil, channelProfile, flowContext, payload
     async function insertVariantMetafields(payload) {
       return Promise.all(payload.doc.variants.map(variant => {
         if (variant.metafields && variant.metafields.length > 0) {
+<<<<<<< HEAD
           logInfo(`Inserting Variant Metafields for Variant with ID: ${variant.id}`);
 
           // Insert each variant metafield
+=======
+>>>>>>> 604b2637e86de1603829f02ddd308a92b29fba4a
           return Promise.all(variant.metafields.map(async metafield => {
             let response = await request.post({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.doc.id}/variants/${variant.id}/metafields`, body: metafield, headers: headers, json: true, resolveWithFullResponse: true  })
               .catch((err) => { throw err; });
@@ -158,7 +181,10 @@ let InsertProductMatrix = function (ncUtil, channelProfile, flowContext, payload
             return response;
           }));
         } else {
+<<<<<<< HEAD
           // Return if there are no metafields
+=======
+>>>>>>> 604b2637e86de1603829f02ddd308a92b29fba4a
           return Promise.resolve();
         }
       }));
