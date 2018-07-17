@@ -95,25 +95,32 @@ let UpdateProductMatrix = function (ncUtil, channelProfile, flowContext, payload
 
         let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.productRemoteID}/variants`, headers: headers, json: true, resolveWithFullResponse: true  })
           .then ((response) => {
+            logInfo('Assinging Variant IDs');
+            // Update product variant IDs
             payload.doc.variants.forEach(variant => {
+              // Look for a match by sku - If found, set the ID for each variant
               let match = response.body.data.find(x => x.sku = variant.sku);
               if (match) {
                 variant.id = match.id;
                 variant.product_id = payload.productRemoteID;
               }
             });
+
+            // Set product ID
             payload.doc.id = payload.productRemoteID;
           })
           .catch((err) => { throw err; });
     }
 
     async function getCustomFields() {
-        logInfo(`Getting Custom Fields`);
-
         if (payload.doc.custom_fields) {
+          logInfo(`Getting Custom Fields`);
           let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.productRemoteID}/custom-fields`, headers: headers, json: true, resolveWithFullResponse: true  })
             .then ((response) => {
+              logInfo('Assinging Custom Field IDs');
+              // Update custom field IDs
               payload.doc.custom_fields.forEach(custom_field => {
+                // Look for a match by name - If found, set the ID for each custom field
                 let match = response.body.data.find(x => x.name = custom_field.name);
                 if (match) {
                   custom_field.id = match.id;
@@ -127,13 +134,17 @@ let UpdateProductMatrix = function (ncUtil, channelProfile, flowContext, payload
     async function updateProductMatrix() {
         logInfo(`Updating Product Matrix`);
 
+        // Update Product
         let response = await request.put({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.productRemoteID}`, body: payload.doc, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });
 
         await Promise.all([
+          // Update metafields
           updateProductMetafields(),
           updateVariantMetafields()
-        ]);
+        ]).catch((err) => {
+          throw err;
+        });
 
         return response;
     }
@@ -154,7 +165,7 @@ let UpdateProductMatrix = function (ncUtil, channelProfile, flowContext, payload
     }
 
     async function updateProductMetafields() {
-
+      logInfo('Processing Product Metafields');
       let url = `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.productRemoteID}/metafields`;
 
       if (payload.doc.metafields && payload.doc.metafields.length > 0) {
@@ -172,7 +183,7 @@ let UpdateProductMatrix = function (ncUtil, channelProfile, flowContext, payload
                 // Remove it to speed up future iterations
                 metafields.splice(i, 1);
 
-                if (metafield.value !== existingMetafield.value || metafield.value_type !== existingMetafield.value_type || metafield.description !== existingMetafield.description) {
+                if (metafield.value !== existingMetafield.value || metafield.resource_type !== existingMetafield.resource_type || metafield.description !== existingMetafield.description) {
                   // It needs updated
                   metafield.id = existingMetafield.id;
                   metafieldsForUpdate.push(metafield);
@@ -190,6 +201,7 @@ let UpdateProductMatrix = function (ncUtil, channelProfile, flowContext, payload
           }, []);
         }).then(metafields => {
           // Update the metafields
+          logInfo(`Updating Product Metafields`);
           return Promise.all(metafields.map(async metafield => {
             if (metafield.id) {
               let response = await request.put({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.productRemoteID}/metafields/${metafield.id}`, body: metafield, headers: headers, json: true, resolveWithFullResponse: true  })
@@ -215,6 +227,7 @@ let UpdateProductMatrix = function (ncUtil, channelProfile, flowContext, payload
         let url = `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.productRemoteID}/variants/${variant.id}/metafields`;
 
         if (variant.metafields && variant.metafields.length > 0) {
+          logInfo(`Processing Variant Metafields for Variant with ID: ${variant.id}`);
           return getMetafieldsWithPaging(url).then(metafields => {
             // Determine which metafields need updated/inserted
             return variant.metafields.reduce((metafieldsForUpdate, metafield) => {
@@ -229,7 +242,7 @@ let UpdateProductMatrix = function (ncUtil, channelProfile, flowContext, payload
                   // Remove it to speed up future iterations
                   metafields.splice(i, 1);
 
-                  if (metafield.value !== existingMetafield.value || metafield.value_type !== existingMetafield.value_type || metafield.description !== existingMetafield.description) {
+                  if (metafield.value !== existingMetafield.value || metafield.resource_type !== existingMetafield.resource_type || metafield.description !== existingMetafield.description) {
                     // It needs updated
                     metafield.id = existingMetafield.id;
                     metafieldsForUpdate.push(metafield);
@@ -247,6 +260,7 @@ let UpdateProductMatrix = function (ncUtil, channelProfile, flowContext, payload
             }, []);
           }).then(metafields => {
             // Update the metafields
+            logInfo(`Updating Variant Metafields`);
             return Promise.all(metafields.map(async metafield => {
               if (metafield.id) {
                 let response = await request.put({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.productRemoteID}/metafields/${metafield.id}`, body: metafield, headers: headers, json: true, resolveWithFullResponse: true  })

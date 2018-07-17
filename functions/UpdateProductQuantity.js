@@ -90,15 +90,21 @@ let UpdateProductQuantity = function (ncUtil, channelProfile, flowContext, paylo
 
         logInfo(`Getting Product Matrix`);
 
+        // Get variant products
         let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.productRemoteID}/variants`, headers: headers, json: true, resolveWithFullResponse: true  })
           .then ((response) => {
+            logInfo('Assinging Variant IDs');
+            // Update product variant IDs
             payload.doc.variants.forEach(variant => {
+              // Look for a match by sku - If found, set the ID for each variant
               let match = response.body.data.find(x => x.sku = variant.sku);
               if (match) {
                 variant.id = match.id;
                 variant.product_id = payload.productRemoteID;
               }
             });
+
+            // Set product ID
             payload.doc.id = payload.productRemoteID;
           })
           .catch((err) => { throw err; });
@@ -107,6 +113,7 @@ let UpdateProductQuantity = function (ncUtil, channelProfile, flowContext, paylo
     async function updateProductQuantity() {
         logInfo(`Updating Product Pricing`);
 
+        // Update Quantity
         let response = await request.put({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products/${payload.productRemoteID}`, body: payload.doc, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });
 
