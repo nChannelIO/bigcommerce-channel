@@ -89,6 +89,8 @@ let UpdateCustomerAddress = function (ncUtil, channelProfile, flowContext, paylo
           "X-Auth-Token": channelProfile.channelAuthValues.access_token
         }
 
+        delete payload.doc.id;
+
         logInfo(`Updating up Customer Address`);
 
         let response = await request.put({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/customers/${payload.customerRemoteID}/addresses/${payload.customerAddressRemoteID}`, body: payload.doc, headers: headers, json: true, resolveWithFullResponse: true  })

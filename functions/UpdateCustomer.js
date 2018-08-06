@@ -11,6 +11,8 @@ let UpdateCustomer = function (ncUtil, channelProfile, flowContext, payload, cal
         response: {}
     };
 
+    let cacheAddresses = null;
+
     if (!callback) {
         throw new Error("A callback function was not provided");
     } else if (typeof callback !== 'function') {
@@ -89,6 +91,10 @@ let UpdateCustomer = function (ncUtil, channelProfile, flowContext, payload, cal
 
         logInfo(`Updating Customer`);
 
+        cacheAddresses = payload.doc.addresses;
+        delete payload.doc.addresses;
+        delete payload.doc.id;
+
         let response = await request.put({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/customers/${payload.customerRemoteID}`, body: payload.doc, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });
 
@@ -104,6 +110,8 @@ let UpdateCustomer = function (ncUtil, channelProfile, flowContext, payload, cal
             doc: response.body,
             customerBusinessReference: nc.extractBusinessReference(channelProfile.customerBusinessReferences, response.body)
           }
+
+          out.payload.doc.addresses = cacheAddresses;
 
           out.ncStatusCode = 200;
         } else if (response.statusCode === 429) {

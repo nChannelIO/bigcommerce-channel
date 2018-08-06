@@ -453,7 +453,7 @@
             "type": "string"
           },
           "namespace": {
-            "type": "string",
+            "type": "string"
           },
           "value": {
             "type": [

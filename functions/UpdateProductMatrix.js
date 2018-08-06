@@ -102,12 +102,12 @@ let UpdateProductMatrix = function (ncUtil, channelProfile, flowContext, payload
               let match = response.body.data.find(x => x.sku = variant.sku);
               if (match) {
                 variant.id = match.id;
-                variant.product_id = payload.productRemoteID;
+                variant.product_id = parseInt(payload.productRemoteID);
               }
             });
 
             // Set product ID
-            payload.doc.id = payload.productRemoteID;
+            payload.doc.id = parseInt(payload.productRemoteID);
           })
           .catch((err) => { throw err; });
     }

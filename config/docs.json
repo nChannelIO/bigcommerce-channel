@@ -59,7 +59,7 @@
               "uri": "/stores/aaaaaaaaa/v2/customers?email=test%40nchannel.com",
               "method": "GET",
               "replyHeaders": {},
-              "statusCode": 200,
+              "statusCode": 204,
               "responsePayload": {}
             }
           ],
@@ -390,7 +390,7 @@
               "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
               "method": "GET",
               "replyHeaders": {},
-              "statusCode": 200,
+              "statusCode": 204,
               "responsePayload": {
                 "data": []
               }
@@ -630,7 +630,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -662,7 +662,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -815,7 +815,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -847,7 +847,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -879,7 +879,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -911,7 +911,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         }
       ]
