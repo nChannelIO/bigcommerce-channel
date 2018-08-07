@@ -1,6 +1,6 @@
 'use strict'
 
-let UpdateCustomerAddress = function (ncUtil, channelProfile, flowContext, payload, callback) {
+let CheckForProductMatrix = function (ncUtil, channelProfile, flowContext, payload, callback) {
     const request = require('request-promise');
     const jsonata = require('jsonata');
     const nc = require('../util/common');
@@ -18,7 +18,7 @@ let UpdateCustomerAddress = function (ncUtil, channelProfile, flowContext, paylo
     }
 
     validateFunction()
-        .then(updateCustomerAddress)
+        .then(queryProduct)
         .then(buildResponse)
         .catch(handleError)
         .then(() => callback(out))
@@ -60,20 +60,16 @@ let UpdateCustomerAddress = function (ncUtil, channelProfile, flowContext, paylo
             invalidMsg = "channelProfile.channelAuthValues.access_token was not provided";
         else if (!channelProfile.channelAuthValues.client_id)
             invalidMsg = "channelProfile.channelAuthValues.client_id was not provided";
-        else if (!channelProfile.customerAddressBusinessReferences)
-            invalidMsg = "channelProfile.customerAddressBusinessReferences was not provided";
-        else if (!nc.isArray(channelProfile.customerAddressBusinessReferences))
-            invalidMsg = "channelProfile.customerAddressBusinessReferences is not an array";
-        else if (!nc.isNonEmptyArray(channelProfile.customerAddressBusinessReferences))
-            invalidMsg = "channelProfile.customerAddressBusinessReferences is empty";
+        else if (!channelProfile.productBusinessReferences)
+            invalidMsg = "channelProfile.productBusinessReferences was not provided";
+        else if (!nc.isArray(channelProfile.productBusinessReferences))
+            invalidMsg = "channelProfile.productBusinessReferences is not an array";
+        else if (!nc.isNonEmptyArray(channelProfile.productBusinessReferences))
+            invalidMsg = "channelProfile.productBusinessReferences is empty";
         else if (!payload)
             invalidMsg = "payload was not provided";
         else if (!payload.doc)
             invalidMsg = "payload.doc was not provided";
-        else if (!payload.customerRemoteID)
-            invalidMsg = "payload.customerRemoteID was not provided";
-        else if (!payload.customerAddressRemoteID)
-            invalidMsg = "payload.customerAddressRemoteID was not provided";
 
         if (invalidMsg) {
             logError(invalidMsg);
@@ -83,17 +79,21 @@ let UpdateCustomerAddress = function (ncUtil, channelProfile, flowContext, paylo
         logInfo("Function is valid.");
     }
 
-    async function updateCustomerAddress() {
+    async function queryProduct() {
         let headers = {
           "X-Auth-Client": channelProfile.channelAuthValues.client_id,
           "X-Auth-Token": channelProfile.channelAuthValues.access_token
         }
 
-        delete payload.doc.id;
+        logInfo(`Looking up Product`);
 
-        logInfo(`Updating up Customer Address`);
+        let filters = {};
+        channelProfile.productBusinessReferences.forEach(businessReference => {
+            let value = nc.extractBusinessReference([businessReference], payload.doc);
+            filters[businessReference] = value;
+        });
 
-        let response = await request.put({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v2/customers/${payload.customerRemoteID}/addresses/${payload.customerAddressRemoteID}`, body: payload.doc, headers: headers, json: true, resolveWithFullResponse: true  })
+        let response = await request.get({ url: `${channelProfile.channelSettingsValues.api_uri}/stores/${channelProfile.channelAuthValues.store_hash}/v3/catalog/products`, qs: filters, headers: headers, json: true, resolveWithFullResponse: true  })
           .catch((err) => { throw err; });
 
         return response;
@@ -103,12 +103,22 @@ let UpdateCustomerAddress = function (ncUtil, channelProfile, flowContext, paylo
         out.response.endpointStatusCode = response.statusCode;
         out.response.endpointStatusMessage = response.statusMessage;
 
-        if (response.statusCode === 200 && response.body) {
-          out.payload = {
-            doc: response.body,
-            customerAddressBusinessReference: nc.extractBusinessReference(channelProfile.customerAddressBusinessReferences, response.body)
+        if (response.statusCode === 200) {
+          if (response.body.data && response.body.data.length == 1) {
+            out.ncStatusCode = 200;
+            out.payload = {
+              productRemoteID: response.body.data[0].id,
+              productBusinessReference: nc.extractBusinessReference(channelProfile.productBusinessReferences, response.body.data[0])
+            };
+          } else if (response.body.data.length > 1) {
+            out.ncStatusCode = 409;
+            out.payload.error = response.body;
+          } else {
+            out.ncStatusCode = 400;
+            out.payload.error = response.body;
           }
-          out.ncStatusCode = 200;
+        } else if (response.statusCode === 204) {
+          out.ncStatusCode = 204;
         } else if (response.statusCode === 429) {
           out.ncStatusCode = 429;
           out.payload.error = response.body;
@@ -140,4 +150,4 @@ let UpdateCustomerAddress = function (ncUtil, channelProfile, flowContext, paylo
     }
 }
 
-module.exports.UpdateCustomerAddress = UpdateCustomerAddress;
+module.exports.CheckForProductMatrix = CheckForProductMatrix;

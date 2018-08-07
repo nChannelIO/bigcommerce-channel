@@ -103,7 +103,7 @@ let CheckForCustomer = function (ncUtil, channelProfile, flowContext, payload, c
         out.response.endpointStatusCode = response.statusCode;
         out.response.endpointStatusMessage = response.statusMessage;
 
-        if (response.statusCode === 200 && response.body) {
+        if (response.statusCode === 200) {
           if (response.body && response.body.length == 1) {
             out.ncStatusCode = 200;
             out.payload = {
@@ -114,8 +114,11 @@ let CheckForCustomer = function (ncUtil, channelProfile, flowContext, payload, c
             out.ncStatusCode = 409;
             out.payload.error = response.body;
           } else {
-            out.ncStatusCode = 204;
+            out.ncStatusCode = 400;
+            out.payload.error = response.body;
           }
+        } else if (response.statusCode === 204) {
+          out.ncStatusCode = 204;
         } else if (response.statusCode === 429) {
           out.ncStatusCode = 429;
           out.payload.error = response.body;

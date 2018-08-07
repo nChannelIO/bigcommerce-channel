@@ -307,6 +307,7 @@ let GetSalesOrderFromQuery = function (ncUtil, channelProfile, flowContext, payl
             } else {
                 out.ncStatusCode = 400;
             }
+            console.log(out.ncStatusCode);
         }
         out.payload.error = error;
         out.ncStatusCode = out.ncStatusCode || 500;

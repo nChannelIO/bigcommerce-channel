@@ -59,7 +59,7 @@
               "uri": "/stores/aaaaaaaaa/v2/customers?email=test%40nchannel.com",
               "method": "GET",
               "replyHeaders": {},
-              "statusCode": 200,
+              "statusCode": 204,
               "responsePayload": {}
             }
           ],
@@ -345,6 +345,163 @@
       ]
     },
     {
+      "functionName": "CheckForProductMatrix",
+      "tests": [
+        {
+          "ncStatusCode": 200,
+          "payload": {
+            "doc": {
+              "sku": "TEST"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1,
+                    "sku": "TEST"
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 204,
+          "payload": {
+            "doc": {
+              "sku": "TEST"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 204,
+              "responsePayload": {
+                "data": []
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 409,
+          "payload": {
+            "doc": {
+              "sku": "TEST"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1,
+                    "sku": "TEST"
+                  },
+                  {
+                    "id": 1,
+                    "sku": "TEST"
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 400,
+          "payload": {
+            "doc": {
+              "sku": "TEST"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 429,
+          "payload": {
+            "doc": {
+              "sku": "TEST"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 500,
+          "payload": {
+            "doc": {
+              "sku": "TEST"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        }
+      ]
+    },
+    {
       "functionName": "ExtractCustomerAddressesFromCustomer",
       "tests": [
         {
@@ -473,7 +630,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -505,7 +662,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -658,7 +815,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -690,7 +847,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -722,7 +879,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         },
         {
@@ -754,7 +911,7 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["email", "phone"]
+            "salesOrderBusinessReferences": ["id"]
           }
         }
       ]
@@ -998,7 +1155,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=50",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -1011,18 +1168,6 @@
                   "sku": "SLCTBS-5819AF19",
                   "quantity": 2,
                   "quantity_shipped": 0
-                }
-              ]
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/shipping_addresses",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 200,
-              "responsePayload": [
-                {
-                  "id": 5,
-                  "order_id": 1
                 }
               ]
             },
@@ -1062,7 +1207,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=50",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 400,
@@ -1094,7 +1239,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=50",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 429,
@@ -1126,7 +1271,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=50",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 500,
@@ -1136,6 +1281,229 @@
           "channelProfile": {
             "fulfillmentBusinessReferences": ["id"],
             "salesOrderBusinessReferences": ["order_id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "InsertProductMatrix",
+      "tests": [
+        {
+          "ncStatusCode": 201,
+          "payload": {
+            "doc": {
+              "name": "Fog Linen Chambray Towel - Beige Stripe 11",
+              "type": "physical",
+              "sku": "TEST",
+              "description": "<p>1The perfect beach towel: thin, lightweight and highly absorbent. Crafted by Fog Linen in Japan using soft Lithuanian linen, each towel rolls up for compact stowaway. Dry off after a refreshing dip in the ocean and stretch out on it for a sun bath. The thinness ensures a quick dry so you can have it rolled back up in your bag without soaking your belongings.</p>\\r\\n<p>Measures 75 x 145 cm/29.5 x 57 in</p>\\r\\n<p>100% Linen</p>",
+              "weight": 1,
+              "width": 6,
+              "depth": 2,
+              "height": 4,
+              "price": 49.99,
+              "cost_price": 12.99,
+              "retail_price": 32.99,
+              "variants": [
+                {
+                  "cost_price": 12,
+                  "price": 14,
+                  "weight": 22,
+                  "width": 40,
+                  "height": 100,
+                  "depth": 4,
+                  "sku": "TEST2",
+                  "option_values": [
+                    {
+                      "option_display_name": "Color",
+                      "label": "Color",
+                      "id": 107,
+                      "option_id": 124
+                    }
+                  ],
+                  "calculated_price": 49.99
+                }
+              ]
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products",
+              "method": "POST",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": {
+                  "id": 1,
+                  "sku": "TEST",
+                  "variants": [
+                    {
+                      "sku": "TEST2"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 400,
+          "payload": {
+            "doc": {
+              "name": "Fog Linen Chambray Towel - Beige Stripe 11",
+              "type": "physical",
+              "sku": "SLCTBS-1211",
+              "description": "<p>1The perfect beach towel: thin, lightweight and highly absorbent. Crafted by Fog Linen in Japan using soft Lithuanian linen, each towel rolls up for compact stowaway. Dry off after a refreshing dip in the ocean and stretch out on it for a sun bath. The thinness ensures a quick dry so you can have it rolled back up in your bag without soaking your belongings.</p>\\r\\n<p>Measures 75 x 145 cm/29.5 x 57 in</p>\\r\\n<p>100% Linen</p>",
+              "weight": 1,
+              "width": 6,
+              "depth": 2,
+              "height": 4,
+              "price": 49.99,
+              "cost_price": 12.99,
+              "retail_price": 32.99,
+              "variants": [
+                {
+                  "cost_price": 12,
+                  "price": 14,
+                  "weight": 22,
+                  "width": 40,
+                  "height": 100,
+                  "depth": 4,
+                  "sku": "M-ORAN-1",
+                  "option_values": [
+                    {
+                      "option_display_name": "Color",
+                      "label": "Color",
+                      "id": 107,
+                      "option_id": 124
+                    }
+                  ],
+                  "calculated_price": 49.99
+                }
+              ]
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products",
+              "method": "POST",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 429,
+          "payload": {
+            "doc": {
+              "name": "Fog Linen Chambray Towel - Beige Stripe 11",
+              "type": "physical",
+              "sku": "SLCTBS-1211",
+              "description": "<p>1The perfect beach towel: thin, lightweight and highly absorbent. Crafted by Fog Linen in Japan using soft Lithuanian linen, each towel rolls up for compact stowaway. Dry off after a refreshing dip in the ocean and stretch out on it for a sun bath. The thinness ensures a quick dry so you can have it rolled back up in your bag without soaking your belongings.</p>\\r\\n<p>Measures 75 x 145 cm/29.5 x 57 in</p>\\r\\n<p>100% Linen</p>",
+              "weight": 1,
+              "width": 6,
+              "depth": 2,
+              "height": 4,
+              "price": 49.99,
+              "cost_price": 12.99,
+              "retail_price": 32.99,
+              "variants": [
+                {
+                  "cost_price": 12,
+                  "price": 14,
+                  "weight": 22,
+                  "width": 40,
+                  "height": 100,
+                  "depth": 4,
+                  "sku": "M-ORAN-1",
+                  "option_values": [
+                    {
+                      "option_display_name": "Color",
+                      "label": "Color",
+                      "id": 107,
+                      "option_id": 124
+                    }
+                  ],
+                  "calculated_price": 49.99
+                }
+              ]
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products",
+              "method": "POST",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 500,
+          "payload": {
+            "doc": {
+              "name": "Fog Linen Chambray Towel - Beige Stripe 11",
+              "type": "physical",
+              "sku": "SLCTBS-1211",
+              "description": "<p>1The perfect beach towel: thin, lightweight and highly absorbent. Crafted by Fog Linen in Japan using soft Lithuanian linen, each towel rolls up for compact stowaway. Dry off after a refreshing dip in the ocean and stretch out on it for a sun bath. The thinness ensures a quick dry so you can have it rolled back up in your bag without soaking your belongings.</p>\\r\\n<p>Measures 75 x 145 cm/29.5 x 57 in</p>\\r\\n<p>100% Linen</p>",
+              "weight": 1,
+              "width": 6,
+              "depth": 2,
+              "height": 4,
+              "price": 49.99,
+              "cost_price": 12.99,
+              "retail_price": 32.99,
+              "variants": [
+                {
+                  "cost_price": 12,
+                  "price": 14,
+                  "weight": 22,
+                  "width": 40,
+                  "height": 100,
+                  "depth": 4,
+                  "sku": "M-ORAN-1",
+                  "option_values": [
+                    {
+                      "option_display_name": "Color",
+                      "label": "Color",
+                      "id": 107,
+                      "option_id": 124
+                    }
+                  ],
+                  "calculated_price": 49.99
+                }
+              ]
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products",
+              "method": "POST",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
           }
         }
       ]
@@ -1360,6 +1728,659 @@
           ],
           "channelProfile": {
             "customerAddressBusinessReferences": ["first_name", "last_name"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "UpdateProductMatrix",
+      "tests": [
+        {
+          "ncStatusCode": 200,
+          "payload": {
+            "doc": {
+              "name": "Fog Linen Chambray Towel - Beige Stripe 11",
+              "type": "physical",
+              "sku": "SLCTBS-1211",
+              "description": "<p>1The perfect beach towel: thin, lightweight and highly absorbent. Crafted by Fog Linen in Japan using soft Lithuanian linen, each towel rolls up for compact stowaway. Dry off after a refreshing dip in the ocean and stretch out on it for a sun bath. The thinness ensures a quick dry so you can have it rolled back up in your bag without soaking your belongings.</p>\\r\\n<p>Measures 75 x 145 cm/29.5 x 57 in</p>\\r\\n<p>100% Linen</p>",
+              "weight": 1,
+              "width": 6,
+              "depth": 2,
+              "height": 4,
+              "price": 49.99,
+              "cost_price": 12.99,
+              "retail_price": 32.99,
+              "variants": [
+                {
+                  "cost_price": 12,
+                  "price": 14,
+                  "weight": 22,
+                  "width": 40,
+                  "height": 100,
+                  "depth": 4,
+                  "sku": "M-ORAN-1",
+                  "option_values": [
+                    {
+                      "option_display_name": "Color",
+                      "label": "Color",
+                      "id": 107,
+                      "option_id": 124
+                    }
+                  ],
+                  "calculated_price": 49.99
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": {
+                  "id": 1,
+                  "sku": "TEST",
+                  "variants": [
+                    {
+                      "sku": "TEST2"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 400,
+          "payload": {
+            "doc": {
+              "name": "Fog Linen Chambray Towel - Beige Stripe 11",
+              "type": "physical",
+              "sku": "SLCTBS-1211",
+              "description": "<p>1The perfect beach towel: thin, lightweight and highly absorbent. Crafted by Fog Linen in Japan using soft Lithuanian linen, each towel rolls up for compact stowaway. Dry off after a refreshing dip in the ocean and stretch out on it for a sun bath. The thinness ensures a quick dry so you can have it rolled back up in your bag without soaking your belongings.</p>\\r\\n<p>Measures 75 x 145 cm/29.5 x 57 in</p>\\r\\n<p>100% Linen</p>",
+              "weight": 1,
+              "width": 6,
+              "depth": 2,
+              "height": 4,
+              "price": 49.99,
+              "cost_price": 12.99,
+              "retail_price": 32.99,
+              "variants": [
+                {
+                  "cost_price": 12,
+                  "price": 14,
+                  "weight": 22,
+                  "width": 40,
+                  "height": 100,
+                  "depth": 4,
+                  "sku": "M-ORAN-1",
+                  "option_values": [
+                    {
+                      "option_display_name": "Color",
+                      "label": "Color",
+                      "id": 107,
+                      "option_id": 124
+                    }
+                  ],
+                  "calculated_price": 49.99
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 429,
+          "payload": {
+            "doc": {
+              "name": "Fog Linen Chambray Towel - Beige Stripe 11",
+              "type": "physical",
+              "sku": "SLCTBS-1211",
+              "description": "<p>1The perfect beach towel: thin, lightweight and highly absorbent. Crafted by Fog Linen in Japan using soft Lithuanian linen, each towel rolls up for compact stowaway. Dry off after a refreshing dip in the ocean and stretch out on it for a sun bath. The thinness ensures a quick dry so you can have it rolled back up in your bag without soaking your belongings.</p>\\r\\n<p>Measures 75 x 145 cm/29.5 x 57 in</p>\\r\\n<p>100% Linen</p>",
+              "weight": 1,
+              "width": 6,
+              "depth": 2,
+              "height": 4,
+              "price": 49.99,
+              "cost_price": 12.99,
+              "retail_price": 32.99,
+              "variants": [
+                {
+                  "cost_price": 12,
+                  "price": 14,
+                  "weight": 22,
+                  "width": 40,
+                  "height": 100,
+                  "depth": 4,
+                  "sku": "M-ORAN-1",
+                  "option_values": [
+                    {
+                      "option_display_name": "Color",
+                      "label": "Color",
+                      "id": 107,
+                      "option_id": 124
+                    }
+                  ],
+                  "calculated_price": 49.99
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 500,
+          "payload": {
+            "doc": {
+              "name": "Fog Linen Chambray Towel - Beige Stripe 11",
+              "type": "physical",
+              "sku": "SLCTBS-1211",
+              "description": "<p>1The perfect beach towel: thin, lightweight and highly absorbent. Crafted by Fog Linen in Japan using soft Lithuanian linen, each towel rolls up for compact stowaway. Dry off after a refreshing dip in the ocean and stretch out on it for a sun bath. The thinness ensures a quick dry so you can have it rolled back up in your bag without soaking your belongings.</p>\\r\\n<p>Measures 75 x 145 cm/29.5 x 57 in</p>\\r\\n<p>100% Linen</p>",
+              "weight": 1,
+              "width": 6,
+              "depth": 2,
+              "height": 4,
+              "price": 49.99,
+              "cost_price": 12.99,
+              "retail_price": 32.99,
+              "variants": [
+                {
+                  "cost_price": 12,
+                  "price": 14,
+                  "weight": 22,
+                  "width": 40,
+                  "height": 100,
+                  "depth": 4,
+                  "sku": "M-ORAN-1",
+                  "option_values": [
+                    {
+                      "option_display_name": "Color",
+                      "label": "Color",
+                      "id": 107,
+                      "option_id": 124
+                    }
+                  ],
+                  "calculated_price": 49.99
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["sku"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "UpdateProductPricing",
+      "tests": [
+        {
+          "ncStatusCode": 200,
+          "payload": {
+            "doc": {
+              "sku": "SLCTBS-1211",
+              "price": 49.99,
+              "variants": [
+                {
+                  "price": 14,
+                  "sku": "M-ORAN-1"
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": {
+                  "id": 1,
+                  "sku": "TEST",
+                  "variants": [
+                    {
+                      "sku": "TEST2"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 400,
+          "payload": {
+            "doc": {
+              "sku": "SLCTBS-1211",
+              "price": 49.99,
+              "variants": [
+                {
+                  "price": 14,
+                  "sku": "M-ORAN-1"
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 429,
+          "payload": {
+            "doc": {
+              "sku": "SLCTBS-1211",
+              "price": 49.99,
+              "variants": [
+                {
+                  "price": 14,
+                  "sku": "M-ORAN-1"
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 500,
+          "payload": {
+            "doc": {
+              "sku": "SLCTBS-1211",
+              "price": 49.99,
+              "variants": [
+                {
+                  "price": 14,
+                  "sku": "M-ORAN-1"
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["sku"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "UpdateProductQuantity",
+      "tests": [
+        {
+          "ncStatusCode": 200,
+          "payload": {
+            "doc": {
+              "sku": "SLCTBS-1211",
+              "amount": 1,
+              "variants": [
+                {
+                  "amount": 1,
+                  "sku": "M-ORAN-1"
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": {
+                  "id": 1,
+                  "sku": "TEST",
+                  "variants": [
+                    {
+                      "sku": "TEST2"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 400,
+          "payload": {
+            "doc": {
+              "sku": "SLCTBS-1211",
+              "amount": 1,
+              "variants": [
+                {
+                  "amount": 1,
+                  "sku": "M-ORAN-1"
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 429,
+          "payload": {
+            "doc": {
+              "sku": "SLCTBS-1211",
+              "amount": 1,
+              "variants": [
+                {
+                  "amount": 1,
+                  "sku": "M-ORAN-1"
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["sku"]
+          }
+        },
+        {
+          "ncStatusCode": 500,
+          "payload": {
+            "doc": {
+              "sku": "SLCTBS-1211",
+              "amount": 1,
+              "variants": [
+                {
+                  "amount": 1,
+                  "sku": "M-ORAN-1"
+                }
+              ]
+            },
+            "productRemoteID": 1
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "sku": "TEST2"
+                  }
+                ]
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
+              "method": "PUT",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["sku"]
           }
         }
       ]
