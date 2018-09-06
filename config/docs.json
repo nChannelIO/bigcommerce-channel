@@ -1,9 +1,5 @@
 {
   "unitTestPackage": "nock",
-  "ncUtil": {
-    "request": {},
-    "logger": null
-  },
   "channelProfile": {
     "channelSettingsValues": {
         "api_uri": "https://api.bigcommerce.com"
@@ -16,496 +12,10 @@
   },
   "docs": [
     {
-      "functionName": "CheckForCustomer",
+      "functionName": "extractCustomerAddressesFromCustomer",
       "tests": [
         {
-          "ncStatusCode": 200,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers?email=test%40nchannel.com",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 200,
-              "responsePayload": [
-                {
-                  "id": 1,
-                  "email": "test@nchannel.com"
-                }
-              ]
-            }
-          ],
-          "channelProfile": {
-            "customerBusinessReferences": ["email"]
-          }
-        },
-        {
-          "ncStatusCode": 204,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers?email=test%40nchannel.com",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 204,
-              "responsePayload": {}
-            }
-          ],
-          "channelProfile": {
-            "customerBusinessReferences": ["email"]
-          }
-        },
-        {
-          "ncStatusCode": 409,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers?email=test%40nchannel.com",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 200,
-              "responsePayload": [
-                {
-                  "id": 1,
-                  "email": "test@nchannel.com"
-                },
-                {
-                  "id": 1,
-                  "email": "test@nchannel.com"
-                }
-              ]
-            }
-          ],
-          "channelProfile": {
-            "customerBusinessReferences": ["email"]
-          }
-        },
-        {
-          "ncStatusCode": 400,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers?email=test%40nchannel.com",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 401,
-              "responsePayload": {
-                "customers": []
-              }
-            }
-          ],
-          "channelProfile": {
-            "customerBusinessReferences": ["email"]
-          }
-        },
-        {
-          "ncStatusCode": 429,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers?email=test%40nchannel.com",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 429,
-              "responsePayload": {
-                "customers": []
-              }
-            }
-          ],
-          "channelProfile": {
-            "customerBusinessReferences": ["email"]
-          }
-        },
-        {
-          "ncStatusCode": 500,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers?email=test%40nchannel.com",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 500,
-              "responsePayload": {
-                "customers": []
-              }
-            }
-          ],
-          "channelProfile": {
-            "customerBusinessReferences": ["email"]
-          }
-        }
-      ]
-    },
-    {
-      "functionName": "CheckForCustomerAddress",
-      "tests": [
-        {
-          "ncStatusCode": 200,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            },
-            "customerRemoteID": 1
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers/1/addresses",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 200,
-              "responsePayload": {
-                "customers": [
-                  {
-                    "id": 1,
-                    "first_name": "test",
-                    "last_name": "test"
-                  }
-                ]
-              }
-            }
-          ],
-          "channelProfile": {
-            "customerAddressBusinessReferences": ["first_name", "last_name"]
-          }
-        },
-        {
-          "ncStatusCode": 204,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            },
-            "customerRemoteID": 1
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers/1/addresses",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 200,
-              "responsePayload": {
-                "customers": []
-              }
-            }
-          ],
-          "channelProfile": {
-            "customerBusinessReferences": ["customer.email"]
-          }
-        },
-        {
-          "ncStatusCode": 409,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            },
-            "customerRemoteID": 1
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers/1/addresses",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 200,
-              "responsePayload": {
-                "customers": [
-                  {
-                    "id": 1,
-                    "first_name": "test",
-                    "last_name": "test"
-                  },
-                  {
-                    "id": 1,
-                    "first_name": "test",
-                    "last_name": "test"
-                  }
-                ]
-              }
-            }
-          ],
-          "channelProfile": {
-            "customerAddressBusinessReferences": ["first_name", "last_name"]
-          }
-        },
-        {
-          "ncStatusCode": 400,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            },
-            "customerRemoteID": 1
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers/1/addresses",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 401,
-              "responsePayload": {
-                "customers": []
-              }
-            }
-          ],
-          "channelProfile": {
-            "customerAddressBusinessReferences": ["first_name", "last_name"]
-          }
-        },
-        {
-          "ncStatusCode": 429,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            },
-            "customerRemoteID": 1
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers/1/addresses",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 429,
-              "responsePayload": {
-                "customers": []
-              }
-            }
-          ],
-          "channelProfile": {
-            "customerAddressBusinessReferences": ["first_name", "last_name"]
-          }
-        },
-        {
-          "ncStatusCode": 500,
-          "payload": {
-            "doc": {
-              "email": "test@nchannel.com"
-            },
-            "customerRemoteID": 1
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v2/customers/1/addresses",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 500,
-              "responsePayload": {
-                "customers": []
-              }
-            }
-          ],
-          "channelProfile": {
-            "customerAddressBusinessReferences": ["first_name", "last_name"]
-          }
-        }
-      ]
-    },
-    {
-      "functionName": "CheckForProductMatrix",
-      "tests": [
-        {
-          "ncStatusCode": 200,
-          "payload": {
-            "doc": {
-              "sku": "TEST"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 200,
-              "responsePayload": {
-                "data": [
-                  {
-                    "id": 1,
-                    "sku": "TEST"
-                  }
-                ]
-              }
-            }
-          ],
-          "channelProfile": {
-            "productBusinessReferences": ["sku"]
-          }
-        },
-        {
-          "ncStatusCode": 204,
-          "payload": {
-            "doc": {
-              "sku": "TEST"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 204,
-              "responsePayload": {
-                "data": []
-              }
-            }
-          ],
-          "channelProfile": {
-            "productBusinessReferences": ["sku"]
-          }
-        },
-        {
-          "ncStatusCode": 409,
-          "payload": {
-            "doc": {
-              "sku": "TEST"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 200,
-              "responsePayload": {
-                "data": [
-                  {
-                    "id": 1,
-                    "sku": "TEST"
-                  },
-                  {
-                    "id": 1,
-                    "sku": "TEST"
-                  }
-                ]
-              }
-            }
-          ],
-          "channelProfile": {
-            "productBusinessReferences": ["sku"]
-          }
-        },
-        {
-          "ncStatusCode": 400,
-          "payload": {
-            "doc": {
-              "sku": "TEST"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 401,
-              "responsePayload": {}
-            }
-          ],
-          "channelProfile": {
-            "productBusinessReferences": ["sku"]
-          }
-        },
-        {
-          "ncStatusCode": 429,
-          "payload": {
-            "doc": {
-              "sku": "TEST"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 429,
-              "responsePayload": {}
-            }
-          ],
-          "channelProfile": {
-            "productBusinessReferences": ["sku"]
-          }
-        },
-        {
-          "ncStatusCode": 500,
-          "payload": {
-            "doc": {
-              "sku": "TEST"
-            }
-          },
-          "baseUri": "https://api.bigcommerce.com",
-          "defaultHeaders": {},
-          "links": [
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products?sku=TEST",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 500,
-              "responsePayload": {}
-            }
-          ],
-          "channelProfile": {
-            "productBusinessReferences": ["sku"]
-          }
-        }
-      ]
-    },
-    {
-      "functionName": "ExtractCustomerAddressesFromCustomer",
-      "tests": [
-        {
-          "ncStatusCode": 200,
+          "statusCode": 200,
           "payload": {
             "doc": {
               "addresses": [
@@ -522,11 +32,9 @@
           }
         },
         {
-          "ncStatusCode": 204,
+          "statusCode": 204,
           "payload": {
-            "doc": {
-              "addresses": []
-            },
+            "doc": {},
             "customerRemoteID": 1
           },
           "baseUri": "https://api.bigcommerce.com",
@@ -539,23 +47,182 @@
       ]
     },
     {
-      "functionName": "GetSalesOrderFromQuery",
+      "functionName": "getSalesOrderById",
       "tests": [
         {
-          "ncStatusCode": 200,
+          "statusCode": 200,
           "payload": {
-            "doc": {
-              "modifiedDateRange": {
-                "startDateGMT": "2018-06-16T10:00:00.000Z",
-                "endDateGMT": "2018-06-22T12:00:00.000Z"
+            "remoteIDs": [1]
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1,
+                "customer_id": 1
               }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "product_id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants&limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/shippingaddresses?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/coupons?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/customers/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1
+              }
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "remoteIDs": [1]
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 404,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "remoteIDs": [1]
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "remoteIDs": [1]
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "remoteIDs": [1]
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getSalesOrderByModifiedTimeRange",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
             }
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_modified=2018-06-16T10%3A00%3A00.000Z&max_date_modified=2018-06-22T12%3A00%3A00.000Z",
+              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_modified=2018-06-16T09:59:59.999Z&max_date_modified=2018-06-22T12:00:00.001Z",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -574,7 +241,7 @@
               "responsePayload": []
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -585,7 +252,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants&limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -596,7 +263,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/shippingaddresses",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/shippingaddresses?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -607,7 +274,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/coupons",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/coupons?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -634,13 +301,11 @@
           }
         },
         {
-          "ncStatusCode": 204,
+          "statusCode": 204,
           "payload": {
-            "doc": {
-              "modifiedDateRange": {
-                "startDateGMT": "2018-06-16T10:00:00.000Z",
-                "endDateGMT": "2018-06-22T12:00:00.000Z"
-              }
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
             }
           },
           "baseUri": "https://api.bigcommerce.com",
@@ -654,7 +319,7 @@
               "responsePayload": []
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_modified=2018-06-16T10%3A00%3A00.000Z&max_date_modified=2018-06-22T12%3A00%3A00.000Z",
+              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_modified=2018-06-16T09:59:59.999Z&max_date_modified=2018-06-22T12:00:00.001Z",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -666,22 +331,20 @@
           }
         },
         {
-          "ncStatusCode": 206,
+          "statusCode": 206,
           "payload": {
-            "doc": {
-              "modifiedDateRange": {
-                "startDateGMT": "2018-06-16T10:00:00.000Z",
-                "endDateGMT": "2018-06-22T12:00:00.000Z"
-              },
-              "page": 1,
-              "pageSize": 2
-            }
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            },
+            "page": 1,
+            "pageSize": 2
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_modified=2018-06-16T10%3A00%3A00.000Z&max_date_modified=2018-06-22T12%3A00%3A00.000Z&page=1&limit=2",
+              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_modified=2018-06-16T09:59:59.999Z&max_date_modified=2018-06-22T12:00:00.001Z&page=1&limit=2",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -704,7 +367,7 @@
               "responsePayload": []
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -715,7 +378,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants&limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -726,7 +389,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/shippingaddresses",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/shippingaddresses?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -737,7 +400,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/coupons",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/coupons?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -759,7 +422,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/2/products",
+              "uri": "/stores/aaaaaaaaa/v2/orders/2/products?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -770,7 +433,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/2?include=variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/2?include=variants&limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -781,7 +444,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/2/shippingaddresses",
+              "uri": "/stores/aaaaaaaaa/v2/orders/2/shippingaddresses?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -792,7 +455,7 @@
               ]
             },
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/2/coupons",
+              "uri": "/stores/aaaaaaaaa/v2/orders/2/coupons?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -819,13 +482,11 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
-            "doc": {
-              "modifiedDateRange": {
-                "startDateGMT": "2018-06-16T10:00:00.000Z",
-                "endDateGMT": "2018-06-22T12:00:00.000Z"
-              }
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
             }
           },
           "baseUri": "https://api.bigcommerce.com",
@@ -836,13 +497,6 @@
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
-              "responsePayload": []
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_modified=2018-06-16T10%3A00%3A00.000Z&max_date_modified=2018-06-22T12%3A00%3A00.000Z",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 401,
               "responsePayload": []
             }
           ],
@@ -851,13 +505,11 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
-            "doc": {
-              "modifiedDateRange": {
-                "startDateGMT": "2018-06-16T10:00:00.000Z",
-                "endDateGMT": "2018-06-22T12:00:00.000Z"
-              }
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
             }
           },
           "baseUri": "https://api.bigcommerce.com",
@@ -868,13 +520,6 @@
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
-              "responsePayload": []
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_modified=2018-06-16T10%3A00%3A00.000Z&max_date_modified=2018-06-22T12%3A00%3A00.000Z",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 429,
               "responsePayload": []
             }
           ],
@@ -883,13 +528,11 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
-            "doc": {
-              "modifiedDateRange": {
-                "startDateGMT": "2018-06-16T10:00:00.000Z",
-                "endDateGMT": "2018-06-22T12:00:00.000Z"
-              }
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
             }
           },
           "baseUri": "https://api.bigcommerce.com",
@@ -900,13 +543,6 @@
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
-              "responsePayload": []
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_modified=2018-06-16T10%3A00%3A00.000Z&max_date_modified=2018-06-22T12%3A00%3A00.000Z",
-              "method": "GET",
-              "replyHeaders": {},
-              "statusCode": 500,
               "responsePayload": []
             }
           ],
@@ -917,10 +553,355 @@
       ]
     },
     {
-      "functionName": "InsertCustomer",
+      "functionName": "getSalesOrderByCreatedTimeRange",
       "tests": [
         {
-          "ncStatusCode": 201,
+          "statusCode": 200,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_created=2018-06-16T09:59:59.999Z&max_date_created=2018-06-22T12:00:00.001Z",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1,
+                  "customer_id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/order_statuses",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": []
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "product_id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants&limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/shippingaddresses?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/coupons?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/customers/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/order_statuses",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": []
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_created=2018-06-16T09:59:59.999Z&max_date_created=2018-06-22T12:00:00.001Z",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 206,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            },
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders?min_date_created=2018-06-16T09:59:59.999Z&max_date_created=2018-06-22T12:00:00.001Z&page=1&limit=2",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1,
+                  "customer_id": 1
+                },
+                {
+                  "id": 2,
+                  "customer_id": 2
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/order_statuses",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": []
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "product_id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants&limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/shippingaddresses?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/coupons?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/customers/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/2/products?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "product_id": 2
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/2?include=variants&limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 2
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/2/shippingaddresses?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 2
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/2/coupons?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 2
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/customers/2",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 2
+                }
+              ]
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/order_statuses",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/order_statuses",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v2/order_statuses",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "salesOrderBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "insertCustomer",
+      "tests": [
+        {
+          "statusCode": 201,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -949,7 +930,7 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -973,7 +954,7 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -997,7 +978,7 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1023,10 +1004,10 @@
       ]
     },
     {
-      "functionName": "InsertCustomerAddress",
+      "functionName": "insertCustomerAddress",
       "tests": [
         {
-          "ncStatusCode": 201,
+          "statusCode": 201,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1056,7 +1037,7 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1081,7 +1062,7 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1106,7 +1087,7 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1133,10 +1114,10 @@
       ]
     },
     {
-      "functionName": "InsertFulfillment",
+      "functionName": "insertFulfillment",
       "tests": [
         {
-          "ncStatusCode": 201,
+          "statusCode": 201,
           "payload": {
             "doc": {
               "tracking_number": "TEST TRACKING NUMBER",
@@ -1155,21 +1136,69 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=250",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1,
+                "customer_id": 1
+              }
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
               "responsePayload": [
                 {
-                  "id": 8,
-                  "order_id": 101,
-                  "product_id": 77,
-                  "order_address_id": 6,
                   "sku": "SLCTBS-5819AF19",
-                  "quantity": 2,
-                  "quantity_shipped": 0
+                  "product_id": 1,
+                  "order_address_id": 6
                 }
               ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants&limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/shippingaddresses?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 6
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/orders/1/coupons?limit=250",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": [
+                {
+                  "id": 1
+                }
+              ]
+            },
+            {
+              "uri": "/stores/aaaaaaaaa/v2/customers/1",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1
+              }
             },
             {
               "uri": "/stores/aaaaaaaaa/v2/orders/1/shipments",
@@ -1188,7 +1217,7 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
             "doc": {
               "tracking_number": "TEST TRACKING NUMBER",
@@ -1207,11 +1236,14 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=250",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1",
               "method": "GET",
               "replyHeaders": {},
-              "statusCode": 400,
-              "responsePayload": {}
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1,
+                "customer_id": 1
+              }
             }
           ],
           "channelProfile": {
@@ -1220,7 +1252,7 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
             "doc": {
               "tracking_number": "TEST TRACKING NUMBER",
@@ -1239,11 +1271,14 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=250",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1",
               "method": "GET",
               "replyHeaders": {},
-              "statusCode": 429,
-              "responsePayload": {}
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1,
+                "customer_id": 1
+              }
             }
           ],
           "channelProfile": {
@@ -1252,7 +1287,7 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
             "doc": {
               "tracking_number": "TEST TRACKING NUMBER",
@@ -1271,11 +1306,14 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v2/orders/1/products?page=1&limit=250",
+              "uri": "/stores/aaaaaaaaa/v2/orders/1",
               "method": "GET",
               "replyHeaders": {},
-              "statusCode": 500,
-              "responsePayload": {}
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1,
+                "customer_id": 1
+              }
             }
           ],
           "channelProfile": {
@@ -1286,10 +1324,10 @@
       ]
     },
     {
-      "functionName": "InsertProductMatrix",
+      "functionName": "insertProductMatrix",
       "tests": [
         {
-          "ncStatusCode": 201,
+          "statusCode": 201,
           "payload": {
             "doc": {
               "name": "Fog Linen Chambray Towel - Beige Stripe 11",
@@ -1351,7 +1389,7 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
             "doc": {
               "name": "Fog Linen Chambray Towel - Beige Stripe 11",
@@ -1403,7 +1441,7 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
             "doc": {
               "name": "Fog Linen Chambray Towel - Beige Stripe 11",
@@ -1455,7 +1493,7 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
             "doc": {
               "name": "Fog Linen Chambray Towel - Beige Stripe 11",
@@ -1509,10 +1547,10 @@
       ]
     },
     {
-      "functionName": "UpdateCustomer",
+      "functionName": "updateCustomer",
       "tests": [
         {
-          "ncStatusCode": 200,
+          "statusCode": 200,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1542,7 +1580,7 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1567,7 +1605,7 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1592,7 +1630,7 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1619,10 +1657,10 @@
       ]
     },
     {
-      "functionName": "UpdateCustomerAddress",
+      "functionName": "updateCustomerAddress",
       "tests": [
         {
-          "ncStatusCode": 200,
+          "statusCode": 200,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1653,7 +1691,7 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1679,7 +1717,7 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1705,7 +1743,7 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
             "doc": {
               "email": "test@nchannel.com",
@@ -1733,10 +1771,10 @@
       ]
     },
     {
-      "functionName": "UpdateProductMatrix",
+      "functionName": "updateProductMatrix",
       "tests": [
         {
-          "ncStatusCode": 200,
+          "statusCode": 200,
           "payload": {
             "doc": {
               "name": "Fog Linen Chambray Towel - Beige Stripe 11",
@@ -1777,7 +1815,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -1812,7 +1850,7 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
             "doc": {
               "name": "Fog Linen Chambray Towel - Beige Stripe 11",
@@ -1853,7 +1891,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -1864,13 +1902,6 @@
                   }
                 ]
               }
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
-              "method": "PUT",
-              "replyHeaders": {},
-              "statusCode": 401,
-              "responsePayload": {}
             }
           ],
           "channelProfile": {
@@ -1878,7 +1909,7 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
             "doc": {
               "name": "Fog Linen Chambray Towel - Beige Stripe 11",
@@ -1919,7 +1950,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -1930,13 +1961,6 @@
                   }
                 ]
               }
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
-              "method": "PUT",
-              "replyHeaders": {},
-              "statusCode": 429,
-              "responsePayload": {}
             }
           ],
           "channelProfile": {
@@ -1944,7 +1968,7 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
             "doc": {
               "name": "Fog Linen Chambray Towel - Beige Stripe 11",
@@ -1985,7 +2009,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -1996,13 +2020,6 @@
                   }
                 ]
               }
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
-              "method": "PUT",
-              "replyHeaders": {},
-              "statusCode": 500,
-              "responsePayload": {}
             }
           ],
           "channelProfile": {
@@ -2012,10 +2029,10 @@
       ]
     },
     {
-      "functionName": "UpdateProductPricing",
+      "functionName": "updateProductPricing",
       "tests": [
         {
-          "ncStatusCode": 200,
+          "statusCode": 200,
           "payload": {
             "doc": {
               "sku": "SLCTBS-1211",
@@ -2033,7 +2050,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -2068,7 +2085,7 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
             "doc": {
               "sku": "SLCTBS-1211",
@@ -2086,7 +2103,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -2097,13 +2114,6 @@
                   }
                 ]
               }
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
-              "method": "PUT",
-              "replyHeaders": {},
-              "statusCode": 401,
-              "responsePayload": {}
             }
           ],
           "channelProfile": {
@@ -2111,7 +2121,7 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
             "doc": {
               "sku": "SLCTBS-1211",
@@ -2129,7 +2139,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -2140,13 +2150,6 @@
                   }
                 ]
               }
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
-              "method": "PUT",
-              "replyHeaders": {},
-              "statusCode": 429,
-              "responsePayload": {}
             }
           ],
           "channelProfile": {
@@ -2154,7 +2157,7 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
             "doc": {
               "sku": "SLCTBS-1211",
@@ -2172,7 +2175,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -2183,13 +2186,6 @@
                   }
                 ]
               }
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
-              "method": "PUT",
-              "replyHeaders": {},
-              "statusCode": 500,
-              "responsePayload": {}
             }
           ],
           "channelProfile": {
@@ -2199,10 +2195,10 @@
       ]
     },
     {
-      "functionName": "UpdateProductQuantity",
+      "functionName": "updateProductQuantity",
       "tests": [
         {
-          "ncStatusCode": 200,
+          "statusCode": 200,
           "payload": {
             "doc": {
               "sku": "SLCTBS-1211",
@@ -2220,7 +2216,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -2255,7 +2251,7 @@
           }
         },
         {
-          "ncStatusCode": 400,
+          "statusCode": 400,
           "payload": {
             "doc": {
               "sku": "SLCTBS-1211",
@@ -2273,7 +2269,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -2284,13 +2280,6 @@
                   }
                 ]
               }
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
-              "method": "PUT",
-              "replyHeaders": {},
-              "statusCode": 401,
-              "responsePayload": {}
             }
           ],
           "channelProfile": {
@@ -2298,7 +2287,7 @@
           }
         },
         {
-          "ncStatusCode": 429,
+          "statusCode": 429,
           "payload": {
             "doc": {
               "sku": "SLCTBS-1211",
@@ -2316,7 +2305,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -2327,13 +2316,6 @@
                   }
                 ]
               }
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
-              "method": "PUT",
-              "replyHeaders": {},
-              "statusCode": 429,
-              "responsePayload": {}
             }
           ],
           "channelProfile": {
@@ -2341,7 +2323,7 @@
           }
         },
         {
-          "ncStatusCode": 500,
+          "statusCode": 500,
           "payload": {
             "doc": {
               "sku": "SLCTBS-1211",
@@ -2359,7 +2341,7 @@
           "defaultHeaders": {},
           "links": [
             {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants",
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1/variants?limit=250",
               "method": "GET",
               "replyHeaders": {},
               "statusCode": 200,
@@ -2370,13 +2352,6 @@
                   }
                 ]
               }
-            },
-            {
-              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1",
-              "method": "PUT",
-              "replyHeaders": {},
-              "statusCode": 500,
-              "responsePayload": {}
             }
           ],
           "channelProfile": {
