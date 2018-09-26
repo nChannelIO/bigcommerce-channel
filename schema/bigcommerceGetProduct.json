@@ -7,311 +7,235 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "properties": {
       "name": {
-        "$id": "/properties/name",
         "type": "string"
       },
       "type": {
-        "$id": "/properties/type",
         "type": "string"
       },
       "sku": {
-        "$id": "/properties/sku",
         "type": "string"
       },
       "description": {
-        "$id": "/properties/description",
         "type": "string"
       },
       "weight": {
-        "$id": "/properties/weight",
         "type": "number"
       },
       "width": {
-        "$id": "/properties/width",
         "type": "number"
       },
       "depth": {
-        "$id": "/properties/depth",
         "type": "number"
       },
       "height": {
-        "$id": "/properties/height",
         "type": "number"
       },
       "price": {
-        "$id": "/properties/price",
         "type": "number"
       },
       "cost_price": {
-        "$id": "/properties/cost_price",
         "type": "number"
       },
       "retail_price": {
-        "$id": "/properties/retail_price",
         "type": "number"
       },
       "tax_class_id": {
-        "$id": "/properties/tax_class_id",
         "type": "number"
       },
       "product_tax_code": {
-        "$id": "/properties/product_tax_code",
         "type": "string"
       },
       "categories": {
-        "$id": "/properties/categories",
         "type": "array",
         "items": {
-          "$id": "/properties/categories/items",
           "type": "number"
         }
       },
       "brand_id": {
-        "$id": "/properties/brand_id",
         "type": "number"
       },
       "inventory_level": {
-        "$id": "/properties/inventory_level",
         "type": "number"
       },
       "inventory_warning_level": {
-        "$id": "/properties/inventory_warning_level",
         "type": "number"
       },
       "inventory_tracking": {
-        "$id": "/properties/inventory_tracking",
         "type": "string"
       },
       "fixed_cost_shipping_price": {
-        "$id": "/properties/fixed_cost_shipping_price",
         "type": "number"
       },
       "is_free_shipping": {
-        "$id": "/properties/is_free_shipping",
         "type": "boolean"
       },
       "is_visible": {
-        "$id": "/properties/is_visible",
         "type": "boolean"
       },
       "is_featured": {
-        "$id": "/properties/is_featured",
         "type": "boolean"
       },
       "related_products": {
-        "$id": "/properties/related_products",
         "type": "array",
         "items": {
-          "$id": "/properties/related_products/items",
           "type": "number"
         }
       },
       "bin_picking_number": {
-        "$id": "/properties/bin_picking_number",
         "type": "string"
       },
       "layout_file": {
-        "$id": "/properties/layout_file",
         "type": "string"
       },
       "upc": {
-        "$id": "/properties/upc",
         "type": "string"
       },
       "search_keywords": {
-        "$id": "/properties/search_keywords",
         "type": "string"
       },
       "availability": {
-        "$id": "/properties/availability",
         "type": "string"
       },
       "gift_wrapping_options_type": {
-        "$id": "/properties/gift_wrapping_options_type",
         "type": "string"
       },
       "gift_wrapping_options_list": {
-        "$id": "/properties/gift_wrapping_options_list",
         "type": "array",
         "items": {
-          "$id": "/properties/gift_wrapping_options_list/items",
           "type": "number"
         }
       },
       "sort_order": {
-        "$id": "/properties/sort_order",
         "type": "number"
       },
       "condition": {
-        "$id": "/properties/condition",
         "type": "string"
       },
       "is_condition_shown": {
-        "$id": "/properties/is_condition_shown",
         "type": "boolean"
       },
       "order_quantity_minimum": {
-        "$id": "/properties/order_quantity_minimum",
         "type": "number"
       },
       "order_quantity_maximum": {
-        "$id": "/properties/order_quantity_maximum",
         "type": "number"
       },
       "meta_keywords": {
-        "$id": "/properties/meta_keywords",
         "type": "array"
       },
       "view_count": {
-        "$id": "/properties/view_count",
         "type": "number"
       },
       "preorder_release_date": {
-        "$id": "/properties/preorder_release_date",
         "type": "string"
       },
       "is_preorder_only": {
-        "$id": "/properties/is_preorder_only",
         "type": "boolean"
       },
       "is_price_hidden": {
-        "$id": "/properties/is_price_hidden",
         "type": "boolean"
       },
       "custom_url": {
-        "$id": "/properties/custom_url",
         "type": "object",
         "properties": {
           "url": {
-            "$id": "/properties/custom_url/properties/url",
             "type": "string"
           },
           "is_customized": {
-            "$id": "/properties/custom_url/properties/is_customized",
             "type": "boolean"
           }
         }
       },
       "open_graph_type": {
-        "$id": "/properties/open_graph_type",
         "type": "string"
       },
       "custom_fields": {
-        "$id": "/properties/custom_fields",
         "type": "array",
         "items": {
-          "$id": "/properties/custom_fields/items",
           "type": "object",
           "properties": {
             "name": {
-              "$id": "/properties/custom_fields/items/properties/name",
               "type": "string"
             },
             "value": {
-              "$id": "/properties/custom_fields/items/properties/value",
               "type": "string"
             }
           }
         }
       },
       "bulk_pricing_rules": {
-        "$id": "/properties/bulk_pricing_rules",
         "type": "array",
         "items": {
-          "$id": "/properties/bulk_pricing_rules/items",
           "type": "object",
           "properties": {
             "quantity_min": {
-              "$id": "/properties/bulk_pricing_rules/items/properties/quantity_min",
               "type": "number"
             },
             "quantity_max": {
-              "$id": "/properties/bulk_pricing_rules/items/properties/quantity_max",
               "type": "number"
             },
             "type": {
-              "$id": "/properties/bulk_pricing_rules/items/properties/type",
               "type": "string"
             },
             "amount": {
-              "$id": "/properties/bulk_pricing_rules/items/properties/amount",
               "type": "number"
             }
           }
         }
       },
       "variants": {
-        "$id": "/properties/variants",
         "type": "array",
         "items": {
-          "$id": "/properties/variants/items",
           "type": "object",
           "properties": {
             "cost_price": {
-              "$id": "/properties/variants/items/properties/cost_price",
               "type": "number"
             },
             "price": {
-              "$id": "/properties/variants/items/properties/price",
               "type": "number"
             },
             "sale_price": {
-              "$id": "/properties/variants/items/properties/sale_price",
               "type": "number"
             },
             "retail_price": {
-              "$id": "/properties/variants/items/properties/retail_price",
               "type": "number"
             },
             "weight": {
-              "$id": "/properties/variants/items/properties/weight",
               "type": "number"
             },
             "width": {
-              "$id": "/properties/variants/items/properties/width",
               "type": "number"
             },
             "height": {
-              "$id": "/properties/variants/items/properties/height",
               "type": "number"
             },
             "depth": {
-              "$id": "/properties/variants/items/properties/depth",
               "type": "number"
             },
             "is_free_shipping": {
-              "$id": "/properties/variants/items/properties/is_free_shipping",
               "type": "boolean"
             },
             "purchasing_disabled": {
-              "$id": "/properties/variants/items/properties/purchasing_disabled",
               "type": "boolean"
             },
             "purchasing_disabled_message": {
-              "$id": "/properties/variants/items/properties/purchasing_disabled_message",
               "type": "string"
             },
             "product_id": {
-              "$id": "/properties/variants/items/properties/product_id",
               "type": "number"
             },
             "sku": {
-              "$id": "/properties/variants/items/properties/sku",
               "type": "string"
             },
             "option_values": {
-              "$id": "/properties/variants/items/properties/option_values",
               "type": "array",
               "items": {
-                "$id": "/properties/variants/items/properties/option_values/items",
                 "type": "object",
                 "properties": {
                   "option_display_name": {
-                    "$id": "/properties/variants/items/properties/option_values/items/properties/option_display_name",
                     "type": "string"
                   },
                   "label": {
-                    "$id": "/properties/variants/items/properties/option_values/items/properties/label",
                     "type": "string"
                   }
                 }

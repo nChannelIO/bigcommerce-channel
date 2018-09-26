@@ -13,283 +13,215 @@
 			"order": {
 				"properties": {
 					"id": {
-						"$id": "/properties/id",
 						"type": "number"
 					},
 					"customer_id": {
-						"$id": "/properties/customer_id",
 						"type": "number"
 					},
 					"date_created": {
-						"$id": "/properties/date_created",
 						"type": "string"
 					},
 					"date_modified": {
-						"$id": "/properties/date_modified",
 						"type": "string"
 					},
 					"date_shipped": {
-						"$id": "/properties/date_shipped",
 						"type": "string"
 					},
 					"status_id": {
-						"$id": "/properties/status_id",
 						"type": "number"
 					},
 					"status": {
-						"$id": "/properties/status",
 						"type": "string"
 					},
 					"custom_status": {
-						"$id": "/properties/custom_status",
 						"type": "string"
 					},
 					"subtotal_ex_tax": {
-						"$id": "/properties/subtotal_ex_tax",
 						"type": "string"
 					},
 					"subtotal_inc_tax": {
-						"$id": "/properties/subtotal_inc_tax",
 						"type": "string"
 					},
 					"subtotal_tax": {
-						"$id": "/properties/subtotal_tax",
 						"type": "string"
 					},
 					"base_shipping_cost": {
-						"$id": "/properties/base_shipping_cost",
 						"type": "string"
 					},
 					"shipping_cost_ex_tax": {
-						"$id": "/properties/shipping_cost_ex_tax",
 						"type": "string"
 					},
 					"shipping_cost_inc_tax": {
-						"$id": "/properties/shipping_cost_inc_tax",
 						"type": "string"
 					},
 					"shipping_cost_tax": {
-						"$id": "/properties/shipping_cost_tax",
 						"type": "string"
 					},
 					"shipping_cost_tax_class_id": {
-						"$id": "/properties/shipping_cost_tax_class_id",
 						"type": "number"
 					},
 					"base_handling_cost": {
-						"$id": "/properties/base_handling_cost",
 						"type": "string"
 					},
 					"handling_cost_ex_tax": {
-						"$id": "/properties/handling_cost_ex_tax",
 						"type": "string"
 					},
 					"handling_cost_inc_tax": {
-						"$id": "/properties/handling_cost_inc_tax",
 						"type": "string"
 					},
 					"handling_cost_tax": {
-						"$id": "/properties/handling_cost_tax",
 						"type": "string"
 					},
 					"handling_cost_tax_class_id": {
-						"$id": "/properties/handling_cost_tax_class_id",
 						"type": "number"
 					},
 					"base_wrapping_cost": {
-						"$id": "/properties/base_wrapping_cost",
 						"type": "string"
 					},
 					"wrapping_cost_ex_tax": {
-						"$id": "/properties/wrapping_cost_ex_tax",
 						"type": "string"
 					},
 					"wrapping_cost_inc_tax": {
-						"$id": "/properties/wrapping_cost_inc_tax",
 						"type": "string"
 					},
 					"wrapping_cost_tax": {
-						"$id": "/properties/wrapping_cost_tax",
 						"type": "string"
 					},
 					"wrapping_cost_tax_class_id": {
-						"$id": "/properties/wrapping_cost_tax_class_id",
 						"type": "number"
 					},
 					"total_ex_tax": {
-						"$id": "/properties/total_ex_tax",
 						"type": "string"
 					},
 					"total_inc_tax": {
-						"$id": "/properties/total_inc_tax",
 						"type": "string"
 					},
 					"total_tax": {
-						"$id": "/properties/total_tax",
 						"type": "string"
 					},
 					"items_total": {
-						"$id": "/properties/items_total",
 						"type": "number"
 					},
 					"items_shipped": {
-						"$id": "/properties/items_shipped",
 						"type": "number"
 					},
 					"payment_method": {
-						"$id": "/properties/payment_method",
 						"type": "string"
 					},
 					"payment_provider_id": {
-						"$id": "/properties/payment_provider_id",
 						"type": "null"
 					},
 					"payment_status": {
-						"$id": "/properties/payment_status",
 						"type": "string"
 					},
 					"refunded_amount": {
-						"$id": "/properties/refunded_amount",
 						"type": "string"
 					},
 					"order_is_digital": {
-						"$id": "/properties/order_is_digital",
 						"type": "boolean"
 					},
 					"store_credit_amount": {
-						"$id": "/properties/store_credit_amount",
 						"type": "string"
 					},
 					"gift_certificate_amount": {
-						"$id": "/properties/gift_certificate_amount",
 						"type": "string"
 					},
 					"ip_address": {
-						"$id": "/properties/ip_address",
 						"type": "string"
 					},
 					"geoip_country": {
-						"$id": "/properties/geoip_country",
 						"type": "string"
 					},
 					"geoip_country_iso2": {
-						"$id": "/properties/geoip_country_iso2",
 						"type": "string"
 					},
 					"currency_id": {
-						"$id": "/properties/currency_id",
 						"type": "number"
 					},
 					"currency_code": {
-						"$id": "/properties/currency_code",
 						"type": "string"
 					},
 					"currency_exchange_rate": {
-						"$id": "/properties/currency_exchange_rate",
 						"type": "string"
 					},
 					"default_currency_id": {
-						"$id": "/properties/default_currency_id",
 						"type": "number"
 					},
 					"default_currency_code": {
-						"$id": "/properties/default_currency_code",
 						"type": "string"
 					},
 					"staff_notes": {
-						"$id": "/properties/staff_notes",
 						"type": "string"
 					},
 					"customer_message": {
-						"$id": "/properties/customer_message",
 						"type": "string"
 					},
 					"discount_amount": {
-						"$id": "/properties/discount_amount",
 						"type": "string"
 					},
 					"coupon_discount": {
-						"$id": "/properties/coupon_discount",
 						"type": "string"
 					},
 					"shipping_address_count": {
-						"$id": "/properties/shipping_address_count",
 						"type": "number"
 					},
 					"is_deleted": {
-						"$id": "/properties/is_deleted",
 						"type": "boolean"
 					},
 					"billing_address": {
-						"$id": "/properties/billing_address",
 						"type": "object",
 						"properties": {
 							"first_name": {
-								"$id": "/properties/billing_address/properties/first_name",
 								"type": "string"
 							},
 							"last_name": {
-								"$id": "/properties/billing_address/properties/last_name",
 								"type": "string"
 							},
 							"company": {
-								"$id": "/properties/billing_address/properties/company",
 								"type": "string"
 							},
 							"street_1": {
-								"$id": "/properties/billing_address/properties/street_1",
 								"type": "string"
 							},
 							"street_2": {
-								"$id": "/properties/billing_address/properties/street_2",
 								"type": "string"
 							},
 							"city": {
-								"$id": "/properties/billing_address/properties/city",
 								"type": "string"
 							},
 							"state": {
-								"$id": "/properties/billing_address/properties/state",
 								"type": "string"
 							},
 							"zip": {
-								"$id": "/properties/billing_address/properties/zip",
 								"type": "string"
 							},
 							"country": {
-								"$id": "/properties/billing_address/properties/country",
 								"type": "string"
 							},
 							"country_iso2": {
-								"$id": "/properties/billing_address/properties/country_iso2",
 								"type": "string"
 							},
 							"phone": {
-								"$id": "/properties/billing_address/properties/phone",
 								"type": "string"
 							},
 							"email": {
-								"$id": "/properties/billing_address/properties/email",
 								"type": "string"
 							}
 						}
 					},
 					"products": {
-						"$id": "/properties/products",
 						"type": "array",
 						"items": {
 							"$ref": "#/definitions/product"
 						}
 					},
 					"shipping_addresses": {
-						"$id": "/properties/shipping_addresses",
 						"type": "array",
 						"items": {
 							"$ref": "#/definitions/shipping_address"
 						}
 					},
 					"coupons": {
-						"$id": "/properties/coupons",
 						"type": "array",
 						"items": {
 							"$ref": "#/definitions/coupon"
@@ -303,311 +235,235 @@
 			"product": {
 				"properties": {
 					"name": {
-						"$id": "/properties/name",
 						"type": "string"
 					},
 					"type": {
-						"$id": "/properties/type",
 						"type": "string"
 					},
 					"sku": {
-						"$id": "/properties/sku",
 						"type": "string"
 					},
 					"description": {
-						"$id": "/properties/description",
 						"type": "string"
 					},
 					"weight": {
-						"$id": "/properties/weight",
 						"type": "number"
 					},
 					"width": {
-						"$id": "/properties/width",
 						"type": "number"
 					},
 					"depth": {
-						"$id": "/properties/depth",
 						"type": "number"
 					},
 					"height": {
-						"$id": "/properties/height",
 						"type": "number"
 					},
 					"price": {
-						"$id": "/properties/price",
 						"type": "number"
 					},
 					"cost_price": {
-						"$id": "/properties/cost_price",
 						"type": "number"
 					},
 					"retail_price": {
-						"$id": "/properties/retail_price",
 						"type": "number"
 					},
 					"tax_class_id": {
-						"$id": "/properties/tax_class_id",
 						"type": "number"
 					},
 					"product_tax_code": {
-						"$id": "/properties/product_tax_code",
 						"type": "string"
 					},
 					"categories": {
-						"$id": "/properties/categories",
 						"type": "array",
 						"items": {
-							"$id": "/properties/categories/items",
 							"type": "number"
 						}
 					},
 					"brand_id": {
-						"$id": "/properties/brand_id",
 						"type": "number"
 					},
 					"inventory_level": {
-						"$id": "/properties/inventory_level",
 						"type": "number"
 					},
 					"inventory_warning_level": {
-						"$id": "/properties/inventory_warning_level",
 						"type": "number"
 					},
 					"inventory_tracking": {
-						"$id": "/properties/inventory_tracking",
 						"type": "string"
 					},
 					"fixed_cost_shipping_price": {
-						"$id": "/properties/fixed_cost_shipping_price",
 						"type": "number"
 					},
 					"is_free_shipping": {
-						"$id": "/properties/is_free_shipping",
 						"type": "boolean"
 					},
 					"is_visible": {
-						"$id": "/properties/is_visible",
 						"type": "boolean"
 					},
 					"is_featured": {
-						"$id": "/properties/is_featured",
 						"type": "boolean"
 					},
 					"related_products": {
-						"$id": "/properties/related_products",
 						"type": "array",
 						"items": {
-							"$id": "/properties/related_products/items",
 							"type": "number"
 						}
 					},
 					"bin_picking_number": {
-						"$id": "/properties/bin_picking_number",
 						"type": "string"
 					},
 					"layout_file": {
-						"$id": "/properties/layout_file",
 						"type": "string"
 					},
 					"upc": {
-						"$id": "/properties/upc",
 						"type": "string"
 					},
 					"search_keywords": {
-						"$id": "/properties/search_keywords",
 						"type": "string"
 					},
 					"availability": {
-						"$id": "/properties/availability",
 						"type": "string"
 					},
 					"gift_wrapping_options_type": {
-						"$id": "/properties/gift_wrapping_options_type",
 						"type": "string"
 					},
 					"gift_wrapping_options_list": {
-						"$id": "/properties/gift_wrapping_options_list",
 						"type": "array",
 						"items": {
-							"$id": "/properties/gift_wrapping_options_list/items",
 							"type": "number"
 						}
 					},
 					"sort_order": {
-						"$id": "/properties/sort_order",
 						"type": "number"
 					},
 					"condition": {
-						"$id": "/properties/condition",
 						"type": "string"
 					},
 					"is_condition_shown": {
-						"$id": "/properties/is_condition_shown",
 						"type": "boolean"
 					},
 					"order_quantity_minimum": {
-						"$id": "/properties/order_quantity_minimum",
 						"type": "number"
 					},
 					"order_quantity_maximum": {
-						"$id": "/properties/order_quantity_maximum",
 						"type": "number"
 					},
 					"meta_keywords": {
-						"$id": "/properties/meta_keywords",
 						"type": "array"
 					},
 					"view_count": {
-						"$id": "/properties/view_count",
 						"type": "number"
 					},
 					"preorder_release_date": {
-						"$id": "/properties/preorder_release_date",
 						"type": "string"
 					},
 					"is_preorder_only": {
-						"$id": "/properties/is_preorder_only",
 						"type": "boolean"
 					},
 					"is_price_hidden": {
-						"$id": "/properties/is_price_hidden",
 						"type": "boolean"
 					},
 					"custom_url": {
-						"$id": "/properties/custom_url",
 						"type": "object",
 						"properties": {
 							"url": {
-								"$id": "/properties/custom_url/properties/url",
 								"type": "string"
 							},
 							"is_customized": {
-								"$id": "/properties/custom_url/properties/is_customized",
 								"type": "boolean"
 							}
 						}
 					},
 					"open_graph_type": {
-						"$id": "/properties/open_graph_type",
 						"type": "string"
 					},
 					"custom_fields": {
-						"$id": "/properties/custom_fields",
 						"type": "array",
 						"items": {
-							"$id": "/properties/custom_fields/items",
 							"type": "object",
 							"properties": {
 								"name": {
-									"$id": "/properties/custom_fields/items/properties/name",
 									"type": "string"
 								},
 								"value": {
-									"$id": "/properties/custom_fields/items/properties/value",
 									"type": "string"
 								}
 							}
 						}
 					},
 					"bulk_pricing_rules": {
-						"$id": "/properties/bulk_pricing_rules",
 						"type": "array",
 						"items": {
-							"$id": "/properties/bulk_pricing_rules/items",
 							"type": "object",
 							"properties": {
 								"quantity_min": {
-									"$id": "/properties/bulk_pricing_rules/items/properties/quantity_min",
 									"type": "number"
 								},
 								"quantity_max": {
-									"$id": "/properties/bulk_pricing_rules/items/properties/quantity_max",
 									"type": "number"
 								},
 								"type": {
-									"$id": "/properties/bulk_pricing_rules/items/properties/type",
 									"type": "string"
 								},
 								"amount": {
-									"$id": "/properties/bulk_pricing_rules/items/properties/amount",
 									"type": "number"
 								}
 							}
 						}
 					},
 					"variants": {
-						"$id": "/properties/variants",
 						"type": "array",
 						"items": {
-							"$id": "/properties/variants/items",
 							"type": "object",
 							"properties": {
 								"cost_price": {
-									"$id": "/properties/variants/items/properties/cost_price",
 									"type": "number"
 								},
 								"price": {
-									"$id": "/properties/variants/items/properties/price",
 									"type": "number"
 								},
 								"sale_price": {
-									"$id": "/properties/variants/items/properties/sale_price",
 									"type": "number"
 								},
 								"retail_price": {
-									"$id": "/properties/variants/items/properties/retail_price",
 									"type": "number"
 								},
 								"weight": {
-									"$id": "/properties/variants/items/properties/weight",
 									"type": "number"
 								},
 								"width": {
-									"$id": "/properties/variants/items/properties/width",
 									"type": "number"
 								},
 								"height": {
-									"$id": "/properties/variants/items/properties/height",
 									"type": "number"
 								},
 								"depth": {
-									"$id": "/properties/variants/items/properties/depth",
 									"type": "number"
 								},
 								"is_free_shipping": {
-									"$id": "/properties/variants/items/properties/is_free_shipping",
 									"type": "boolean"
 								},
 								"purchasing_disabled": {
-									"$id": "/properties/variants/items/properties/purchasing_disabled",
 									"type": "boolean"
 								},
 								"purchasing_disabled_message": {
-									"$id": "/properties/variants/items/properties/purchasing_disabled_message",
 									"type": "string"
 								},
 								"product_id": {
-									"$id": "/properties/variants/items/properties/product_id",
 									"type": "number"
 								},
 								"sku": {
-									"$id": "/properties/variants/items/properties/sku",
 									"type": "string"
 								},
 								"option_values": {
-									"$id": "/properties/variants/items/properties/option_values",
 									"type": "array",
 									"items": {
-										"$id": "/properties/variants/items/properties/option_values/items",
 										"type": "object",
 										"properties": {
 											"option_display_name": {
-												"$id": "/properties/variants/items/properties/option_values/items/properties/option_display_name",
 												"type": "string"
 											},
 											"label": {
-												"$id": "/properties/variants/items/properties/option_values/items/properties/label",
 												"type": "string"
 											}
 										}
@@ -621,119 +477,90 @@
 			"shipping_address": {
 				"properties": {
 			    "id": {
-			      "$id": "/properties/id",
 			      "type": "number"
 			    },
 			    "order_id": {
-			      "$id": "/properties/order_id",
 			      "type": "number"
 			    },
 			    "first_name": {
-			      "$id": "/properties/first_name",
 			      "type": "string"
 			    },
 			    "last_name": {
-			      "$id": "/properties/last_name",
 			      "type": "string"
 			    },
 			    "company": {
-			      "$id": "/properties/company",
 			      "type": "string"
 			    },
 			    "street_1": {
-			      "$id": "/properties/street_1",
 			      "type": "string"
 			    },
 			    "street_2": {
-			      "$id": "/properties/street_2",
 			      "type": "string"
 			    },
 			    "city": {
-			      "$id": "/properties/city",
 			      "type": "string"
 			    },
 			    "zip": {
-			      "$id": "/properties/zip",
 			      "type": "string"
 			    },
 			    "country": {
-			      "$id": "/properties/country",
 			      "type": "string"
 			    },
 			    "country_iso2": {
-			      "$id": "/properties/country_iso2",
 			      "type": "string"
 			    },
 			    "state": {
-			      "$id": "/properties/state",
 			      "type": "string"
 			    },
 			    "email": {
-			      "$id": "/properties/email",
 			      "type": "string"
 			    },
 			    "phone": {
-			      "$id": "/properties/phone",
 			      "type": "string"
 			    },
 			    "items_total": {
-			      "$id": "/properties/items_total",
 			      "type": "number"
 			    },
 			    "items_shipped": {
-			      "$id": "/properties/items_shipped",
 			      "type": "number"
 			    },
 			    "shipping_method": {
-			      "$id": "/properties/shipping_method",
 			      "type": "string"
 			    },
 			    "base_cost": {
-			      "$id": "/properties/base_cost",
 			      "type": "string"
 			    },
 			    "cost_ex_tax": {
-			      "$id": "/properties/cost_ex_tax",
 			      "type": "string"
 			    },
 			    "cost_inc_tax": {
-			      "$id": "/properties/cost_inc_tax",
 			      "type": "string"
 			    },
 			    "cost_tax": {
-			      "$id": "/properties/cost_tax",
 			      "type": "string"
 			    },
 			    "cost_tax_class_id": {
-			      "$id": "/properties/cost_tax_class_id",
 			      "type": "number"
 			    },
 			    "base_handling_cost": {
-			      "$id": "/properties/base_handling_cost",
 			      "type": "string"
 			    },
 			    "handling_cost_ex_tax": {
-			      "$id": "/properties/handling_cost_ex_tax",
 			      "type": "string"
 			    },
 			    "handling_cost_inc_tax": {
-			      "$id": "/properties/handling_cost_inc_tax",
 			      "type": "string"
 			    },
 			    "handling_cost_tax": {
-			      "$id": "/properties/handling_cost_tax",
 			      "type": "string"
 			    },
 			    "handling_cost_tax_class_id": {
-			      "$id": "/properties/handling_cost_tax_class_id",
 			      "type": "number"
 			    },
 			    "shipping_zone_id": {
-			      "$id": "/properties/shipping_zone_id",
 			      "type": "number"
 			    },
 			    "shipping_zone_name": {
-			      "$id": "/properties/shipping_zone_name",
 			      "type": "string"
 			    }
 			  }
@@ -741,31 +568,24 @@
 			"coupon": {
 				"properties": {
 			    "id": {
-			      "$id": "/properties/id",
 			      "type": "number"
 			    },
 			    "coupon_id": {
-			      "$id": "/properties/coupon_id",
 			      "type": "number"
 			    },
 			    "order_id": {
-			      "$id": "/properties/order_id",
 			      "type": "number"
 			    },
 			    "code": {
-			      "$id": "/properties/code",
 			      "type": "string"
 			    },
 			    "amount": {
-			      "$id": "/properties/amount",
 			      "type": "string"
 			    },
 			    "type": {
-			      "$id": "/properties/type",
 			      "type": "number"
 			    },
 			    "discount": {
-			      "$id": "/properties/discount",
 			      "type": "string"
 			    }
 			  }
@@ -773,73 +593,56 @@
 			"customer": {
 				"properties": {
 			    "id": {
-			      "$id": "/properties/id",
 			      "type": "number"
 			    },
 			    "company": {
-			      "$id": "/properties/company",
 			      "type": "string"
 			    },
 			    "first_name": {
-			      "$id": "/properties/first_name",
 			      "type": "string"
 			    },
 			    "last_name": {
-			      "$id": "/properties/last_name",
 			      "type": "string"
 			    },
 			    "email": {
-			      "$id": "/properties/email",
 			      "type": "string"
 			    },
 			    "phone": {
-			      "$id": "/properties/phone",
 			      "type": "string"
 			    },
 			    "date_created": {
-			      "$id": "/properties/date_created",
 			      "type": "string"
 			    },
 			    "date_modified": {
-			      "$id": "/properties/date_modified",
 			      "type": "string"
 			    },
 			    "store_credit": {
-			      "$id": "/properties/store_credit",
 			      "type": "string"
 			    },
 			    "registration_ip_address": {
-			      "$id": "/properties/registration_ip_address",
 			      "type": "string"
 			    },
 			    "customer_group_id": {
-			      "$id": "/properties/customer_group_id",
 			      "type": "number"
 			    },
 			    "notes": {
-			      "$id": "/properties/notes",
 			      "type": "string"
 			    },
 			    "tax_exempt_category": {
-			      "$id": "/properties/tax_exempt_category",
 			      "type": "string"
 			    },
 			    "accepts_marketing": {
-			      "$id": "/properties/accepts_marketing",
 			      "type": "boolean"
 			    },
 			    "addresses": {
-			      "$id": "/properties/addresses",
 			      "type": "array",
 						"items": {
 							"$ref": "#/definitions/address"
 						}
 			    },
 					"form_fields": {
-						"$id": "/properties/form_fields",
 						"type": "array",
 						"items": {
-							"$id": "/properties/form_fields/items",
 							"type": "object"
 						}
 					}
@@ -849,63 +652,48 @@
 			"address": {
 				"properties": {
 					"id": {
-						"$id": "/properties/id",
 						"type": "number"
 					},
 					"customer_id": {
-						"$id": "/properties/customer_id",
 						"type": "number"
 					},
 					"first_name": {
-						"$id": "/properties/first_name",
 						"type": "string"
 					},
 					"last_name": {
-						"$id": "/properties/last_name",
 						"type": "string"
 					},
 					"company": {
-						"$id": "/properties/company",
 						"type": "string"
 					},
 					"street_1": {
-						"$id": "/properties/street_1",
 						"type": "string"
 					},
 					"street_2": {
-						"$id": "/properties/street_2",
 						"type": "string"
 					},
 					"city": {
-						"$id": "/properties/city",
 						"type": "string"
 					},
 					"state": {
-						"$id": "/properties/state",
 						"type": "string"
 					},
 					"zip": {
-						"$id": "/properties/zip",
 						"type": "string"
 					},
 					"country": {
-						"$id": "/properties/country",
 						"type": "string"
 					},
 					"country_iso2": {
-						"$id": "/properties/country_iso2",
 						"type": "string"
 					},
 					"phone": {
-						"$id": "/properties/phone",
 						"type": "string"
 					},
 					"phone": {
-						"$id": "/properties/phone",
 						"type": "string"
 					},
 					"address_type": {
-						"$id": "/properties/address_type",
 						"type": "string",
 						"enum": [
 							"residential",

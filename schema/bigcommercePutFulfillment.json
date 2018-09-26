@@ -15,31 +15,24 @@
 			"fulfillment": {
 				"properties": {
 			    "order_address_id": {
-			      "$id": "/properties/order_address_id",
 			      "type": "number"
 			    },
 			    "tracking_number": {
-			      "$id": "/properties/tracking_number",
 			      "type": "string"
 			    },
 			    "shipping_method": {
-			      "$id": "/properties/shipping_method",
 			      "type": "string"
 			    },
 			    "shipping_provider": {
-			      "$id": "/properties/shipping_provider",
 			      "type": "string"
 			    },
 			    "tracking_carrier": {
-			      "$id": "/properties/tracking_carrier",
 			      "type": "string"
 			    },
 			    "comments": {
-			      "$id": "/properties/comments",
 			      "type": "null"
 			    },
 			    "items": {
-			      "$id": "/properties/items",
 			      "type": "array",
 			      "items": {
 			        "$ref": "#/definitions/item"
@@ -55,15 +48,12 @@
 			"item": {
 				"properties": {
 					"order_product_id": {
-						"$id": "/properties/order_product_id",
 						"type": "number"
 					},
 					"product_id": {
-						"$id": "/properties/product_id",
 						"type": "number"
 					},
 					"quantity": {
-						"$id": "/properties/quantity",
 						"type": "number"
 					}
 				}

@@ -6,80 +6,62 @@
     "required": ["name", "type", "weight", "price", "categories", "variants"],
     "properties": {
       "name": {
-        "type": "string",
-        "description": "The product name."
+        "type": "string"
       },
       "type": {
         "type": "string",
         "enum": [
           "physical",
           "digital"
-        ],
-        "description": "The product type. One of: physical - a physical stock unit, digital - a digital download."
+        ]
       },
       "sku": {
-        "type": "string",
-        "description": "User defined product code/stock keeping unit (SKU)."
+        "type": "string"
       },
       "description": {
-        "type": "string",
-        "description": "The product description, which can include HTML formatting."
+        "type": "string"
       },
       "weight": {
-        "type": "number",
-        "description": "Weight of the product, which can be used when calculating shipping costs."
+        "type": "number"
       },
       "width": {
-        "type": "number",
-        "description": "Width of the product, which can be used when calculating shipping costs."
+        "type": "number"
       },
       "depth": {
-        "type": "number",
-        "description": "Depth of the product, which can be used when calculating shipping costs."
+        "type": "number"
       },
       "height": {
-        "type": "number",
-        "description": "Height of the product, which can be used when calculating shipping costs."
+        "type": "number"
       },
       "price": {
-        "type": "number",
-        "description": "The price of the product. The price should include or exclude tax, based on the store settings."
+        "type": "number"
       },
       "cost_price": {
-        "type": "number",
-        "description": "The cost price of the product. Stored for reference only; it is not used or displayed anywhere on the store."
+        "type": "number"
       },
       "retail_price": {
-        "type": "number",
-        "description": "The retail cost of the product. If entered, the retail cost price will be shown on the product page."
+        "type": "number"
       },
       "sale_price": {
-        "type": "number",
-        "description": "If entered, the sale price will be used instead of value in the price field when calculating the product's cost."
+        "type": "number"
       },
       "tax_class_id": {
-        "type": "number",
-        "description": "The ID of the tax class applied to the product. (NOTE: Value ignored if automatic tax is enabled.)"
+        "type": "number"
       },
       "product_tax_code": {
-        "type": "string",
-        "description": "Accepts AvaTax System Tax Codes, which identify products and services that fall into special sales-tax categories. By using these codes, merchants who subscribe to BigCommerce's Avalara Premium integration can calculate sales taxes more accurately. Stores without Avalara Premium will ignore the code when calculating sales tax. Do not pass more than one code. The codes are case-sensitive. For details, please see Avalara's documentation."
+        "type": "string"
       },
       "categories": {
-        "type": "array",
-        "description": "An array of IDs for the categories to which this product belongs. When updating a product, if an array of categories is supplied, all product categories will be overwritten. Does not accept more than 1,000 ID values."
+        "type": "array"
       },
       "brand_id": {
-        "type": "number",
-        "description": "The ID associated with the products brand."
+        "type": "number"
       },
       "inventory_level": {
-        "type": "number",
-        "description": "Current inventory level of the product. Simple inventory tracking must be enabled (See the inventory_tracking field) for this to take any effect."
+        "type": "number"
       },
       "inventory_warning_level": {
-        "type": "number",
-        "description": "Inventory warning level for the product. When the product's inventory level drops below the warning level, the store owner will be informed. Simple inventory tracking must be enabled (see the inventory_tracking field) for this to take any effect."
+        "type": "number"
       },
       "inventory_tracking": {
         "type": "string",
@@ -87,48 +69,37 @@
           "none",
           "product",
           "variant"
-        ],
-        "description": "The type of inventory tracking for the product. Values are: none - inventory levels will not be tracked; product - inventory levels will be tracked using the inventory_level and inventory_warning_level fields; variant - inventory levels will be tracked based on variants, which maintain their own warning levels and inventory levels."
+        ]
       },
       "fixed_cost_shipping_price": {
-        "type": "number",
-        "description": "A fixed shipping cost for the product. If defined, this value will be used during checkout instead of normal shipping-cost calculation."
+        "type": "number"
       },
       "is_free_shipping": {
-        "type": "boolean",
-        "description": "Flag used to indicate whether the product has free shipping. If true, the shipping cost for the product will be zero."
+        "type": "boolean"
       },
       "is_visible": {
-        "type": "boolean",
-        "description": "Flag to determine whether the product should be displayed to customers browsing the store. If true, the product will be displayed. If false, the product will be hidden from view."
+        "type": "boolean"
       },
       "is_featured": {
-        "type": "boolean",
-        "description": "Flag to determine whether the product should be included in the featured products panel when viewing the store."
+        "type": "boolean"
       },
       "related_products": {
-        "type": "array",
-        "description": "An array of IDs for the related products."
+        "type": "array"
       },
       "warranty": {
-        "type": "string",
-        "description": "Warranty information displayed on the product page. Can include HTML formatting."
+        "type": "string"
       },
       "bin_picking_number": {
-        "type": "string",
-        "description": "The BIN picking number for the product."
+        "type": "string"
       },
       "layout_file": {
-        "type": "string",
-        "description": "The layout template file used to render this product."
+        "type": "string"
       },
       "upc": {
-        "type": "string",
-        "description": "The product UPC code, which is used in feeds for shopping comparison sites and external channel integrations."
+        "type": "string"
       },
       "search_keywords": {
-        "type": "string",
-        "description": "A comma-separated list of keywords that can be used to locate the product when searching the store."
+        "type": "string"
       },
       "availability": {
         "type": "string",
@@ -136,12 +107,10 @@
           "available",
           "disabled",
           "preorder"
-        ],
-        "description": "Availability of the product. Availability options are: available - the product can be purchased on the storefront; disabled - the product is listed in the storefront, but cannot be purchased; preorder - the product is listed for pre-orders."
+        ]
       },
       "availability_description": {
-        "type": "string",
-        "description": "Availability text displayed on the checkout page, under the product title. Tells the customer how long it will normally take to ship this product, such as: 'Usually ships in 24 hours.'"
+        "type": "string"
       },
       "gift_wrapping_options_type": {
         "type": "string",
@@ -149,16 +118,13 @@
           "any",
           "none",
           "list"
-        ],
-        "description": "Type of gift-wrapping options. Values: any - allow any gift-wrapping options in the store; none - disallow gift-wrapping on the product; list – provide a list of IDs in the gift_wrapping_options_list field."
+        ]
       },
       "gift_wrapping_options_list": {
-        "type": "array",
-        "description": "A list of gift-wrapping option IDs."
+        "type": "array"
       },
       "sort_order": {
-        "type": "number",
-        "description": "Priority to give this product when included in product lists on category pages and in search results. Lower integers will place the product closer to the top of the results."
+        "type": "number"
       },
       "condition": {
         "type": "string",
@@ -166,70 +132,54 @@
           "New",
           "Used",
           "Refurbished"
-        ],
-        "description": "The product condition. Will be shown on the product page if the is_condition_shown field's value is true. Possible values: New, Used, Refurbished."
+        ]
       },
       "is_condition_shown": {
-        "type": "boolean",
-        "description": "Flag used to determine whether the product condition is shown to the customer on the product page."
+        "type": "boolean"
       },
       "order_quantity_minimum": {
-        "type": "number",
-        "description": "The minimum quantity an order must contain, to be eligible to purchase this product."
+        "type": "number"
       },
       "order_quantity_maximum": {
-        "type": "number",
-        "description": "The maximum quantity an order can contain when purchasing the product."
+        "type": "number"
       },
       "page_title": {
-        "type": "string",
-        "description": "Custom title for the product page. If not defined, the product name will be used as the meta title."
+        "type": "string"
       },
       "meta_keywords": {
-        "type": "array",
-        "description": "Custom meta keywords for the product page. If not defined, the store's default keywords will be used."
+        "type": "array"
       },
       "meta_description": {
-        "type": "string",
-        "description": "Custom meta description for the product page. If not defined, the store's default meta description will be used."
+        "type": "string"
       },
       "view_count": {
-        "type": "number",
-        "description": "The number of times the product has been viewed."
+        "type": "number"
       },
       "preorder_release_date": {
-        "type": "string",
-        "description": "Pre-order release date. See the availability field for details on setting a product's availability to accept pre-orders."
+        "type": "string"
       },
       "preorder_message": {
-        "type": "string",
-        "description": "Custom expected-date message to display on the product page. If undefined, the message defaults to the storewide setting. Can contain the %%DATE%% placeholder, which will be substituted for the release date."
+        "type": "string"
       },
       "is_preorder_only": {
-        "type": "boolean",
-        "description": "If set to false, the product will not change its availability from preorder to available on the release date. Otherwise, on the release date the product's availability/status will change to available."
+        "type": "boolean"
       },
       "is_price_hidden": {
-        "type": "boolean",
-        "description": "False by default, indicating that this product's price should be shown on the product page. If set to true, the price is hidden. (NOTE: To successfully set is_price_hidden to true, the availability value must be disabled.)"
+        "type": "boolean"
       },
       "price_hidden_label": {
-        "type": "string",
-        "description": "By default, an empty string. If is_price_hidden is true, the value of price_hidden_label is displayed instead of the price. (NOTE: To successfully set a non-empty string value with is_price_hidden set to true, the availability value must be disabled.)"
+        "type": "string"
       },
       "custom_url": {
         "type": "object",
         "properties": {
           "url": {
-            "type": "string",
-            "description": "Product URL on the storefront."
+            "type": "string"
           },
           "is_customized": {
-            "type": "boolean",
-            "description": "Returns `true` if the URL has been changed from its default state (the auto-assigned URL that BigCommerce provides)."
+            "type": "boolean"
           }
-        },
-        "description": "The custom URL for the product on the storefront."
+        }
       },
       "open_graph_type": {
         "type": "string",
@@ -243,28 +193,22 @@
           "movie",
           "song",
           "tv_show"
-        ],
-        "description": "Type of product, defaults to product."
+        ]
       },
       "open_graph_title": {
-        "type": "string",
-        "description": "Title of the product, if not specified the product name will be used instead."
+        "type": "string"
       },
       "open_graph_description": {
-        "type": "string",
-        "description": "Description to use for the product, if not specified then the meta_description will be used instead."
+        "type": "string"
       },
       "open_graph_use_meta_description": {
-        "type": "boolean",
-        "description": "Flag to determine if product description or open graph description is used."
+        "type": "boolean"
       },
       "open_graph_use_product_name": {
-        "type": "boolean",
-        "description": "Flag to determine if product name or open graph name is used."
+        "type": "boolean"
       },
       "open_graph_use_image": {
-        "type": "boolean",
-        "description": "Flag to determine if product image or open graph image is used."
+        "type": "boolean"
       },
       "custom_fields": {
         "type": "array",
@@ -442,7 +386,6 @@
         "properties": {
           "permission_set": {
             "type": "string",
-            "description": "Determines whether the field is completely private to the app that owns the field (app_only), or visible to other API consumers (read), or completely open for reading and writing to other apps (write).",
             "enum": [
               "app_only",
               "read",

@@ -17,63 +17,48 @@
 			"address": {
 				"properties": {
 					"id": {
-						"$id": "/properties/id",
 						"type": "number"
 					},
 					"customer_id": {
-						"$id": "/properties/customer_id",
 						"type": "number"
 					},
 					"first_name": {
-						"$id": "/properties/first_name",
 						"type": "string"
 					},
 					"last_name": {
-						"$id": "/properties/last_name",
 						"type": "string"
 					},
 					"company": {
-						"$id": "/properties/company",
 						"type": "string"
 					},
 					"street_1": {
-						"$id": "/properties/street_1",
 						"type": "string"
 					},
 					"street_2": {
-						"$id": "/properties/street_2",
 						"type": "string"
 					},
 					"city": {
-						"$id": "/properties/city",
 						"type": "string"
 					},
 					"state": {
-						"$id": "/properties/state",
 						"type": "string"
 					},
 					"zip": {
-						"$id": "/properties/zip",
 						"type": "string"
 					},
 					"country": {
-						"$id": "/properties/country",
 						"type": "string"
 					},
 					"country_iso2": {
-						"$id": "/properties/country_iso2",
 						"type": "string"
 					},
 					"phone": {
-						"$id": "/properties/phone",
 						"type": "string"
 					},
 					"phone": {
-						"$id": "/properties/phone",
 						"type": "string"
 					},
 					"address_type": {
-						"$id": "/properties/address_type",
 						"type": "string",
 						"enum": [
 							"residential",
