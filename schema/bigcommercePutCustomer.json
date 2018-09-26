@@ -92,10 +92,6 @@
 					"country": {
 						"type": "string"
 					},
-
-					"phone": {
-						"type": "string"
-					},
 					"phone": {
 						"type": "string"
 					},

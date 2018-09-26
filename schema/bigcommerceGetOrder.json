@@ -690,9 +690,6 @@
 					"phone": {
 						"type": "string"
 					},
-					"phone": {
-						"type": "string"
-					},
 					"address_type": {
 						"type": "string",
 						"enum": [

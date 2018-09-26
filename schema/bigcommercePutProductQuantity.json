@@ -10,7 +10,7 @@
         "type": "string"
       },
       "inventory_level": {
-        "type": "number",
+        "type": "number"
       },
       "variants": {
         "type": "array",
