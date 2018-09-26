@@ -40,7 +40,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"salesOrderBusinessReferences": ["id"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["id"],
         "peers": [
@@ -64,19 +64,37 @@
       },
       "configDef": {
         "configValues" : {
-          "canUpdateFulfillmentFlag" : true
+          "canInsertFulfillmentFlag": true,
+          "canUpdateFulfillmentFlag": true,
+          "doInsertFulfillmentFlag": true,
+          "doUpdateFulfillmentFlag": true
         },
         "configView" : [
-          "canUpdateFulfillmentFlag"
+          "doUpdateFulfillmentFlag"
         ],
         "configModel" : {
           "required": [
-            "canUpdateFulfillmentFlag"
+            "canInsertFulfillmentFlag",
+            "canUpdateFulfillmentFlag",
+            "doInsertFulfillmentFlag",
+            "doUpdateFulfillmentFlag"
           ],
           "properties": {
+            "canInsertFulfillmentFlag": {
+              "type": "boolean",
+              "title": "PUT Fulfillment, canInsertFulfillmentFlag"
+            },
             "canUpdateFulfillmentFlag": {
               "type": "boolean",
               "title": "PUT Fulfillment, canUpdateFulfillmentFlag"
+            },
+            "doInsertFulfillmentFlag": {
+              "type": "boolean",
+              "title": "PUT Fulfillment, doInsertFulfillmentFlag"
+            },
+            "doUpdateFulfillmentFlag": {
+              "type": "boolean",
+              "title": "PUT Fulfillment, doUpdateFulfillmentFlag"
             }
           },
           "type": "object"
@@ -84,8 +102,8 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {
-          "fulfillmentBusinessReferences": ["id"],
+        "referenceLocation": {},
+        "secondaryReferences": {
           "salesOrderBusinessReferences": ["order_id"]
         },
         "remoteID": "id",
@@ -108,7 +126,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"customerBusinessReferences": ["email", "phone"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["email", "phone"]
       }
@@ -129,7 +147,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"customerBusinessReferences": ["email", "phone"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["email", "phone"]
       }
@@ -149,59 +167,59 @@
           "properties": {
             "canInsertCustomerFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, canInsertCustomerFlag"
+              "title": "PUT Customer, canInsertCustomerFlag"
             },
             "canInsertCustomerAddressFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, canInsertCustomerAddressFlag"
+              "title": "PUT Customer, canInsertCustomerAddressFlag"
             },
             "canInsertCustomerContactFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, canInsertCustomerContactFlag"
+              "title": "PUT Customer, canInsertCustomerContactFlag"
             },
             "canUpdateCustomerFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, canUpdateCustomerFlag"
+              "title": "PUT Customer, canUpdateCustomerFlag"
             },
             "canUpdateCustomerAddressFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, canUpdateCustomerAddressFlag"
+              "title": "PUT Customer, canUpdateCustomerAddressFlag"
             },
             "canUpdateCustomerContactFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, canUpdateCustomerContactFlag"
+              "title": "PUT Customer, canUpdateCustomerContactFlag"
             },
             "doInsertCustomerFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, doInsertCustomerFlag"
+              "title": "PUT Customer, doInsertCustomerFlag"
             },
             "doInsertCustomerAddressFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, doInsertCustomerAddressFlag"
+              "title": "PUT Customer, doInsertCustomerAddressFlag"
             },
             "doInsertCustomerContactFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, doInsertCustomerContactFlag"
+              "title": "PUT Customer, doInsertCustomerContactFlag"
             },
             "doUpdateCustomerFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, doUpdateCustomerFlag"
+              "title": "PUT Customer, doUpdateCustomerFlag"
             },
             "doUpdateCustomerAddressFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, doUpdateCustomerAddressFlag"
+              "title": "PUT Customer, doUpdateCustomerAddressFlag"
             },
             "doUpdateCustomerContactFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, doUpdateCustomerContactFlag"
+              "title": "PUT Customer, doUpdateCustomerContactFlag"
             },
             "doPutCustomerAddressFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, doPutCustomerAddressFlag"
+              "title": "PUT Customer, doPutCustomerAddressFlag"
             },
             "doPutCustomerContactFlag": {
               "type": "boolean",
-              "title": "PUT Sales Order, doPutCustomerContactFlag"
+              "title": "PUT Customer, doPutCustomerContactFlag"
             }
           },
           "required": [
@@ -244,7 +262,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"customerBusinessReferences": ["email", "phone"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["email", "phone"],
         "refreshNouns": ["CUSTOMER"],
@@ -256,48 +274,6 @@
             "businessReferences": ["street_1", "city", "state", "zip"]
           }
         ]
-      }
-    },
-    {
-      "name": "GET CUSTOMER",
-      "description": "GET CUSTOMER",
-      "channelVerb": "GET",
-      "channelNoun": "CUSTOMER",
-      "ruleDef": {
-        "ruleSchema": {},
-        "defaultRuleValues": {}
-      },
-      "configDef": {
-        "configModel": {},
-        "configView": [],
-        "configValues": {}
-      },
-      "documentDef": {
-        "schema": {},
-        "referenceLocation": { "customerAddressBusinessReferences": ["street_1", "city", "state", "zip"] },
-        "remoteID": "id",
-        "businessReferences": ["street_1", "city", "state", "zip"]
-      }
-    },
-    {
-      "name": "REFRESH CUSTOMERADDRESS",
-      "description": "REFRESH CUSTOMERADDRESS",
-      "channelVerb": "REFRESH",
-      "channelNoun": "CUSTOMERADDRESS",
-      "ruleDef": {
-        "ruleSchema": {},
-        "defaultRuleValues": {}
-      },
-      "configDef": {
-        "configModel": {},
-        "configView": [],
-        "configValues": {}
-      },
-      "documentDef": {
-        "schema": {},
-        "referenceLocation": { "customerAddressBusinessReferences": ["street_1", "city", "state", "zip"] },
-        "remoteID": "id",
-        "businessReferences": ["street_1", "city", "state", "zip"]
       }
     },
     {
@@ -337,7 +313,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": { "customerAddressBusinessReferences": ["street_1", "city", "state", "zip"] },
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["street_1", "city", "state", "zip"],
         "refreshNouns": ["CUSTOMERADDRESS"]
@@ -362,7 +338,7 @@
           "doGetVirtualMatrixProducts": false
         },
         "configView": [
-          "canGetMatrixProducts"
+          "doGetMatrixProducts"
         ],
         "configModel": {
           "required": [],
@@ -397,7 +373,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": { "productBusinessReferences": ["sku"] },
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"]
       }
@@ -536,7 +512,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": { "productBusinessReferences": ["sku"] },
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"],
         "refreshNouns": ["PRODUCT"]
@@ -594,7 +570,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": { "productBusinessReferences": ["sku"] },
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"]
       }
@@ -615,7 +591,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"productPricingBusinessReferences": ["sku"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"]
       }
@@ -631,17 +607,23 @@
       },
       "configDef": {
         "configValues" : {
-          "canUpdateProductPricingFlag": true
+          "canUpdateProductPricingFlag": true,
+          "doUpdateProductPricingFlag": true
         },
-        "configView" : [],
+        "configView" : ["doUpdateProductPricingFlag"],
         "configModel" : {
           "required" : [
-            "canUpdateProductPricingFlag"
+            "canUpdateProductPricingFlag",
+            "doUpdateProductPricingFlag"
           ],
           "properties" : {
             "canUpdateProductPricingFlag" : {
               "type" : "boolean",
               "title" : "PUT ProductPricing, canUpdateProductPricingFlag"
+            },
+            "doUpdateProductPricingFlag" : {
+              "type" : "boolean",
+              "title" : "PUT ProductPricing, doUpdateProductPricingFlag"
             }
           },
           "type" : "object"
@@ -649,7 +631,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"productPricingBusinessReferences": ["sku"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"],
         "refreshNouns": ["PRODUCTPRICING"]
@@ -666,17 +648,23 @@
       },
       "configDef": {
         "configValues" : {
-          "canUpdateProductPricingFlag": true
+          "canUpdateProductPricingFlag": true,
+          "doUpdateProductPricingFlag": true
         },
         "configView" : [],
         "configModel" : {
           "required" : [
-            "canUpdateProductPricingFlag"
+            "canUpdateProductPricingFlag",
+            "doUpdateProductPricingFlag"
           ],
           "properties" : {
             "canUpdateProductPricingFlag" : {
               "type" : "boolean",
               "title" : "PUT ProductPricing, canUpdateProductPricingFlag"
+            },
+            "doUpdateProductPricingFlag" : {
+              "type" : "boolean",
+              "title" : "PUT ProductPricing, doUpdateProductPricingFlag"
             }
           },
           "type" : "object"
@@ -684,7 +672,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"productPricingBusinessReferences": ["sku"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"]
       }
@@ -705,7 +693,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"productQuantityBusinessReferences": ["sku"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"]
       }
@@ -721,17 +709,23 @@
       },
       "configDef": {
         "configValues" : {
-          "canUpdateProductQuantityFlag": true
+          "canUpdateProductQuantityFlag": true,
+          "doUpdateProductQuantityFlag": true
         },
-        "configView" : [],
+        "configView" : ["doUpdateProductQuantityFlag"],
         "configModel" : {
           "required" : [
-            "canUpdateProductQuantityFlag"
+            "canUpdateProductQuantityFlag",
+            "doUpdateProductQuantityFlag"
           ],
           "properties" : {
             "canUpdateProductQuantityFlag" : {
               "type" : "boolean",
               "title" : "PUT ProductQuantity, canUpdateProductQuantityFlag"
+            },
+            "doUpdateProductQuantityFlag" : {
+              "type" : "boolean",
+              "title" : "PUT ProductQuantity, doUpdateProductQuantityFlag"
             }
           },
           "type" : "object"
@@ -739,7 +733,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"productQuantityBusinessReferences": ["sku"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"],
         "refreshNouns": ["PRODUCTQUANTITY"]
@@ -756,17 +750,23 @@
       },
       "configDef": {
         "configValues" : {
-          "canUpdateProductQuantityFlag": true
+          "canUpdateProductQuantityFlag": true,
+          "doUpdateProductQuantityFlag": true
         },
         "configView" : [],
         "configModel" : {
           "required" : [
-            "canUpdateProductQuantityFlag"
+            "canUpdateProductQuantityFlag",
+            "doUpdateProductQuantityFlag"
           ],
           "properties" : {
             "canUpdateProductQuantityFlag" : {
               "type" : "boolean",
               "title" : "PUT ProductQuantity, canUpdateProductQuantityFlag"
+            },
+            "doUpdateProductQuantityFlag" : {
+              "type" : "boolean",
+              "title" : "PUT ProductQuantity, doUpdateProductQuantityFlag"
             }
           },
           "type" : "object"
@@ -774,7 +774,7 @@
       },
       "documentDef": {
         "schema": {},
-        "referenceLocation": {"productQuantityBusinessReferences": ["sku"]},
+        "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"]
       }
@@ -789,15 +789,10 @@
           "api_uri": {
             "title": "API URI",
             "type": "string"
-          },
-          "implFolderName": {
-            "title": "Implementation Folder Name",
-            "type": "string"
           }
         },
         "required": [
-          "api_uri",
-          "implFolderName"
+          "api_uri"
         ]
       },
       "configView": [],

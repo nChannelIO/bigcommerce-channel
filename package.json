@@ -9,10 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nchannel/endpoint-sdk": "^1.0.1",
-    "jsonata": "1.5.3",
-    "request": "2.83.0",
-    "request-promise": "4.2.2"
+    "@nchannel/endpoint-sdk": "1.0.10"
   },
   "devDependencies": {
     "chai": "^3.5.0",

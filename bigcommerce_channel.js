@@ -14,7 +14,7 @@ class bigcommerce_channel extends Channel {
       "X-Auth-Token": this.channelProfile.channelAuthValues.access_token
     }
 
-    this.request = require('request-promise').defaults({headers: headers, json: true});
+    this.request = this.request.defaults({headers: headers, json: true});
 
     this.baseUri = `${this.channelProfile.channelSettingsValues.api_uri}/stores/${this.channelProfile.channelAuthValues.store_hash}`;
   }
@@ -33,6 +33,30 @@ class bigcommerce_channel extends Channel {
 
   async getSalesOrderByModifiedTimeRange(...args) {
     return require('./functions/getSalesOrderByModifiedTimeRange').bind(this)(...args);
+  }
+
+  async getCustomerById(...args) {
+    return require('./functions/getCustomerById').bind(this)(...args);
+  }
+
+  async getCustomerByCreatedTimeRange(...args) {
+    return require('./functions/getCustomerByCreatedTimeRange').bind(this)(...args);
+  }
+
+  async getCustomerByModifiedTimeRange(...args) {
+    return require('./functions/getCustomerByModifiedTimeRange').bind(this)(...args);
+  }
+
+  async getProductById(...args) {
+    return require('./functions/getProductMatrixById').bind(this)(...args);
+  }
+
+  async getProductByCreatedTimeRange(...args) {
+    return require('./functions/getProductMatrixByCreatedTimeRange').bind(this)(...args);
+  }
+
+  async getProductByModifiedTimeRange(...args) {
+    return require('./functions/getProductMatrixByModifiedTimeRange').bind(this)(...args);
   }
 
   async insertCustomer(...args) {
@@ -166,6 +190,22 @@ class bigcommerce_channel extends Channel {
 
   async processOrder(...args) {
     return require('./functions/getSalesOrderHelpers').processOrder.bind(this)(...args);
+  }
+
+  queryCustomer(...args) {
+    return require('./functions/getCustomerHelpers').queryCustomer.bind(this)(...args);
+  }
+
+  queryCustomers(...args) {
+    return require('./functions/getCustomerHelpers').queryCustomers.bind(this)(...args);
+  }
+
+  queryProduct(...args) {
+    return require('./functions/getProductMatrixHelpers').queryProduct.bind(this)(...args);
+  }
+
+  queryProducts(...args) {
+    return require('./functions/getProductMatrixHelpers').queryProducts.bind(this)(...args);
   }
 
   insertProductMetafields(...args) {
