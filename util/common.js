@@ -1,31 +1,5 @@
 'use strict';
 
-const jsonata = require('jsonata');
-
-function log(msg, level = "info") {
-    let prefix = `${new Date().toISOString()} [${level}]`;
-    console.log(`${prefix} | ${msg}`);
-};
-
-function extractBusinessReference(businessReferences, doc) {
-  const _get = require("lodash.get");
-
-  if (!businessReferences || !Array.isArray(businessReferences)) {
-    throw new Error('Error: businessReferences must be an Array');
-  } else if (!doc || typeof doc !== 'object') {
-    throw new Error('Error: doc must be an object');
-  }
-
-  let values = [];
-
-  // Get the businessReference
-  businessReferences.forEach(function(businessReference) {
-      values.push(_get(doc, businessReference));
-  });
-
-  return values.join(".");
-};
-
 function isFunction(func) {
     return typeof func === "function";
 }
@@ -58,4 +32,4 @@ function isInteger(int) {
     return isNumber(int) && int % 1 === 0;
 }
 
-module.exports = { log, extractBusinessReference, isFunction, isString, isObject, isNonEmptyObject, isArray, isNonEmptyArray, isNumber, isInteger };
+module.exports = { isFunction, isString, isObject, isNonEmptyObject, isArray, isNonEmptyArray, isNumber, isInteger };
