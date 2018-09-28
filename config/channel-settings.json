@@ -576,27 +576,6 @@
       }
     },
     {
-      "name": "GET PRODUCTPRICING",
-      "description": "GET PRODUCTPRICING",
-      "channelVerb": "GET",
-      "channelNoun": "PRODUCTPRICING",
-      "ruleDef": {
-        "ruleSchema": {},
-        "defaultRuleValues": {}
-      },
-      "configDef": {
-        "configModel": {},
-        "configView": [],
-        "configValues": {}
-      },
-      "documentDef": {
-        "schema": {},
-        "referenceLocation": {},
-        "remoteID": "id",
-        "businessReferences": ["sku"]
-      }
-    },
-    {
       "name": "PUT PRODUCTPRICING",
       "description": "PUT PRODUCTPRICING",
       "channelVerb": "PUT",
@@ -638,67 +617,6 @@
       }
     },
     {
-      "name": "REFRESH PRODUCTPRICING",
-      "description": "REFRESH PRODUCTPRICING",
-      "channelVerb": "REFRESH",
-      "channelNoun": "PRODUCTPRICING",
-      "ruleDef": {
-        "ruleSchema": {},
-        "defaultRuleValues": {}
-      },
-      "configDef": {
-        "configValues" : {
-          "canUpdateProductPricingFlag": true,
-          "doUpdateProductPricingFlag": true
-        },
-        "configView" : [],
-        "configModel" : {
-          "required" : [
-            "canUpdateProductPricingFlag",
-            "doUpdateProductPricingFlag"
-          ],
-          "properties" : {
-            "canUpdateProductPricingFlag" : {
-              "type" : "boolean",
-              "title" : "PUT ProductPricing, canUpdateProductPricingFlag"
-            },
-            "doUpdateProductPricingFlag" : {
-              "type" : "boolean",
-              "title" : "PUT ProductPricing, doUpdateProductPricingFlag"
-            }
-          },
-          "type" : "object"
-        }
-      },
-      "documentDef": {
-        "schema": {},
-        "referenceLocation": {},
-        "remoteID": "id",
-        "businessReferences": ["sku"]
-      }
-    },
-    {
-      "name": "GET PRODUCTQUANTITY",
-      "description": "GET PRODUCTQUANTITY",
-      "channelVerb": "GET",
-      "channelNoun": "PRODUCTQUANTITY",
-      "ruleDef": {
-        "ruleSchema": {},
-        "defaultRuleValues": {}
-      },
-      "configDef": {
-        "configModel": {},
-        "configView": [],
-        "configValues": {}
-      },
-      "documentDef": {
-        "schema": {},
-        "referenceLocation": {},
-        "remoteID": "id",
-        "businessReferences": ["sku"]
-      }
-    },
-    {
       "name": "PUT PRODUCTQUANTITY",
       "description": "PUT PRODUCTQUANTITY",
       "channelVerb": "PUT",
@@ -737,46 +655,6 @@
         "remoteID": "id",
         "businessReferences": ["sku"],
         "refreshNouns": ["PRODUCTQUANTITY"]
-      }
-    },
-    {
-      "name": "REFRESH PRODUCTQUANTITY",
-      "description": "REFRESH PRODUCTQUANTITY",
-      "channelVerb": "REFRESH",
-      "channelNoun": "PRODUCTQUANTITY",
-      "ruleDef": {
-        "ruleSchema": {},
-        "defaultRuleValues": {}
-      },
-      "configDef": {
-        "configValues" : {
-          "canUpdateProductQuantityFlag": true,
-          "doUpdateProductQuantityFlag": true
-        },
-        "configView" : [],
-        "configModel" : {
-          "required" : [
-            "canUpdateProductQuantityFlag",
-            "doUpdateProductQuantityFlag"
-          ],
-          "properties" : {
-            "canUpdateProductQuantityFlag" : {
-              "type" : "boolean",
-              "title" : "PUT ProductQuantity, canUpdateProductQuantityFlag"
-            },
-            "doUpdateProductQuantityFlag" : {
-              "type" : "boolean",
-              "title" : "PUT ProductQuantity, doUpdateProductQuantityFlag"
-            }
-          },
-          "type" : "object"
-        }
-      },
-      "documentDef": {
-        "schema": {},
-        "referenceLocation": {},
-        "remoteID": "id",
-        "businessReferences": ["sku"]
       }
     }
   ],
