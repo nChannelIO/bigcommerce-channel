@@ -666,7 +666,7 @@
       ],
       "configValues": {}
     },
-    "oauthAuthorizeUrl": "https://login.bigcommerce.com/oauth2/authorize?client_id={{client_id}}&context=stores%2F{{store_hash}}&redirect_uri=https://cert.apps.nchannel.com/account/v1/applications/getAccessToken&state={{state}}&response_type=code&scope=store_cart_read_only+store_themes_read_only+store_v2_content_read_only+store_v2_customers+store_v2_default+store_v2_information_read_only+store_v2_marketing_read_only+store_v2_orders+store_v2_products+store_v2_transactions",
+    "oauthAuthorizeUrl": "https://login.bigcommerce.com/oauth2/authorize?client_id={{client_id}}&context=stores%2F{{store_hash}}&redirect_uri=https://localhost/account/v1/applications/getAccessToken&state={{state}}&response_type=code&scope=store_cart_read_only+store_themes_read_only+store_v2_content_read_only+store_v2_customers+store_v2_default+store_v2_information_read_only+store_v2_marketing_read_only+store_v2_orders+store_v2_products+store_v2_transactions",
     "oauthTokenRequest": {
       "verb": "POST",
       "url": "https://login.bigcommerce.com/oauth2/token",
