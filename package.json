@@ -1,21 +1,31 @@
 {
   "name": "@nchannel/bigcommerce-channel",
-  "author": "",
+  "version": "0.0.5",
   "description": "",
+  "main": "bigcommerce_channel.js",
+  "scripts": {
+    "test": "npx nchannel-sdk test"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "request": "2.83.0"
+    "@nchannel/endpoint-sdk": "1.0.10"
   },
   "devDependencies": {
-    "nock": "9.2.3",
-    "soap": "0.23.0",
-    "sinon": "4.4.4",
-    "proxyquire": "2.0.0",
-    "lodash": "^4.17.4",
     "chai": "^3.5.0",
-    "mocha": "^3.1.2"
+    "lodash": "^4.17.4",
+    "mocha": "^3.1.2",
+    "nock": "9.2.3",
+    "proxyquire": "2.0.0",
+    "sinon": "4.4.4",
+    "soap": "0.23.0"
   },
-  "scripts": {
-    "test": "mocha --timeout 10000 validation/*.spec.js"
+  "engines": {
+    "node": ">=7.6.0"
   },
-  "version": "0.0.4"
+  "files": [
+    "config",
+    "functions",
+    "schema"
+  ]
 }

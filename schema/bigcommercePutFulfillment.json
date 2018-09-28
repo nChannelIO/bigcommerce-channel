@@ -1,0 +1,69 @@
+{
+	"name": "Bigcommerce Put Fulfillment",
+	"schemaDef": {
+		"$schema": "http://json-schema.org/draft-04/schema#",
+		"description": "Bigcommerce Put Fulfillment",
+		"type": "object",
+		"properties": {
+			"fulfillment": {
+				"$ref": "#/definitions/fulfillment"
+			}
+		},
+		"required": [],
+		"additionalProperties": false,
+		"definitions": {
+			"fulfillment": {
+				"properties": {
+			    "order_address_id": {
+			      "type": "number"
+			    },
+			    "tracking_number": {
+			      "type": "string"
+			    },
+			    "shipping_method": {
+			      "type": "string"
+			    },
+			    "shipping_provider": {
+			      "type": "string"
+			    },
+			    "tracking_carrier": {
+			      "type": "string"
+			    },
+			    "comments": {
+			      "type": "null"
+			    },
+			    "items": {
+			      "type": "array",
+			      "items": {
+			        "$ref": "#/definitions/item"
+			      }
+			    }
+				},
+				"required": [
+					"shipping_provider",
+					"order_address_id",
+					"items"
+				]
+			},
+			"item": {
+				"properties": {
+					"order_product_id": {
+						"type": "number"
+					},
+					"product_id": {
+						"type": "number"
+					},
+					"quantity": {
+						"type": "number"
+					}
+				}
+			}
+		}
+	},
+	"tags": [
+		"Bigcommerce",
+		"Fulfillment",
+		"Put"
+	],
+	"audit": {}
+}

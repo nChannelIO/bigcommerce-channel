@@ -1,0 +1,436 @@
+{
+  "name": "Bigcommerce Put Product",
+  "schemaDef": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "required": ["name", "type", "weight", "price", "categories", "variants"],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "physical",
+          "digital"
+        ]
+      },
+      "sku": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "weight": {
+        "type": "number"
+      },
+      "width": {
+        "type": "number"
+      },
+      "depth": {
+        "type": "number"
+      },
+      "height": {
+        "type": "number"
+      },
+      "price": {
+        "type": "number"
+      },
+      "cost_price": {
+        "type": "number"
+      },
+      "retail_price": {
+        "type": "number"
+      },
+      "sale_price": {
+        "type": "number"
+      },
+      "tax_class_id": {
+        "type": "number"
+      },
+      "product_tax_code": {
+        "type": "string"
+      },
+      "categories": {
+        "type": "array"
+      },
+      "brand_id": {
+        "type": "number"
+      },
+      "inventory_level": {
+        "type": "number"
+      },
+      "inventory_warning_level": {
+        "type": "number"
+      },
+      "inventory_tracking": {
+        "type": "string",
+        "enum": [
+          "none",
+          "product",
+          "variant"
+        ]
+      },
+      "fixed_cost_shipping_price": {
+        "type": "number"
+      },
+      "is_free_shipping": {
+        "type": "boolean"
+      },
+      "is_visible": {
+        "type": "boolean"
+      },
+      "is_featured": {
+        "type": "boolean"
+      },
+      "related_products": {
+        "type": "array"
+      },
+      "warranty": {
+        "type": "string"
+      },
+      "bin_picking_number": {
+        "type": "string"
+      },
+      "layout_file": {
+        "type": "string"
+      },
+      "upc": {
+        "type": "string"
+      },
+      "search_keywords": {
+        "type": "string"
+      },
+      "availability": {
+        "type": "string",
+        "enum": [
+          "available",
+          "disabled",
+          "preorder"
+        ]
+      },
+      "availability_description": {
+        "type": "string"
+      },
+      "gift_wrapping_options_type": {
+        "type": "string",
+        "enum": [
+          "any",
+          "none",
+          "list"
+        ]
+      },
+      "gift_wrapping_options_list": {
+        "type": "array"
+      },
+      "sort_order": {
+        "type": "number"
+      },
+      "condition": {
+        "type": "string",
+        "enum": [
+          "New",
+          "Used",
+          "Refurbished"
+        ]
+      },
+      "is_condition_shown": {
+        "type": "boolean"
+      },
+      "order_quantity_minimum": {
+        "type": "number"
+      },
+      "order_quantity_maximum": {
+        "type": "number"
+      },
+      "page_title": {
+        "type": "string"
+      },
+      "meta_keywords": {
+        "type": "array"
+      },
+      "meta_description": {
+        "type": "string"
+      },
+      "view_count": {
+        "type": "number"
+      },
+      "preorder_release_date": {
+        "type": "string"
+      },
+      "preorder_message": {
+        "type": "string"
+      },
+      "is_preorder_only": {
+        "type": "boolean"
+      },
+      "is_price_hidden": {
+        "type": "boolean"
+      },
+      "price_hidden_label": {
+        "type": "string"
+      },
+      "custom_url": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "is_customized": {
+            "type": "boolean"
+          }
+        }
+      },
+      "open_graph_type": {
+        "type": "string",
+        "enum": [
+          "product",
+          "album",
+          "book",
+          "drink",
+          "food",
+          "game",
+          "movie",
+          "song",
+          "tv_show"
+        ]
+      },
+      "open_graph_title": {
+        "type": "string"
+      },
+      "open_graph_description": {
+        "type": "string"
+      },
+      "open_graph_use_meta_description": {
+        "type": "boolean"
+      },
+      "open_graph_use_product_name": {
+        "type": "boolean"
+      },
+      "open_graph_use_image": {
+        "type": "boolean"
+      },
+      "custom_fields": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "images": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "is_thumbnail": {
+              "type": "boolean"
+            },
+            "sort_order": {
+              "type": "number"
+            },
+            "id": {
+              "type": "number"
+            },
+            "product_id": {
+              "type": "number"
+            },
+            "image_file": {
+              "type": "string"
+            },
+            "url_zoom": {
+              "type": "string"
+            },
+            "url_standard": {
+              "type": "string"
+            },
+            "url_thumbnail": {
+              "type": "string"
+            },
+            "url_tiny": {
+              "type": "string"
+            },
+            "date_modified": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "videos": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "sort_order": {
+              "type": "number"
+            },
+            "type": {
+              "type": "string"
+            },
+            "id": {
+              "type": "number"
+            },
+            "video_id": {
+              "type": "string"
+            },
+            "product_id": {
+              "type": "number"
+            },
+            "length": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "variants": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "cost_price": {
+              "type": "number"
+            },
+            "price": {
+              "type": "number"
+            },
+            "weight": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            },
+            "depth": {
+              "type": "number"
+            },
+            "is_free_shipping": {
+              "type": "boolean"
+            },
+            "purchasing_disabled": {
+              "type": "boolean"
+            },
+            "inventory_level": {
+              "type": "number"
+            },
+            "inventory_warning_level": {
+              "type": "number"
+            },
+            "id": {
+              "type": "number"
+            },
+            "product_id": {
+              "type": "number"
+            },
+            "sku": {
+              "type": "string"
+            },
+            "sku_id": {
+              "type": "number"
+            },
+            "option_values": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "option_display_name": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "number"
+                  },
+                  "option_id": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "calculated_price": {
+              "type": "number"
+            },
+            "metafields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/metafield"
+              }
+            }
+          }
+        }
+      },
+      "metafields": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/metafield"
+        }
+      }
+    },
+    "definitions": {
+      "metafield": {
+        "type": "object",
+        "properties": {
+          "permission_set": {
+            "type": "string",
+            "enum": [
+              "app_only",
+              "read",
+              "write"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "value": {
+            "type": [
+              "string",
+              "integer"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "resource_type": {
+            "type": "string",
+            "enum": [
+              "product",
+              "variant",
+              "category",
+              "brand"
+            ]
+          }
+        },
+        "required": [
+          "key",
+          "namespace",
+          "value",
+          "permission_set"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "tags": [
+    "Bigcommerce",
+    "Product",
+    "Put"
+  ],
+  "audit": {}
+}

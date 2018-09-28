@@ -1,0 +1,255 @@
+{
+  "name": "Bigcommerce Put Product",
+  "schemaDef": {
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "type": {
+        "type": "string"
+      },
+      "sku": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "weight": {
+        "type": "number"
+      },
+      "width": {
+        "type": "number"
+      },
+      "depth": {
+        "type": "number"
+      },
+      "height": {
+        "type": "number"
+      },
+      "price": {
+        "type": "number"
+      },
+      "cost_price": {
+        "type": "number"
+      },
+      "retail_price": {
+        "type": "number"
+      },
+      "tax_class_id": {
+        "type": "number"
+      },
+      "product_tax_code": {
+        "type": "string"
+      },
+      "categories": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "brand_id": {
+        "type": "number"
+      },
+      "inventory_level": {
+        "type": "number"
+      },
+      "inventory_warning_level": {
+        "type": "number"
+      },
+      "inventory_tracking": {
+        "type": "string"
+      },
+      "fixed_cost_shipping_price": {
+        "type": "number"
+      },
+      "is_free_shipping": {
+        "type": "boolean"
+      },
+      "is_visible": {
+        "type": "boolean"
+      },
+      "is_featured": {
+        "type": "boolean"
+      },
+      "related_products": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "bin_picking_number": {
+        "type": "string"
+      },
+      "layout_file": {
+        "type": "string"
+      },
+      "upc": {
+        "type": "string"
+      },
+      "search_keywords": {
+        "type": "string"
+      },
+      "availability": {
+        "type": "string"
+      },
+      "gift_wrapping_options_type": {
+        "type": "string"
+      },
+      "gift_wrapping_options_list": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      "sort_order": {
+        "type": "number"
+      },
+      "condition": {
+        "type": "string"
+      },
+      "is_condition_shown": {
+        "type": "boolean"
+      },
+      "order_quantity_minimum": {
+        "type": "number"
+      },
+      "order_quantity_maximum": {
+        "type": "number"
+      },
+      "meta_keywords": {
+        "type": "array"
+      },
+      "view_count": {
+        "type": "number"
+      },
+      "preorder_release_date": {
+        "type": "string"
+      },
+      "is_preorder_only": {
+        "type": "boolean"
+      },
+      "is_price_hidden": {
+        "type": "boolean"
+      },
+      "custom_url": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "is_customized": {
+            "type": "boolean"
+          }
+        }
+      },
+      "open_graph_type": {
+        "type": "string"
+      },
+      "custom_fields": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "bulk_pricing_rules": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "quantity_min": {
+              "type": "number"
+            },
+            "quantity_max": {
+              "type": "number"
+            },
+            "type": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "variants": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "cost_price": {
+              "type": "number"
+            },
+            "price": {
+              "type": "number"
+            },
+            "sale_price": {
+              "type": "number"
+            },
+            "retail_price": {
+              "type": "number"
+            },
+            "weight": {
+              "type": "number"
+            },
+            "width": {
+              "type": "number"
+            },
+            "height": {
+              "type": "number"
+            },
+            "depth": {
+              "type": "number"
+            },
+            "is_free_shipping": {
+              "type": "boolean"
+            },
+            "purchasing_disabled": {
+              "type": "boolean"
+            },
+            "purchasing_disabled_message": {
+              "type": "string"
+            },
+            "product_id": {
+              "type": "number"
+            },
+            "sku": {
+              "type": "string"
+            },
+            "option_values": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "option_display_name": {
+                    "type": "string"
+                  },
+                  "label": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    "Bigcommerce",
+    "Product",
+    "Put"
+  ],
+  "audit": {}
+}

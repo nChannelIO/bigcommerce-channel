@@ -1,0 +1,40 @@
+{
+  "name": "Bigcommerce Put Product Quantity",
+  "schemaDef": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Bigcommerce Put Product Quantity",
+    "type": "object",
+    "required": ["variants"],
+    "properties": {
+      "sku": {
+        "type": "string"
+      },
+      "inventory_level": {
+        "type": "number"
+      },
+      "variants": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "inventory_level": {
+              "type": "number"
+            },
+            "sku": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "additionalProperties": false,
+    "definitions": {}
+  },
+  "tags": [
+    "Bigcommerce",
+    "Product",
+    "Quantity",
+    "Put"
+  ],
+  "audit": {}
+}

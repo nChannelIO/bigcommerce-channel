@@ -1,0 +1,135 @@
+{
+	"name": "Bigcommerce Get Customer",
+	"schemaDef": {
+		"$schema": "http://json-schema.org/draft-04/schema#",
+		"title": "Bigcommerce Get Customer",
+		"type": "object",
+		"properties": {
+			"customer": {
+				"$ref": "#/definitions/customer"
+			}
+		},
+		"required": [
+			"customer"
+		],
+		"additionalProperties": false,
+		"definitions": {
+			"customer": {
+				"properties": {
+			    "id": {
+			      "type": "number"
+			    },
+			    "company": {
+			      "type": "string"
+			    },
+			    "first_name": {
+			      "type": "string"
+			    },
+			    "last_name": {
+			      "type": "string"
+			    },
+			    "email": {
+			      "type": "string"
+			    },
+			    "phone": {
+			      "type": "string"
+			    },
+			    "date_created": {
+			      "type": "string"
+			    },
+			    "date_modified": {
+			      "type": "string"
+			    },
+			    "store_credit": {
+			      "type": "string"
+			    },
+			    "registration_ip_address": {
+			      "type": "string"
+			    },
+			    "customer_group_id": {
+			      "type": "number"
+			    },
+			    "notes": {
+			      "type": "string"
+			    },
+			    "tax_exempt_category": {
+			      "type": "string"
+			    },
+			    "accepts_marketing": {
+			      "type": "boolean"
+			    },
+			    "addresses": {
+			      "type": "array",
+						"items": {
+							"$ref": "#/definitions/address"
+						}
+			    },
+					"form_fields": {
+						"type": "array",
+						"items": {
+							"$id": "/properties/form_fields/items",
+							"type": "object"
+						}
+					}
+			  },
+				"additionalProperties": false
+			},
+			"address": {
+				"properties": {
+					"id": {
+						"type": "number"
+					},
+					"customer_id": {
+						"type": "number"
+					},
+					"first_name": {
+						"type": "string"
+					},
+					"last_name": {
+						"type": "string"
+					},
+					"company": {
+						"type": "string"
+					},
+					"street_1": {
+						"type": "string"
+					},
+					"street_2": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"state": {
+						"type": "string"
+					},
+					"zip": {
+						"type": "string"
+					},
+					"country": {
+						"type": "string"
+					},
+					"country_iso2": {
+						"type": "string"
+					},
+					"phone": {
+						"type": "string"
+					},
+					"address_type": {
+						"type": "string",
+						"enum": [
+							"residential",
+							"commercial"
+						]
+					}
+				}
+			}
+		}
+	},
+	"tags": [
+		"Bigcommerce",
+		"Customer",
+		"Get"
+	],
+	"audit": {}
+}

@@ -1,0 +1,158 @@
+{
+	"name": "Bigcommerce Put Fulfillment",
+	"schemaDef": {
+		"$schema": "http://json-schema.org/draft-04/schema#",
+		"description": "Bigcommerce Put Fulfillment",
+		"type": "object",
+		"properties": {
+			"fulfillment": {
+				"$ref": "#/definitions/fulfillment"
+			}
+		},
+		"required": [],
+		"additionalProperties": false,
+		"definitions": {
+			"fulfillment": {
+				"properties": {
+			    "id": {
+			      "type": "number"
+			    },
+			    "order_id": {
+			      "type": "number"
+			    },
+			    "customer_id": {
+			      "type": "number"
+			    },
+			    "order_address_id": {
+			      "type": "number"
+			    },
+			    "date_created": {
+			      "type": "string"
+			    },
+			    "tracking_number": {
+			      "type": "string"
+			    },
+			    "shipping_method": {
+			      "type": "string"
+			    },
+			    "shipping_provider": {
+			      "type": "string"
+			    },
+			    "tracking_carrier": {
+			      "type": "string"
+			    },
+			    "comments": {
+			      "type": "null"
+			    },
+			    "billing_address": {
+			      "type": "object",
+			      "properties": {
+			        "first_name": {
+			          "type": "string"
+			        },
+			        "last_name": {
+			          "type": "string"
+			        },
+			        "company": {
+			          "type": "string"
+			        },
+			        "street_1": {
+			          "type": "string"
+			        },
+			        "street_2": {
+			          "type": "string"
+			        },
+			        "city": {
+			          "type": "string"
+			        },
+			        "state": {
+			          "type": "string"
+			        },
+			        "zip": {
+			          "type": "string"
+			        },
+			        "country": {
+			          "type": "string"
+			        },
+			        "country_iso2": {
+			          "type": "string"
+			        },
+			        "phone": {
+			          "type": "string"
+			        },
+			        "email": {
+			          "type": "string"
+			        }
+			      }
+			    },
+			    "shipping_address": {
+			      "type": "object",
+			      "properties": {
+			        "first_name": {
+			          "type": "string"
+			        },
+			        "last_name": {
+			          "type": "string"
+			        },
+			        "company": {
+			          "type": "string"
+			        },
+			        "street_1": {
+			          "type": "string"
+			        },
+			        "street_2": {
+			          "type": "string"
+			        },
+			        "city": {
+			          "type": "string"
+			        },
+			        "state": {
+			          "type": "string"
+			        },
+			        "zip": {
+			          "type": "string"
+			        },
+			        "country": {
+			          "type": "string"
+			        },
+			        "country_iso2": {
+			          "type": "string"
+			        },
+			        "phone": {
+			          "type": "string"
+			        },
+			        "email": {
+			          "type": "string"
+			        }
+			      }
+			    },
+			    "items": {
+			      "type": "array",
+			      "items": {
+			        "$ref": "#/definitions/item"
+			      }
+			    }
+				}
+			},
+			"item": {
+				"properties": {
+					"order_product_id": {
+						"type": "number"
+					},
+					"product_id": {
+						"type": "number"
+					},
+					"quantity": {
+						"type": "number"
+					}
+				}
+			}
+		}
+	},
+	"tags": [
+		"Bigcommerce",
+		"Fulfillment",
+		"Put"
+	],
+	"audit": {}
+}
