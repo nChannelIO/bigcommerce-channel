@@ -52,7 +52,9 @@
         {
           "statusCode": 200,
           "payload": {
-            "remoteIDs": [1]
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -128,7 +130,9 @@
         {
           "statusCode": 204,
           "payload": {
-            "remoteIDs": [1]
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -148,7 +152,9 @@
         {
           "statusCode": 400,
           "payload": {
-            "remoteIDs": [1]
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -168,7 +174,9 @@
         {
           "statusCode": 429,
           "payload": {
-            "remoteIDs": [1]
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -188,7 +196,9 @@
         {
           "statusCode": 500,
           "payload": {
-            "remoteIDs": [1]
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
