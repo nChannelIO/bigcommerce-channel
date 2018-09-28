@@ -2,12 +2,14 @@
 
 let requestErrors = require('request-promise/errors');
 let Channel = require('@nchannel/endpoint-sdk').PromiseChannel;
+let nc = require('./util/common');
 
 class bigcommerce_channel extends Channel {
   constructor(...args) {
     super(...args);
 
     this.validateChannelProfile();
+    this.nc = nc;
 
     let headers = {
       "X-Auth-Client": this.channelProfile.channelAuthValues.client_id,
@@ -47,16 +49,40 @@ class bigcommerce_channel extends Channel {
     return require('./functions/getCustomerByModifiedTimeRange').bind(this)(...args);
   }
 
-  async getProductById(...args) {
+  async getProductMatrixById(...args) {
     return require('./functions/getProductMatrixById').bind(this)(...args);
   }
 
-  async getProductByCreatedTimeRange(...args) {
+  async getProductMatrixByCreatedTimeRange(...args) {
     return require('./functions/getProductMatrixByCreatedTimeRange').bind(this)(...args);
   }
 
-  async getProductByModifiedTimeRange(...args) {
+  async getProductMatrixByModifiedTimeRange(...args) {
     return require('./functions/getProductMatrixByModifiedTimeRange').bind(this)(...args);
+  }
+
+  async getProductPricingById(...args) {
+    return require('./functions/getProductPricingById').bind(this)(...args);
+  }
+
+  async getProductPricingByCreatedTimeRange(...args) {
+    return require('./functions/getProductPricingByCreatedTimeRange').bind(this)(...args);
+  }
+
+  async getProductPricingByModifiedTimeRange(...args) {
+    return require('./functions/getProductPricingByModifiedTimeRange').bind(this)(...args);
+  }
+
+  async getProductQuantityById(...args) {
+    return require('./functions/getProductQuantityById').bind(this)(...args);
+  }
+
+  async getProductQuantityByCreatedTimeRange(...args) {
+    return require('./functions/getProductQuantityByCreatedTimeRange').bind(this)(...args);
+  }
+
+  async getProductQuantityByModifiedTimeRange(...args) {
+    return require('./functions/getProductQuantityByModifiedTimeRange').bind(this)(...args);
   }
 
   async insertCustomer(...args) {
@@ -206,6 +232,22 @@ class bigcommerce_channel extends Channel {
 
   queryProducts(...args) {
     return require('./functions/getProductMatrixHelpers').queryProducts.bind(this)(...args);
+  }
+
+  queryProductPricings(...args) {
+    return require('./functions/getProductPricingHelpers').queryProductPricings.bind(this)(...args);
+  }
+
+  queryProductPricing(...args) {
+    return require('./functions/getProductPricingHelpers').queryProductPricing.bind(this)(...args);
+  }
+
+  queryProductQuantities(...args) {
+    return require('./functions/getProductQuantityHelpers').queryProductQuantities.bind(this)(...args);
+  }
+
+  queryProductQuantity(...args) {
+    return require('./functions/getProductQuantityHelpers').queryProductQuantity.bind(this)(...args);
   }
 
   insertProductMetafields(...args) {

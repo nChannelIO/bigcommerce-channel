@@ -76,8 +76,6 @@ function updateProductMetafields(payload) {
           if (metafield.namespace === existingMetafield.namespace && metafield.key === existingMetafield.key) {
             // It's a match
             match = true;
-            // Remove it to speed up future iterations
-            metafields.splice(i, 1);
 
             if (metafield.value !== existingMetafield.value || metafield.resource_type !== existingMetafield.resource_type || metafield.description !== existingMetafield.description) {
               // It needs updated
@@ -134,8 +132,6 @@ function updateVariantMetafields(payload) {
             if (metafield.namespace === existingMetafield.namespace && metafield.key === existingMetafield.key) {
               // It's a match
               match = true;
-              // Remove it to speed up future iterations
-              metafields.splice(i, 1);
 
               if (metafield.value !== existingMetafield.value || metafield.resource_type !== existingMetafield.resource_type || metafield.description !== existingMetafield.description) {
                 // It needs updated

@@ -277,49 +277,6 @@
       }
     },
     {
-      "name": "PUT CUSTOMERADDRESS",
-      "description": "PUT CUSTOMERADDRESS",
-      "channelVerb": "PUT",
-      "channelNoun": "CUSTOMERADDRESS",
-      "ruleDef": {
-        "ruleSchema": {},
-        "defaultRuleValues": {}
-      },
-      "configDef": {
-        "configModel": {
-          "type": "object",
-          "properties": {
-            "doPutCustomerAddressFlag": {
-              "title": "PUT Customer Address, doPutCustomerAddressFlag",
-              "type": "boolean"
-            },
-            "canUpdateCustomerAddressFlag": {
-              "title": "Update Customer Address, canUpdateCustomerAddressFlag",
-              "type": "boolean"
-            }
-          },
-          "required": [
-            "doPutCustomerAddressFlag",
-            "canUpdateCustomerAddressFlag"
-          ]
-        },
-        "configView": [
-          "doPutCustomerAddressFlag"
-        ],
-        "configValues": {
-          "doPutCustomerAddressFlag": true,
-          "canUpdateCustomerAddressFlag": true
-        }
-      },
-      "documentDef": {
-        "schema": {},
-        "referenceLocation": {},
-        "remoteID": "id",
-        "businessReferences": ["street_1", "city", "state", "zip"],
-        "refreshNouns": ["CUSTOMERADDRESS"]
-      }
-    },
-    {
       "name": "GET PRODUCT",
       "description": "GET PRODUCT",
       "channelVerb": "GET",
@@ -613,7 +570,7 @@
         "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"],
-        "refreshNouns": ["PRODUCTPRICING"]
+        "refreshNouns": ["PRODUCT"]
       }
     },
     {
@@ -654,7 +611,7 @@
         "referenceLocation": {},
         "remoteID": "id",
         "businessReferences": ["sku"],
-        "refreshNouns": ["PRODUCTQUANTITY"]
+        "refreshNouns": ["PRODUCT"]
       }
     }
   ],

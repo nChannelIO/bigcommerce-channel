@@ -21,11 +21,7 @@ module.exports = async function (flowContext, payload) {
       orders.push(response.body);
     }).catch(response => {
       if (response.endpointStatusCode == 404) {
-        return {
-          endpointStatusCode: response.endpointStatusCode,
-          statusCode: 204,
-          payload: []
-        }
+        this.error(`Call to endpoint ${query} returned a 404 error`);
       } else {
         return Promise.reject(response);
       }

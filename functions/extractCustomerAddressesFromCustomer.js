@@ -1,10 +1,9 @@
-
 'use strict';
 
 module.exports = function (flowContext, payload) {
   let out = {};
 
-  if (payload.doc.addresses) {
+  if (this.nc.isNonEmptyArray(payload.doc.addresses)) {
     out.payload = payload.doc.addresses;
     out.statusCode = 200;
   } else {

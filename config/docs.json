@@ -902,7 +902,1333 @@
             }
           ],
           "channelProfile": {
-            "salesOrderBusinessReferences": ["id"]
+            "productBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getProductMatrixById",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1,
+                "customer_id": 1
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 404,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getProductMatrixByModifiedTimeRange",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": []
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 206,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            },
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&page=1&limit=2&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  },
+                  {
+                    "id": 2
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 400,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getProductMatrixByCreatedTimeRange",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": []
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 206,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            },
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&page=1&limit=2&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  },
+                  {
+                    "id": 2
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getProductPricingById",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1,
+                "customer_id": 1
+              }
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 404,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getProductPricingByModifiedTimeRange",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": []
+              }
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 206,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            },
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&page=1&limit=2&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  },
+                  {
+                    "id": 2
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 400,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getProductPricingByCreatedTimeRange",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": []
+              }
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 206,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            },
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&page=1&limit=2&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  },
+                  {
+                    "id": 2
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productPricingBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getProductQuantityById",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "id": 1,
+                "customer_id": 1
+              }
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 404,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "remoteIDs": [1],
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products/1?include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": []
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getProductQuantityByModifiedTimeRange",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": []
+              }
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 206,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            },
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&page=1&limit=2&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  },
+                  {
+                    "id": 2
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 400,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "modifiedDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_modified:min=2018-06-16T09:59:59.999Z&date_modified:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        }
+      ]
+    },
+    {
+      "functionName": "getProductQuantityByCreatedTimeRange",
+      "tests": [
+        {
+          "statusCode": 200,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 204,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": []
+              }
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 206,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            },
+            "page": 1,
+            "pageSize": 2
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&page=1&limit=2&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 200,
+              "responsePayload": {
+                "data": [
+                  {
+                    "id": 1
+                  },
+                  {
+                    "id": 2
+                  }
+                ]
+              }
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 400,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 401,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 429,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 429,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
+          }
+        },
+        {
+          "statusCode": 500,
+          "payload": {
+            "createdDateRange": {
+              "startDateGMT": "2018-06-16T10:00:00.000Z",
+              "endDateGMT": "2018-06-22T12:00:00.000Z"
+            }
+          },
+          "baseUri": "https://api.bigcommerce.com",
+          "defaultHeaders": {},
+          "links": [
+            {
+              "uri": "/stores/aaaaaaaaa/v3/catalog/products?date_created:min=2018-06-16T09:59:59.999Z&date_created:max=2018-06-22T12:00:00.001Z&include=variants",
+              "method": "GET",
+              "replyHeaders": {},
+              "statusCode": 500,
+              "responsePayload": {}
+            }
+          ],
+          "channelProfile": {
+            "productQuantityBusinessReferences": ["id"]
           }
         }
       ]
@@ -2054,7 +3380,8 @@
                 }
               ]
             },
-            "productRemoteID": 1
+            "productRemoteID": 1,
+            "productPricingRemoteID": 1
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -2107,7 +3434,8 @@
                 }
               ]
             },
-            "productRemoteID": 1
+            "productRemoteID": 1,
+            "productPricingRemoteID": 1
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -2143,7 +3471,8 @@
                 }
               ]
             },
-            "productRemoteID": 1
+            "productRemoteID": 1,
+            "productPricingRemoteID": 1
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -2179,7 +3508,8 @@
                 }
               ]
             },
-            "productRemoteID": 1
+            "productRemoteID": 1,
+            "productPricingRemoteID": 1
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -2220,7 +3550,8 @@
                 }
               ]
             },
-            "productRemoteID": 1
+            "productRemoteID": 1,
+            "productQuantityRemoteID": 1
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -2273,7 +3604,8 @@
                 }
               ]
             },
-            "productRemoteID": 1
+            "productRemoteID": 1,
+            "productQuantityRemoteID": 1
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -2309,7 +3641,8 @@
                 }
               ]
             },
-            "productRemoteID": 1
+            "productRemoteID": 1,
+            "productQuantityRemoteID": 1
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
@@ -2345,7 +3678,8 @@
                 }
               ]
             },
-            "productRemoteID": 1
+            "productRemoteID": 1,
+            "productQuantityRemoteID": 1
           },
           "baseUri": "https://api.bigcommerce.com",
           "defaultHeaders": {},
