@@ -4,7 +4,7 @@ let requestErrors = require('request-promise/errors');
 let Channel = require('@nchannel/endpoint-sdk').PromiseChannel;
 let nc = require('./util/common');
 
-class bigcommerce_channel extends Channel {
+class Bigcommerce extends Channel {
   constructor(...args) {
     super(...args);
 
@@ -279,4 +279,4 @@ class bigcommerce_channel extends Channel {
   }
 }
 
-module.exports = bigcommerce_channel;
+module.exports = Bigcommerce;
