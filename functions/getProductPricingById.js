@@ -17,7 +17,7 @@ module.exports = async function (flowContext, payload) {
 
   for (const query of queries) {
     await this.queryProduct(query).then(async response => {
-      products.push(response.body);
+      products.push(response.body.data);
     }).catch(response => {
       if (response.endpointStatusCode == 404) {
         this.error(`Call to endpoint ${query} returned a 404 error`);

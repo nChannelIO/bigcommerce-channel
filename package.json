@@ -1,8 +1,8 @@
 {
   "name": "@nchannel/bigcommerce-channel",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "",
-  "main": "bigcommerce_channel.js",
+  "main": "Bigcommerce.js",
   "scripts": {
     "test": "npx nchannel-sdk test"
   },
@@ -22,11 +22,5 @@
   },
   "engines": {
     "node": ">=7.6.0"
-  },
-  "files": [
-    "config",
-    "functions",
-    "schema",
-    "util"
-  ]
+  }
 }
