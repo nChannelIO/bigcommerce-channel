@@ -13,6 +13,7 @@ module.exports = function (flowContext, payload) {
   // Store addresses - They cannot be inserted with the customer
   let cacheAddresses = payload.doc.addresses;
   delete payload.doc.addresses;
+  delete payload.doc.id;
 
   return this.request(options).then(response => {
     // Restore addresses

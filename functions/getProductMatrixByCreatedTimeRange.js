@@ -1,20 +1,7 @@
 'use strict';
 
 module.exports = function (flowContext, payload) {
-    let params = [];
-
-    //Queried dates are exclusive so skew by 1 ms to create an equivalent inclusive range
-    params.push("date_created:min=" + new Date(Date.parse(payload.createdDateRange.startDateGMT) - 1).toISOString());
-    params.push("date_created:max=" + new Date(Date.parse(payload.createdDateRange.endDateGMT) + 1).toISOString());
-
-    if (payload.page) {
-      params.push("page=" + payload.page);
-    }
-    if (payload.pageSize) {
-      params.push("limit=" + payload.pageSize);
-    }
-
-    params.push("include=variants");
-
-    return this.queryProducts(`${this.baseUri}/v3/catalog/products?${params.join('&')}`, payload.pageSize);
+  let query = JSON.parse(JSON.stringify(payload));
+  query.modifiedDateRange = query.createdDateRange;
+  return this.getProductMatrixByModifiedTimeRange(flowContext, query);
 };

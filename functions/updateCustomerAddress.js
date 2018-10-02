@@ -10,6 +10,8 @@ module.exports = function (flowContext, payload) {
 
   this.info(`Requesting [${options.method} ${options.uri}]`);
 
+  delete payload.doc.id;
+
   return this.request(options).then(response => {
     return {
       endpointStatusCode: response.statusCode,

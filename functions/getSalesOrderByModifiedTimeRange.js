@@ -27,15 +27,13 @@ module.exports = function (flowContext, payload) {
 
     return this.queryOrders(`${this.baseUri}/v2/orders?${params.join('&')}`, payload.pageSize).then(async result => {
       if (result.endpointStatusCode == 204) {
-        return Promise.resolve(result);
+        return result;
       } else {
-        let promises = [];
-
         for (const order of result.payload) {
           await this.processOrder(order);
         }
 
-        return Promise.resolve(result);
+        return result;
       }
     });
   });
