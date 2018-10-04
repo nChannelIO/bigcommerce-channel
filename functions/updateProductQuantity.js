@@ -14,7 +14,7 @@ module.exports = function (flowContext, payload) {
       return {
         endpointStatusCode: response.statusCode,
         statusCode: 200,
-        payload: response.body
+        payload: response.body.data
       }
     });
   }).catch(this.handleRejection.bind(this));
