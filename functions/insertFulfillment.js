@@ -11,13 +11,13 @@ module.exports = function (flowContext, payload) {
 
   let invalid;
   let invalidMsg;
-  let fulfillment = payload.doc;
+  let fulfillment = _.cloneDeep(payload.doc);
 
   return this.getSalesOrderById(flowContext, queryPayload).then(getSalesOrderResponse => {
     if (getSalesOrderResponse.statusCode === 200) {
       // Sort line items based on the address ID
       let lineItemsByAddress = _.groupBy(getSalesOrderResponse.payload[0].products, "order_address_id");
-      let items = payload.doc.items;
+      let items = fulfillment.items;
       let matchProperty = 'sku';
       let shipments = [];
 
@@ -40,6 +40,7 @@ module.exports = function (flowContext, payload) {
             if (item[matchProperty] === lineItems[i][matchProperty] && !itemFound) {
               // If found, set the order_product_id on the payload item to the line item product id
               item.order_product_id = lineItems[i].id;
+              delete item.sku;
               itemFound = true;
 
               // Check the quantity
@@ -83,37 +84,30 @@ module.exports = function (flowContext, payload) {
         }
       });
 
-      // Insert each fulfillment created for each address (defined by order_address_id)
-      return Promise.all(shipments.map(shipment => {
-        if (shipment.items && shipment.items.length > 0) {
-          let options = {
-            uri: `${this.baseUri}/v2/orders/${payload.salesOrderRemoteID}/shipments`,
-            method: "POST",
-            body: shipment,
-            resolveWithFullResponse: true
-          };
-          return this.request(options).then(response => {
-            return response.body;
-          }).catch(this.handleRejection.bind(this));
-        } else {
-          this.info(`Fulfillment with order_address_id of ${shipment.order_address_id} has no items to be fulfilled`);
-        }
-      })).then(result => {
-        // If no fulfillments were inserted, return an error
-        if (!result) {
-          return {
-            endpointStatusCode: 'N/A',
-            statusCode: 400,
-            errors: ['No fulfillments were inserted into Bigcommerce']
-          };
-        } else {
+      if (shipments.length > 1) {
+        return {
+          endpointStatusCode: 'N/A',
+          statusCode: 400,
+          errors: ['Multiple shipments were created, only one shipment can be inserted at at time.']
+        };
+      } else {
+        fulfillment.order_address_id = shipments[0].order_address_id;
+        fulfillment.items = items;
+
+        let options = {
+          uri: `${this.baseUri}/v2/orders/${payload.salesOrderRemoteID}/shipments`,
+          method: "POST",
+          body: fulfillment,
+          resolveWithFullResponse: true
+        };
+        return this.request(options).then(response => {
           return {
             endpointStatusCode: 201,
             statusCode: 201,
-            payload: result
+            payload: response.body
           };
-        }
-      });
+        }).catch(this.handleRejection.bind(this));
+      }
     } else {
       if (getSalesOrderResponse.statusCode === 204) {
         getSalesOrderResponse.statusCode = 400;
